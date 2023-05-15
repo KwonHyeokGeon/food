@@ -1,11 +1,24 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
+import LoginPage from '../views/LoginView.vue'
+import MemberPage from '../views/MemberView.vue'
 
 const routes = [
   {
     path: '/',
     name: 'home',
     component: HomeView
+  },
+
+  {
+    path: '/login',
+    name: 'loginPage',
+    component: LoginPage
+  },
+  {
+    path: '/member',
+    name: 'MemberPage',
+    component: MemberPage
   },
   {
     path: '/product',
@@ -20,30 +33,36 @@ const routes = [
     children: [
       {
         path: "/community/list",
-        name: "communitylist",
+        name: "list",
         component: () => import('../views/Community/CommunityList.vue')
       },
       {
         path: "/community/write",
-        name: "communitywrite",
+        name: "write",
         component: () => import('../views/Community/CommunityWrite.vue')
       },
       {
         path: "/community/detail",
-        name: "communitydetail",
+        name: "detail",
         component: () => import('../views/Community/CommunityDetail.vue')
       },
       {
         path: "/community/modify",
-        name: "communitymodify",
+        name: "modify",
         component: () => import('../views/Community/CommunityModify.vue')
       }
     ]
   },
   {
-    path: "/"
+    path: "/cs",
+    name: "cs",
+    component: () => import('../views/Cs/CsView.vue')
+  },
+  {
+    path: "/notice",
+    name: "notice",
+    component: () => import('../views/Cs/NoticeView.vue')
   }
-
 ]
 
 const router = createRouter({
