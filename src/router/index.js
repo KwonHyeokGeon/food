@@ -41,9 +41,15 @@ const routes = [
     ]
   },
   {
-    path: "/"
+    path: "/cs",
+    name: "cs",
+    component: () => import('../views/Cs/CsView.vue')
+  },
+  {
+    path: "/cs",
+    name: "notice",
+    component: () => import('../views/Cs/NoticeView.vue')
   }
-
 ]
 
 const router = createRouter({
