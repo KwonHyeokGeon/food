@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div> 
     유저레시피
   </div>
 </template>
