@@ -1,5 +1,5 @@
 <template>
-  <div class="w-full">
+  <div class="w-full mt-10">
       <div class="max-w-7xl mx-auto justify-between flex">
           
         <!-- logo -->
@@ -8,7 +8,7 @@
         </div>
 
         <!-- navi bar -->
-        <div class="basis-2/4 border">
+        <div class="basis-2/4">
             <ul class="basis-2/4 flex justify-between gap-x-[30px]">
               <li  v-for="(e,index) in NavList[0]" :key="e" >
                       <router-link :to="NavList[1][index]">{{ e }} </router-link></li>
@@ -21,11 +21,11 @@
           <p>로그아웃</p>          
           <p>회원가입</p>          
         </ul> -->
-        <div class="basis-1/6 ml-5 border">
-            <ul class="flex justify-between gap-x-[5%] ">
+        <div class="basis-1/6 ml-5">
+            <ul class="flex justify-center gap-x-[2%]">
                 <li v-if="!$store.state.loginChk"><router-link to="/login">로그인</router-link> </li>
                 <li v-else @click="logout"><router-link to="/">로그아웃</router-link></li>
-                <li>회원가입</li>
+                <li><router-link to="/member">회원가입</router-link></li>
             </ul>
 
         </div>
