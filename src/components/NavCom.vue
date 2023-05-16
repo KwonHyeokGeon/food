@@ -1,5 +1,4 @@
 <template>
-  skjdhflksdjf;ljsd;lfljsd
   <div class="w-full">
       <div class="max-w-7xl mx-auto justify-between flex">
           
