@@ -1,0 +1,46 @@
+<template>
+    <div class="basis-full">
+        <div class="max-w-7xl mx-auto">
+            <div class="flex flex-wrap">
+                <label for="title">제목</label><input v-model="title" type="text" id="title" class="border basis-5/12">
+                <label for="author">작성자</label><input v-model="author" type="text" id="author" class="border basis-5/12">
+            </div>
+            <textarea v-model="content"  class="border w-full"></textarea>
+            <div>
+                <button @click="write" class="bg-indigo-400 hover:bg-indigo-600">등록하기</button>
+            </div>
+        </div>
+    </div>
+</template>
+<script>
+import {db} from '../../firebase'
+export default {
+    name:"QnaWrite",
+    data() {
+        return {
+            title:"",
+            author:this.$store.state.displayName,
+            content:"",
+            date: new Date(),
+        }
+    },
+    mounted() {
+    },
+    methods: {
+        write(){
+                db.collection("qna").add({
+                    "author":this.author,
+                    "title": this.title,
+                    "content":this.content,
+                    "date":this.date,
+                    "uid" : this.$store.state.uid,
+                    "reply": []
+                })
+                this.$router.replace("/cs/qna")
+            }
+        }
+    }
+</script>
+<style>
+    
+</style>
