@@ -4,11 +4,11 @@
       <div class="container px-6 py-10 mx-auto">
         <div class="grid grid-cols-1 gap-8 mt-8 xl:mt-12 xl:gap-12 sm:grid-cols-2 xl:grid-cols-4 lg:grid-cols-3">
           <div class="w-full" v-for="(e, idx) in product" :key="e">
-            <div class="w-full h-64 bg-gray-300 rounded-lg dark:bg-gray-600">
-              <img v-lazy="imgUrl[idx]" :alt="product[idx]"/>
+            <div class="w-full h-64 bg-gray-300 rounded-lg dark:bg-gray-600 relative">
+              <img v-lazy="imgUrl[idx]" :alt="product[idx]" class="w-80 h-60 rounded-md absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"/>
             </div>
-            <h1 class="w-full h-2 my-4 bg-gray-200 rounded-lg dark:bg-gray-700">{{ e }}</h1>
-            <p class="w-full h-2 my-4 bg-gray-200 rounded-lg dark:bg-gray-700"></p>
+            <h1 class="w-full h-1 my-4 bg-gray-200 rounded-lg dark:bg-gray-700">{{ e }}</h1>
+            <p class="w-full h-1 my-4 bg-gray-200 rounded-lg dark:bg-gray-700"></p>
           </div>
         </div>
       </div>
