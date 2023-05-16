@@ -1,11 +1,24 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
+import LoginPage from '../views/LoginView.vue'
+import MemberPage from '../views/MemberView.vue'
 
 const routes = [
   {
     path: '/',
     name: 'home',
     component: HomeView
+  },
+
+  {
+    path: '/login',
+    name: 'loginPage',
+    component: LoginPage
+  },
+  {
+    path: '/member',
+    name: 'MemberPage',
+    component: MemberPage
   },
   {
     path: '/product',
@@ -43,12 +56,66 @@ const routes = [
   {
     path: "/cs",
     name: "cs",
-    component: () => import('../views/Cs/CsView.vue')
-  },
-  {
-    path: "/notice",
-    name: "notice",
-    component: () => import('../views/Cs/NoticeView.vue')
+    component: () => import('../views/Cs/CsView.vue'),
+    redirect: '/cs/notice',
+    children: [
+      {
+        path: "/cs/notice",
+        name: "notice",
+        component: () => import('../views/Cs/NoticeView.vue'),
+        redirect: '/cs/notice/list',
+        children: [
+          {
+            path: "/cs/notice/list",
+            name: "noticeList",
+            component: () => import('../views/Cs/NoticeList.vue')
+          },
+          {
+            path: "/cs/notice/write",
+            name: "noticeWrite",
+            component: () => import('../views/Cs/NoticeWrite.vue')
+          },
+          {
+            path: "/cs/notice/detail",
+            name: "noticeDetail",
+            component: () => import('../views/Cs/NoticeDetail.vue')
+          },
+          {
+            path: "/cs/notice/modify",
+            name: "noticeModify",
+            component: () => import('../views/Cs/NoticeModify.vue')
+          }
+        ]
+      },
+      {
+        path: "/cs/qna",
+        name: "qna",
+        component: () => import('../views/Cs/QnaView.vue'),
+        redirect: '/cs/qna/list',
+        children: [
+          {
+            path: "/cs/qna/list",
+            name: "qnaList",
+            component: () => import('../views/Cs/QnaList.vue')
+          },
+          {
+            path: "/cs/qna/write",
+            name: "qnaWrite",
+            component: () => import('../views/Cs/QnaWrite.vue')
+          },
+          {
+            path: "/cs/qna/detail",
+            name: "qnaDetail",
+            component: () => import('../views/Cs/QnaDetail.vue')
+          },
+          {
+            path: "/cs/qna/modify",
+            name: "qnaModify",
+            component: () => import('../views/Cs/QnaModify.vue')
+          }
+        ]
+      }
+    ]
   }
 ]
 
