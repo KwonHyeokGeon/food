@@ -1,7 +1,7 @@
 <template>
   <div>
       <h4>공지사항</h4> 
-      <router-link to="/cs"> 고객상담</router-link>
+      <router-view></router-view>
   </div>
 </template>
 
