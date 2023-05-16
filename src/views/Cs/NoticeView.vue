@@ -7,7 +7,7 @@
 
 <script>
 export default {
-
+  name: "NoticeView"
 }
 </script>
 

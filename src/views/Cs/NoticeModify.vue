@@ -27,7 +27,7 @@ export default {
     },
     mounted() {
         if ( this.$store.state.noticeId === 0){
-            this.$router.replace("/service/notice")
+            this.$router.replace("/cs/notice")
         }
         db.collection("notice").doc(this.$store.state.noticeId).get().then((data)=>{
                 this.BoardContent = data.data(),
@@ -40,7 +40,7 @@ export default {
         modify(){
             db.collection("notice").doc(this.$store.state.noticeId).update({"author":this.author,"title": this.title, "content":this.content,"date":this.date}).then(()=>{
                 alert("수정이 완료되었습니다.");
-                this.$router.replace("/service/notice");
+                this.$router.replace("/cs/notice");
             })
         }
     },
