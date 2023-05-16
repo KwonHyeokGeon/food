@@ -1,0 +1,7 @@
+{
+  "Nav" : [
+    ["PRODUCT","커뮤니티","고객센터"],
+    ["/product","/community","/cs"]
+  ]
+
+}
