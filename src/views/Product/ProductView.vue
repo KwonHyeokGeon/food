@@ -18,7 +18,6 @@
       </div>
     </section>
   </div>
-
   <UserRecipeView></UserRecipeView>
 </template>
 
