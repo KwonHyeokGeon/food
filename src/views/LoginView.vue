@@ -60,7 +60,7 @@ import {auth} from "../firebase"
         )
       }
       
-    }
+    },
     }
 </script>
 
