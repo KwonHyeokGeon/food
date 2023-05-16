@@ -6,4 +6,4 @@ import "./index.css"
 import VueLazyload from 'vue-lazyload';
 
 
-createApp(App).use(store).use(router).use(VueLazyload, { loading: '../assets/img/loading.png',error:'./assets/img/error.png'}).mount('#app')
+createApp(App).use(store).use(router).use(VueLazyload).mount('#app')
