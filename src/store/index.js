@@ -6,6 +6,7 @@ export default createStore({
     displayName:"",
     loginToken:null,
     noticeId:0,
+    qnaId:0,
     uid:""
   },
   mutations: {
@@ -16,6 +17,9 @@ export default createStore({
     },
     NoticeDetail(state,payload){
       state.noticeId = payload
+    },
+    QnaDetail(state,payload){
+      state.qnaId = payload
     },
   },
 })
