@@ -19,10 +19,6 @@
     </section>
   </div>
 
-
-  <div class="recipe-wrap">
-    recipe
-  </div>
   <UserRecipeView></UserRecipeView>
 </template>
 

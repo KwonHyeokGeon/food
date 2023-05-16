@@ -14,7 +14,7 @@
     </ul>
     <div v-for="(e, index) in items" :key="index" class="border m-2 p-2 flex">
       <div>
-        <a :href="`https://www.youtube.com/watch?v=${e.id}`" target="_blank">
+        <a :href="`https://www.youtube.com/watch?v=${e.id.videoId}`" target="_blank">
           <img :src="e.snippet.thumbnails.medium.url" alt="동영상" class="">
         </a>
       </div>
@@ -62,10 +62,10 @@ export default {
     }
   },
   mounted() {
-    axios.get(`https://www.googleapis.com/youtube/v3/search?key=AIzaSyANlyehJjunSG4LPmm0oT60XHDvzw2j3Uw&part=snippet&q=${this.product[this.$route.params.id]}`)
+    axios.get(`https://www.googleapis.com/youtube/v3/search?key=AIzaSyANlyehJjunSG4LPmm0oT60XHDvzw2j3Uw&part=snippet&type=video&q=${this.product[this.$route.params.id]}`)
       .then((res) => {
-        console.log(res.data.items);
         this.items = res.data.items
+        console.log(res);
       })
       .catch((err) => {
         console.log(err);
