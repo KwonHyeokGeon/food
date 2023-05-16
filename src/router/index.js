@@ -20,22 +20,22 @@ const routes = [
     children: [
       {
         path: "/community/list",
-        name: "list",
+        name: "communityList",
         component: () => import('../views/Community/CommunityList.vue')
       },
       {
         path: "/community/write",
-        name: "write",
+        name: "communityWrite",
         component: () => import('../views/Community/CommunityWrite.vue')
       },
       {
         path: "/community/detail",
-        name: "detail",
+        name: "communityDetail",
         component: () => import('../views/Community/CommunityDetail.vue')
       },
       {
         path: "/community/modify",
-        name: "modify",
+        name: "communityModify",
         component: () => import('../views/Community/CommunityModify.vue')
       }
     ]

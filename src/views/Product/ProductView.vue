@@ -5,7 +5,7 @@
         <div class="grid grid-cols-1 gap-8 mt-8 xl:mt-12 xl:gap-12 sm:grid-cols-2 xl:grid-cols-4 lg:grid-cols-3">
           <div class="w-full" v-for="(e, idx) in product" :key="e">
             <div class="w-full h-64 bg-gray-300 rounded-lg dark:bg-gray-600">
-              <img :src="imgUrl[idx]" :alt="product[idx]">
+              <img v-lazy="imgUrl[idx]" :alt="product[idx]"/>
             </div>
             <h1 class="w-full h-2 my-4 bg-gray-200 rounded-lg dark:bg-gray-700">{{ e }}</h1>
             <p class="w-full h-2 my-4 bg-gray-200 rounded-lg dark:bg-gray-700"></p>
