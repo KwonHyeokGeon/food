@@ -3,6 +3,7 @@
     <NavCom></NavCom>
     <router-link to="/product">상품</router-link>
     <router-link to="/community">커뮤니티</router-link>
+    <router-link to="/cs">고객센터</router-link>
     <router-view />
     <FooterCom></FooterCom>
   </div>

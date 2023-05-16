@@ -20,22 +20,22 @@ const routes = [
     children: [
       {
         path: "/community/list",
-        name: "communitylist",
+        name: "list",
         component: () => import('../views/Community/CommunityList.vue')
       },
       {
         path: "/community/write",
-        name: "communitywrite",
+        name: "write",
         component: () => import('../views/Community/CommunityWrite.vue')
       },
       {
         path: "/community/detail",
-        name: "communitydetail",
+        name: "detail",
         component: () => import('../views/Community/CommunityDetail.vue')
       },
       {
         path: "/community/modify",
-        name: "communitymodify",
+        name: "modify",
         component: () => import('../views/Community/CommunityModify.vue')
       }
     ]
@@ -46,7 +46,7 @@ const routes = [
     component: () => import('../views/Cs/CsView.vue')
   },
   {
-    path: "/cs",
+    path: "/notice",
     name: "notice",
     component: () => import('../views/Cs/NoticeView.vue')
   }
