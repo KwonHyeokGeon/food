@@ -4,6 +4,6 @@ import router from './router'
 import store from './store'
 import "./index.css"
 import VueLazyload from 'vue-lazyload';
+import loading from '@/assets/img/loading.png'
 
-
-createApp(App).use(store).use(router).use(VueLazyload).mount('#app')
+createApp(App).use(store).use(router).use(VueLazyload,{loading: loading, error:''}).mount('#app')
