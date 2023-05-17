@@ -9,7 +9,7 @@
 <script>
 import UserRecipeView from '../Product/UserRecipeView.vue';
 export default {
-  components:{
+  components: {
     UserRecipeView
   }
 }
