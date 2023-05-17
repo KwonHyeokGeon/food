@@ -1,8 +1,12 @@
 <template>
-  {{ seasonItem }}
   <div class="product-wrap">
     <section class="bg-white dark:bg-gray-900">
       <div class="container px-6 py-10 mx-auto">
+        <div class="">
+          <ul class="flex gap-x-2">
+            <li v-for="e in month" :key="e">{{ e }}</li>
+          </ul>
+        </div>
         <div class="grid grid-cols-1 gap-8 mt-8 xl:mt-12 xl:gap-12 sm:grid-cols-2 xl:grid-cols-4 lg:grid-cols-3">
           <div class="w-full" v-for="(e, idx) in product" :key="e">
             <div class="w-full h-64 bg-gray-300 rounded-lg dark:bg-gray-600 relative">
@@ -12,13 +16,12 @@
               </router-link>
             </div>
             <h1 class="w-full h-1 my-4 bg-gray-200 rounded-lg dark:bg-gray-700">{{ e }}</h1>
-            <p class="w-full h-1 my-4 bg-gray-200 rounded-lg dark:bg-gray-700"></p>
+            <p class="w-full h-1 my-4 bg-gray-200 rounded-lg dark:bg-gray-700">{{ seasonItem[idx] }}</p>
           </div>
         </div>
       </div>
     </section>
   </div>
-
   <UserRecipeView></UserRecipeView>
 </template>
 
@@ -31,6 +34,8 @@ export default {
       data: data,
       product: [],
       imgUrl: [],
+      seasonItem: [],
+      month: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월']
     }
   },
   components: {
@@ -40,6 +45,7 @@ export default {
   },
   created() {
     for (let i in this.data.Grid_20171128000000000572_1.row) {
+      this.seasonItem.push(this.data.Grid_20171128000000000572_1.row[i].M_DISTCTNS)
       this.product.push(this.data.Grid_20171128000000000572_1.row[i].PRDLST_NM)
       this.imgUrl.push(this.data.Grid_20171128000000000572_1.row[i].IMG_URL)
     }
