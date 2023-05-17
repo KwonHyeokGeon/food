@@ -4,7 +4,8 @@
 
       <!-- logo -->
       <div class="basis-1/4">
-        <img src="http://via.placeholder.com/120x50" alt="">
+        <router-link to="/"><img src="http://via.placeholder.com/120x50" alt="" /></router-link>
+        
       </div>
 
       <!-- navi bar -->
@@ -36,13 +37,13 @@
 </template>
 
 <script>
-import NavData from '../assets/Nav.json'
+import Nav from '../assets/Nav.json'
 import { auth } from '../firebase'
 export default {
   name: "NavCom",
   data() {
     return {
-      NavList: NavData.Nav
+      NavList: Nav.Nav
 
     }
   },
