@@ -16,8 +16,8 @@
     ["금주의레시피","유저레시피","QnA","공지사항"],
     ["문의하기"]
   ],
-  "SubMenuLink" : [
-    [],
+  "SubLink" : [
+    ["/product"],
     ["/community/list","/community/write","/community/detail","/community/modify"],
     ["/cs/notice","/cs/qna"]
   ]
