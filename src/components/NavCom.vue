@@ -17,12 +17,6 @@
         </ul>
       </div>
 
-      <!-- login bar -->
-      <!-- <ul class="ml-10 basis-1/4 flex justify-between gap-x-12">
-          <li>로그인</li>          
-          <p>로그아웃</p>          
-          <p>회원가입</p>          
-        </ul> -->
       <div class="basis-1/6 ml-5">
         <ul class="flex justify-center gap-x-[2%]">
           <li v-if="!$store.state.loginChk"><router-link to="/login">로그인</router-link> </li>
