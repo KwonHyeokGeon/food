@@ -21,25 +21,23 @@
 
       <!-- 로그인 로그아웃 회원가입 -->
       <div class="basis-1/6 ml-5 hidden lg:block mt-8">
-        <ul class="flex justify-center gap-x-[2%]">
-          <li v-if="!$store.state.loginChk"><router-link to="/login">로그인</router-link> </li>
-          <li v-else @click="logout"><router-link to="/">로그아웃</router-link></li>
-          <li><router-link to="/member">회원가입</router-link></li>
+        <ul class="flex justify-center gap-x-[10%]">
+          <li v-if="!$store.state.loginChk" class="font-extrabold"><router-link to="/login">로그인</router-link> </li>
+          <li v-else @click="logout" class="font-extrabold"><router-link to="/">로그아웃</router-link></li>
+          <li class="font-extrabold"><router-link to="/member">회원가입</router-link></li>
         </ul>
       </div>
     </div>
   </div>
 
-  <div :class="SubMenuOpen && 'h-48'" class="transition-all duration-500 bg-yellow-300 rounded h-48 overflow-hidden z-50">
+  <div :class="SubMenuOpen && '!h-48'" class="transition-all duration-500 bg-yellow-300 rounded h-0 overflow-hidden z-50">
       <div class="flex right-24 ml-[490px]" @mouseover="SubMenuOpen=true" @mouseout="SubMenuOpen=false; NavSelectIndex=null">
         <ul @mouseover="NavSelectIndex=index" v-for="(e,index) in SubList" :key="e" class="ml-[210px] text-center">
-          
-
+          <li v-for="(el,i) in e" :key="el" class="hover:text-red-500 hover:scale-110 hover:font-extrabold"><router-link :to="SubMenuLink[index][i]">{{ el }}</router-link> </li>
             <!-- <li v-for="(el,i) in e" :key="el" class="hover:text-red-500"><router-link v-if="index != 0" :to="SubMenuLink[index][i]">{{ el }}</router-link> </li> -->
-            <li v-for="(el,i) in e" :key="el" class="hover:text-red-500"><router-link :to="SubMenuLink[index][i]">{{ el }}</router-link> </li>
             <!-- <li v-for="(el,i) in e" :key="el" class="hover:text-red-500"><router-link :to="index != 0 && SubMenuLink[1][0]">{{i}}{{ el }}</router-link> </li> -->
             <!-- <li v-for="(el) in e" :key="el" class="hover:text-red-500">{{ el }}</li> -->
-        </ul>
+          </ul>
       </div>
   </div>
 
