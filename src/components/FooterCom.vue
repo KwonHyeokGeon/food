@@ -14,6 +14,7 @@
                 <span class="relative after:absolute after:w-0.5 after:bg-black after:h-4 mr-3 after:-right-2 after:bottom-0.5">CompanyName</span>
                 <span>대표자 : 홍길동</span>
               </div>
+              
 
 
               
