@@ -44,7 +44,7 @@
   </div>
 
   <!-- 햄버거 -->
-  <div  class="absolute right-4 lg:hidden top-0 z-50 pt-5" @click="isOpen == true ? isOpen=false : isOpen=true">
+  <div  class="absolute right-4 lg:hidden top-0 z-50 pt-5" @click="isOpen == true ? isOpen=false : isOpen=true" :class="isOpen && 'on'">
         <div v-for="e in 3" :key="e" class="h-1 w-7 bg-black rounded transition-all duration-500 m-1.5 top-5" :class="isOpen && 'bg-red-500 on'"></div>
     </div>
   <!-- 햄버거 끝! -->
@@ -121,6 +121,15 @@ export default {
 </script>
 
 <style>
+.on div:nth-child(1){
+transform:rotate(45deg) translateY(13px)
+}
+.on div:nth-child(2){
+opacity : 0;
+}
+.on div:nth-child(3){
+  transform:rotate(-45deg) translateY(-14px)
+}
 
 li {
   list-style: none;
