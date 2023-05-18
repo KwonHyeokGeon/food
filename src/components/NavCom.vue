@@ -22,9 +22,9 @@
       <!-- 로그인 로그아웃 회원가입 -->
       <div class="basis-1/6 ml-5 hidden lg:block mt-8">
         <ul class="flex justify-center gap-x-[2%]">
-          <li v-if="!$store.state.loginChk"><router-link to="/login">로그인</router-link> </li>
-          <li v-else @click="logout"><router-link to="/">로그아웃</router-link></li>
-          <li><router-link to="/member">회원가입</router-link></li>
+          <li class="font-extrabold" v-if="!$store.state.loginChk"><router-link to="/login">로그인</router-link> </li>
+          <li class="font-extrabold" v-else @click="logout"><router-link to="/">로그아웃</router-link></li>
+          <li class="font-extrabold ml-3"><router-link to="/member">회원가입</router-link></li>
         </ul>
       </div>
     </div>
@@ -51,7 +51,7 @@
 
 
     <!-- 우측 hidden 메뉴 Click 사용!! 삼항O -->
-  <!-- <div :class="isOpen && '!right-0'" class="w-80 bg-gray-500 h-full z-30 fixed top-0 transiton-all duration-500 -right-80 lg:hidden">
+  <div :class="isOpen && '!right-0'" class="w-80 bg-gray-500 h-full z-30 fixed top-0 transiton-all duration-500 -right-80 lg:hidden">
         <ul class=" mt-20">
             <li v-for="(e,index) in NavList[0]" :key="e" v-on:click="NavSelectIndex=index;SubDown(index);isSubOpen==false ? isSubOpen=true : isSubOpen=false" class="text-center hover:font-extrabold">{{ e }}
                  <ul  :style="isSubOpen && isSubDown" class="submenu text-center h-0 overflow-hidden transition-all duration-500">
@@ -59,12 +59,12 @@
                  </ul>
             </li>
         </ul>
-  </div> -->
+  </div>
 
 
   
   <!-- 우측 hidden 메뉴 Click 사용!! 삼항X -->
-  <div :class="isOpen && '!right-0'" class="w-80 bg-gray-500 h-full z-30 fixed top-0 transiton-all duration-500 -right-80 lg:hidden ">
+  <!-- <div :class="isOpen && '!right-0'" class="w-80 bg-gray-500 h-full z-30 fixed top-0 transiton-all duration-500 -right-80 lg:hidden ">
         <ul class=" mt-20">
             <li v-for="(e,index) in NavList[0]" :key="e" v-on:click="NavSelectIndex=index;SubDown(index)" class="text-center hover:font-extrabold"  :class="isSubOpen=false ? isSubOpen=true : false"><router-link :to="NavList[1][index]" class="hover:text-green-500">{{ e }}</router-link>
                  <ul  :style="NavSelectIndex==index && isSubDown" class="submenu text-center h-0 overflow-hidden transition-all duration-500">
@@ -72,7 +72,7 @@
                  </ul>
             </li>
         </ul>
-  </div>
+  </div> -->
 
   <!-- 우측 hidden 메뉴 MouseOver 사용!!
   <div :class="isOpen && '!right-0'" class="w-80 bg-gray-500 h-full z-30 fixed top-0 transiton-all duration-500 -right-80 lg:hidden">
