@@ -1,6 +1,7 @@
 <template>
   <div> 
     유저레시피
+    <RouterView></RouterView>
   </div>
 </template>
 

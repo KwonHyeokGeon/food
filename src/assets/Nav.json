@@ -1,7 +1,7 @@
 {
   "Nav": [
     [
-      "PRODUCT",      
+      "제철농산물",      
       "커뮤니티",
       "고객센터"
     ],
@@ -12,13 +12,13 @@
     ]
   ],
   "SubMenu" : [
-    ["레시피"],
-    ["금주의레시피","유저레시피","QnA","공지사항"],
-    ["문의하기"]
+    ["이달의 농산물"],
+    ["이벤트","레시피"],
+    ["공지사항","QnA"]
   ],
   "SubLink" : [
     ["/product"],
-    ["/community/list","/community/write","/community/detail","/community/modify"],
+    ["/event","/recipe"],
     ["/cs/notice","/cs/qna"]
   ]
 }
