@@ -26,13 +26,13 @@
     </div>
   </div>
 
-  <div :class="SubMenuOpen && 'h-48'" class="transition-all duration-500 bg-yellow-300 rounded h-0 overflow-hidden z-50">
-      <div class="flex right-24 ml-[490px]" @mouseover="SubMenuOpen=true" @mouseout="SubMenuOpen=false; NavSelectIndex=null">
-        <ul @mouseover="NavSelectIndex=index" v-for="(e,index) in SubList" :key="e" class="ml-[205px] text-center">
+  <div :class="SubMenuOpen && 'h-48'" class="transition-all duration-500 bg-gray-200 rounded h-0 overflow-hidden z-50">
+      <div class="flex right-24 ml-[370px]" @mouseover="SubMenuOpen=true" @mouseout="SubMenuOpen=false; NavSelectIndex=null">
+        <ul @mouseover="NavSelectIndex=index" v-for="(e,index) in SubList" :key="e" class="ml-[210px] text-center">
           
 
             <!-- <li v-for="(el,i) in e" :key="el" class="hover:text-red-500"><router-link v-if="index != 0" :to="SubMenuLink[index][i]">{{ el }}</router-link> </li> -->
-            <li v-for="(el,i) in e" :key="el" class="hover:text-red-500 hover:font-extrabold"><router-link :to="SubMenuLink[index][i]">{{ el }}</router-link> </li>
+            <li v-for="(el,i) in e" :key="el" class="text center hover:text-red-500 hover:font-extrabold"><router-link :to="SubMenuLink[index][i]">{{ el }}</router-link> </li>
             <!-- <li v-for="(el,i) in e" :key="el" class="hover:text-red-500"><router-link :to="index != 0 && SubMenuLink[1][0]">{{i}}{{ el }}</router-link> </li> -->
             <!-- <li v-for="(el) in e" :key="el" class="hover:text-red-500">{{ el }}</li> -->
         </ul>
