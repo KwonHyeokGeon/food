@@ -1,4 +1,4 @@
-git<template>
+<template>
     <div class="basis-full">
         <div>
             <div>

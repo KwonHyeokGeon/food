@@ -14,7 +14,7 @@
     </ul>
     <div v-for="(e, index) in items" :key="index" class="border m-2 p-2 flex">
       <div>
-        <a :href="`https://www.youtube.com/watch?v=${e.id.videoId}`" target="_blank">
+        <a :href="`https://www.youtube.com/watch?v=${e.id.videoId}레시피`" target="_blank">
           <img :src="e.snippet.thumbnails.medium.url" alt="동영상" class="">
         </a>
       </div>
