@@ -1,10 +1,6 @@
 <template>
   <div class="w-full border-red-500 border relative bg-yellow-200">
-    <div class="absolute right-10 bottom-10">
-        <button><img src="http://via.placeholder.com/50x50" alt="img" class="rounded-full"></button><br>
-        <button><img src="http://via.placeholder.com/50x50" alt="img" class="rounded-full"></button><br>
-        <button><img src="../assets/img/totop.png" alt="img" class="w-[50px] rounded-full"></button>
-    </div>
+    
       <div class="max-w-7xl flex justify-center gap-x-[5%] mx-auto border-blue-500 border">
           <div class="border">
             <!-- <img src="http://via.placeholder.com/120x50" alt="logo"> -->
@@ -28,12 +24,33 @@
           </div>
       </div>
   </div>
+
+  <button class="z-50 rounded fixed right-5 bottom-5">
+
+  </button>
+
+
+  <div class="z-50 fixed right-5 bottom-5">
+        <button><img src="http://via.placeholder.com/50x50" alt="img" class="rounded-full"></button><br>
+        <button><img src="http://via.placeholder.com/50x50" alt="img" class="rounded-full"></button><br>
+        <!-- <button><img src="../assets/img/totop.png" alt="img" class="rounded-full w-[50px]"></button><br> -->
+        <button @click="scrollTop"><img src="../assets/img/totop.png" alt="img" class="w-[50px] rounded-full" ></button>
+    </div>
 </template>
 
 <script>
 export default {
-  name:"FooterPage"
-  
+  name:"FooterPage",
+  data() {
+    return {
+      TopBtnChk:false
+    }
+  },
+  methods: {
+    scrollTop(){
+      window.scrollTo({top:0,behavior:'smooth'})
+    }
+  }
   
 
 }
