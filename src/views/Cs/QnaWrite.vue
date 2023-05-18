@@ -5,7 +5,7 @@
     </div>
     <textarea v-model="content"  class="border w-full"></textarea>
     <div>
-        <button @click="write" class="bg-indigo-400 hover:bg-indigo-600">등록하기</button>
+        <button @click="write" class="px-4 py-2 rounded text-white bg-vege-200 hover:bg-vege-400">등록하기</button>
     </div>
 </template>
 <script>

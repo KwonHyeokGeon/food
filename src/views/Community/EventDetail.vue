@@ -13,15 +13,15 @@
         {{ BoardContent.content }}
         <img v-if="BoardContent.file" :src="BoardContent.file" alt="첨부파일">
     </div>
-    <div class="flex justify-between">
-        <div>
-            <router-link to="/event/list" class="bg-indigo-400 hover:bg-indigo-600">목록으로</router-link>
+    <div class="flex justify-between mt-10 items-center">
+            <div>
+                <router-link to="/event/list" class="px-4 py-2 rounded text-white bg-vege-200 hover:bg-vege-400">목록으로</router-link>
+            </div>
+            <div class="flex gap-x-5">
+                <router-link to="/event/modify" class="px-4 py-2 rounded text-white bg-vege-200 hover:bg-vege-400">수정</router-link>
+                <button @click="Delete()" class="px-4 py-2 rounded text-white bg-point/70 hover:bg-point">삭제</button>
+            </div>
         </div>
-        <div class="flex gap-x-5">
-            <router-link to="/event/modify" class="bg-indigo-400 hover:bg-indigo-600">수정</router-link>
-            <button @click="Delete()" class="bg-red-400 hover:bg-red-600">삭제</button>
-        </div>
-    </div>
   </template>
   <script>
   import {db} from '../../firebase';

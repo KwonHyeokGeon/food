@@ -17,17 +17,17 @@
             </ul>
         </div>
         <div class="flex justify-between bg-gray-100">
-            댓글내용<textarea v-model="reply.content" class="border"></textarea>
+            댓글내용<textarea v-model="reply.content" class="border basis-2/3"></textarea>
             작성자<input type="text" v-model="reply.author" class="border">
-            <button @click="Comment()" class="bg-indigo-400 hover:bg-indigo-600">등록하기</button>
+            <button @click="Comment()" class="px-2 py-1 rounded text-white bg-vege-200 hover:bg-vege-400">등록하기</button>
         </div>
-        <div class="flex justify-between">
+        <div class="flex justify-between mt-10 items-center">
             <div>
-                <router-link to="/cs/qna/list" class="bg-indigo-400 hover:bg-indigo-600">목록으로</router-link>
+                <router-link to="/cs/qna/list" class="px-4 py-2 rounded text-white bg-vege-200 hover:bg-vege-400">목록으로</router-link>
             </div>
             <div class="flex gap-x-5">
-                <router-link to="/cs/qna/modify" class="bg-indigo-400 hover:bg-indigo-600">수정</router-link>
-                <button @click="Delete()" class="bg-red-400 hover:bg-red-600">삭제</button>
+                <router-link to="/cs/qna/modify" class="px-4 py-2 rounded text-white bg-vege-200 hover:bg-vege-400">수정</router-link>
+                <button @click="Delete()" class="px-4 py-2 rounded text-white bg-point/70 hover:bg-point">삭제</button>
             </div>
         </div>
     </div>

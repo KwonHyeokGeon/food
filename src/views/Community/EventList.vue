@@ -1,7 +1,7 @@
 <template>
     <div class="w-full">
         <template v-for="(e,index) in dataList" :key="index">
-            <ul v-if="calculateNumber(totalLength, perPage, page, index) >0" class="flex flex-wrap w-[48%] border rounded-md p-3 box-border">
+            <ul v-if="calculateNumber(totalLength, perPage, page, index) >0" class="flex flex-wrap w-full lg:w-[48%] border rounded-md p-3 box-border">
                 <li class="basis-3/5 border text-center">
                     <router-link :to="{ name:'eventDetail', query:{docId: dataId[index]} }" @click="$store.commit('eventDetail', dataId[index])">
                     <img :src="e.file" :alt="e.title" class="w-full h-[200px] object-cover"/>

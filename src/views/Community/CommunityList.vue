@@ -1,10 +1,10 @@
 <template>
     <div class="w-full">
         <template v-for="(e,index) in dataList" :key="index">
-        <ul v-if="calculateNumber(totalLength, perPage, page, index) >0" class="flex flex-wrap w-[24%] border">
-            <router-link :to="{ name:'communityDetail', query:{docId: dataId[index]} }" @click="$store.commit('CommunityDetail', dataId[index])">
-            <li class="basis-full border-b text-center"><img :src="e.file" :alt="e.title" class="w-full h-[200px] object-cover"/></li>
-            <li class="basis-full font-bold text-xl p-2">{{ e.title }}</li>
+        <ul v-if="calculateNumber(totalLength, perPage, page, index) >0" class="flex flex-wrap w-full lg:w-[49%] xl:w-[24%] border">
+            <router-link :to="{ name:'communityDetail', query:{docId: dataId[index]} }" @click="$store.commit('CommunityDetail', dataId[index])" class="basis-full">
+            <li class="w-full text-center"><img :src="e.file" :alt="e.title" class="w-full h-[200px] object-cover"/></li>
+            <li class="w-full border-t font-bold text-xl p-2">{{ e.title }}</li>
             </router-link>
             <li class="basis-full text-sm p-2">
                 <span class="mr-2">게시물번호 {{ calculateNumber(totalLength, perPage, page, index) }} </span>

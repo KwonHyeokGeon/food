@@ -5,7 +5,7 @@
     </div>
     <textarea v-model="content" class="border w-full my-10 h-24"></textarea>
     <div class="flex justify-end">
-        <button @click="modify" class="bg-indigo-400">수정하기</button>
+        <button @click="modify" class="px-4 py-2 rounded text-white bg-vege-200 hover:bg-vege-400">수정하기</button>
     </div>
 </template>
 <script>
