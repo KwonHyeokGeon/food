@@ -19,7 +19,7 @@
       </router-link>
     </div>
     <div class="mt-14 flex flex-col justify-center items-center">
-      <p class="text-sm font-bold">SNS로 로그인 하시겠습니까?</p>
+      <p class="text-sm font-bold"><span>아이디 / </span>SNS로 로그인 하시겠습니까?</p>
       <ul>
         <li></li>
       </ul>
@@ -39,30 +39,33 @@ export default {
   },
   methods: {
     login() {
-      if (!this.email || !this.password) {
+       if (!this.email) {
         alert("이메일을 입력해주세요");
         return false
-      } else if (this.email && this.password) {
+        // return false :  더이상 돌지말고 그만 
+      }
+      else if (!this.password) {
+        alert("비밀번호를 입력해주세요");
+        return false;
+      }
+      else if (this.email && this.password) {
         auth.signInWithEmailAndPassword(this.email, this.password).then(((user) => {
-          console.log(user.user)
           localStorage.setItem("refreshToken", user.user.refreshToken)
           localStorage.setItem("displayName", user.user.displayName)
+          
+          
           if (user.user.refreshToken) {
             this.$store.commit("loginToken", { refreshToken: user.user.refreshToken, uid: user.user.uid })
           }
           this.$router.replace('/')
           window.scrollTo({ top: 0, behavior: 'auto' })
-          // 로그인되면 메인페이지로 이동
-          // 로그인 되면서 바로 홈 페이지 제일 상단으로 이동
-          // behavior 를 smooth 로 하면 스크롤 효과가 나옴.
         }),
           ((error) => {
             this.errorMsg = error.message
           })
         )
       }
-    }
-
+    },
   },
 }
 </script>

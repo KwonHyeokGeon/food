@@ -20,7 +20,7 @@
         <ul class="flex justify-center gap-x-[2%]">
           <li class="font-extrabold" v-if="!$store.state.loginChk"><router-link to="/login">로그인</router-link> </li>
           <li class="font-extrabold" v-else @click="logout"><router-link to="/">로그아웃</router-link></li>
-          <li class="font-extrabold ml-3"><router-link to="/member">회원가입</router-link></li>
+          <li class="font-extrabold ml-3" v-if="!$store.state.loginChk"><router-link to="/member">회원가입</router-link></li>
         </ul>
       </div>
     </div>
