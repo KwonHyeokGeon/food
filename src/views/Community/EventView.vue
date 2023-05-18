@@ -1,6 +1,7 @@
 <template>
   <div>
-    커뮤니티
+    이벤트
+    <router-view></router-view>
   </div>
 </template>
 
