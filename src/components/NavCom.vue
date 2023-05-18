@@ -45,18 +45,45 @@
 
   <!-- 햄버거 -->
   <div  class="absolute right-4 lg:hidden top-0 z-50 pt-5" @click="isOpen == true ? isOpen=false : isOpen=true">
-        <div v-for="e in 3" :key="e" class="h-1 w-7 bg-black rounded transition-all duration-500 m-1.5 top-5" :class="isOpen && 'bg-red-500'"></div>
+        <div v-for="e in 3" :key="e" class="h-1 w-7 bg-black rounded transition-all duration-500 m-1.5 top-5" :class="isOpen && 'bg-red-500 on'"></div>
     </div>
   <!-- 햄버거 끝! -->
 
-  <!-- 우측 hidden 메뉴 -->
+
+    <!-- 우측 hidden 메뉴 Click 사용!! 삼항O -->
+  <!-- <div :class="isOpen && '!right-0'" class="w-80 bg-gray-500 h-full z-30 fixed top-0 transiton-all duration-500 -right-80 lg:hidden">
+        <ul class=" mt-20">
+            <li v-for="(e,index) in NavList[0]" :key="e" v-on:click="NavSelectIndex=index;SubDown(index);isSubOpen==false ? isSubOpen=true : isSubOpen=false" class="text-center hover:font-extrabold">{{ e }}
+                 <ul  :style="isSubOpen && isSubDown" class="submenu text-center h-0 overflow-hidden transition-all duration-500">
+                     <li v-for="(el,i) in SubList[index]" :key="el"><router-link :to="SubMenuLink[index][i]" class="hover:text-red-500"> {{ el }}</router-link></li>
+                 </ul>
+            </li>
+        </ul>
+  </div> -->
+
+
+  
+  <!-- 우측 hidden 메뉴 Click 사용!! 삼항X -->
   <div :class="isOpen && '!right-0'" class="w-80 bg-gray-500 h-full z-30 fixed top-0 transiton-all duration-500 -right-80 lg:hidden">
-    sdklfj;slkdjf;lksjd;lfj
-    sdlkfjlsdkjflkjsdlfk
-
-
-    
+        <ul class=" mt-20">
+            <li v-for="(e,index) in NavList[0]" :key="e" v-on:click="NavSelectIndex=index;SubDown(index)" class="text-center hover:font-extrabold"  :class="isSubOpen=false ? isSubOpen=true : false"><router-link :to="NavList[1][index]" class="hover:text-green-500">{{ e }}</router-link>
+                 <ul  :style="NavSelectIndex==index && isSubDown" class="submenu text-center h-0 overflow-hidden transition-all duration-500">
+                     <li v-for="(el,i) in SubList[index]" :key="el"><router-link :to="SubMenuLink[index][i]" class="hover:text-red-500"> {{ el }}</router-link></li>
+                 </ul>
+            </li>
+        </ul>
   </div>
+
+  <!-- 우측 hidden 메뉴 MouseOver 사용!!
+  <div :class="isOpen && '!right-0'" class="w-80 bg-gray-500 h-full z-30 fixed top-0 transiton-all duration-500 -right-80 lg:hidden">
+        <ul class=" mt-20">
+            <li v-for="(e,index) in NavList[0]" :key="e" @mouseover="NavSelectIndex=index;SubDown(index)" @mouseout="NavSelectIndex=null" class="text-center"  :class="NavSelectIndex==index && 'font-extrabold'"><router-link :to="NavList[1][index]" class="hover:text-green-500 ">{{ e }}</router-link>
+                <ul :style="NavSelectIndex==index && isSubDown" class="submenu text-center h-0 overflow-hidden transition-all duration-500">
+                    <li v-for="(el,i) in SubList[index]" :key="el"><router-link :to="SubMenuLink[index][i]" class="hover:text-red-500"> {{ el }}</router-link></li>
+                </ul>
+            </li>
+        </ul>
+  </div> -->
 
 
 </template>
@@ -73,23 +100,28 @@ export default {
       SubList:Nav.SubMenu,
       SubMenuOpen:false,
       NavSelectIndex:null,
-      SubMenuLink:Nav.SubLink
-
-
-
-
+      SubMenuLink:Nav.SubLink,
+      isSubDown:'',
+      isSubOpen:false
     }
   },
   methods: {
     logout() {
       auth.signOut();
       this.$store.commit('logOutToken')
+    },
+    SubDown(e){
+      const list=document.querySelectorAll('.submenu')[e]
+      const length=list.querySelectorAll('li').length
+      this.isSubDown=`height:${length*32}px`
+      
     }
   }
 }
 </script>
 
 <style>
+
 li {
   list-style: none;
 }
