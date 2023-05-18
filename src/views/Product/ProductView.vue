@@ -2,8 +2,8 @@
   <div class="product-wrap">
     <section class="bg-white dark:bg-gray-900">
       <div class="container px-6 py-10 mx-auto">
-        <div class="">
-          <ul class="flex gap-x-2">
+        <div class="w-full">
+          <ul class="flex gap-x-2 w-full">
             <li v-for="e in month" :key="e">{{ e }}</li>
           </ul>
         </div>
@@ -35,7 +35,8 @@ export default {
       product: [],
       imgUrl: [],
       seasonItem: [],
-      month: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월']
+      month: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
+      selectMonth: ''
     }
   },
   components: {
