@@ -20,7 +20,7 @@
         <ul class="flex justify-center gap-x-[2%]">
           <li class="font-extrabold" v-if="!$store.state.loginChk"><router-link to="/login">로그인</router-link> </li>
           <li class="font-extrabold" v-else @click="logout"><router-link to="/">로그아웃</router-link></li>
-          <li class="font-extrabold ml-3"><router-link to="/member">회원가입</router-link></li>
+          <li class="font-extrabold ml-3" v-if="!$store.state.loginChk"><router-link to="/member">회원가입</router-link></li>
         </ul>
       </div>
     </div>
@@ -32,14 +32,14 @@
           
 
             <!-- <li v-for="(el,i) in e" :key="el" class="hover:text-red-500"><router-link v-if="index != 0" :to="SubMenuLink[index][i]">{{ el }}</router-link> </li> -->
-            <li v-for="(el,i) in e" :key="el" class="text center hover:text-red-500 hover:font-extrabold"><router-link :to="SubMenuLink[index][i]">{{ el }}</router-link> </li>
+            <li v-for="(el,i) in e" :key="el" class="hover:text-red-500 hover:font-extrabold"><router-link :to="SubMenuLink[index][i]">{{ el }}</router-link> </li>
             <!-- <li v-for="(el,i) in e" :key="el" class="hover:text-red-500"><router-link :to="index != 0 && SubMenuLink[1][0]">{{i}}{{ el }}</router-link> </li> -->
             <!-- <li v-for="(el) in e" :key="el" class="hover:text-red-500">{{ el }}</li> -->
         </ul>
       </div>
   </div>
 
-  <!-- 햄버거 -->g
+  <!-- 햄버거 -->
   <div  class="absolute right-4 lg:hidden top-0 z-50 pt-5" @click="isOpen == true ? isOpen=false : isOpen=true" :class="isOpen && 'on'">
         <div v-for="e in 3" :key="e" class="h-1 w-7 bg-black rounded transition-all duration-500 m-1.5 top-5" :class="isOpen && 'bg-red-500 on'"></div>
     </div>
@@ -47,7 +47,7 @@
 
 
     <!-- 우측 hidden 메뉴 Click 사용!! 삼항O -->
-  <!-- <div :class="isOpen && '!right-0'" class="w-80 bg-gray-500 h-full z-30 fixed top-0 transiton-all duration-500 -right-80 lg:hidden">
+  <div :class="isOpen && '!right-0'" class="w-80 bg-gray-500 h-full z-30 fixed top-0 transiton-all duration-500 -right-80 lg:hidden">
         <ul class=" mt-20">
             <li v-for="(e,index) in NavList[0]" :key="e" v-on:click="NavSelectIndex=index;SubDown(index);isSubOpen==false ? isSubOpen=true : isSubOpen=false" class="text-center hover:font-extrabold">{{ e }}
                  <ul  :style="isSubOpen && isSubDown" class="submenu text-center h-0 overflow-hidden transition-all duration-500">
@@ -55,9 +55,10 @@
                  </ul>
             </li>
         </ul>
-  </div> -->
+  </div>
 
-  
+
+
   <!-- 우측 hidden 메뉴 Click 사용!! 삼항X -->
   <div :class="isOpen && '!right-0'" class="w-80 bg-gray-500 h-full z-30 fixed top-0 transiton-all duration-500 -right-80 lg:hidden ">
         <ul class=" mt-20">
@@ -79,8 +80,6 @@
             </li>
         </ul>
   </div> -->
-
-
 </template>
 
 <script>
@@ -91,13 +90,13 @@ export default {
   data() {
     return {
       NavList: Nav.Nav,
-      isOpen:false,
-      SubList:Nav.SubMenu,
-      SubMenuOpen:false,
-      NavSelectIndex:null,
-      SubMenuLink:Nav.SubLink,
-      isSubDown:'',
-      isSubOpen:false
+      isOpen: false,
+      SubList: Nav.SubMenu,
+      SubMenuOpen: false,
+      NavSelectIndex: null,
+      SubMenuLink: Nav.SubLink,
+      isSubDown: '',
+      isSubOpen: false
     }
   },
   methods: {
@@ -105,28 +104,29 @@ export default {
       auth.signOut();
       this.$store.commit('logOutToken')
     },
-    SubDown(e){
-      const list=document.querySelectorAll('.submenu')[e]
-      const length=list.querySelectorAll('li').length
-      this.isSubDown=`height:${length*32}px`
-      
+    SubDown(e) {
+      const list = document.querySelectorAll('.submenu')[e]
+      const length = list.querySelectorAll('li').length
+      this.isSubDown = `height:${length * 32}px`
+
     }
   }
 }
 </script>
 
 <style>
-.on div:nth-child(1){
-transform:rotate(45deg) translateY(13px)
+.on div:nth-child(1) {
+  transform: rotate(45deg) translateY(13px)
 }
-.on div:nth-child(2){
-opacity : 0;
+
+.on div:nth-child(2) {
+  opacity: 0;
 }
-.on div:nth-child(3){
-  transform:rotate(-45deg) translateY(-14px)
+
+.on div:nth-child(3) {
+  transform: rotate(-45deg) translateY(-14px)
 }
 
 li {
   list-style: none;
-}
-</style>
+}</style>
