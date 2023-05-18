@@ -1,7 +1,7 @@
 {
   "Nav": [
     [
-      "PRODUCT",
+      "PRODUCT",      
       "커뮤니티",
       "고객센터"
     ],
@@ -10,5 +10,15 @@
       "/community",
       "/cs"
     ]
+  ],
+  "SubMenu" : [
+    ["레시피"],
+    ["금주의레시피","유저레시피","QnA","공지사항"],
+    ["문의하기"]
+  ],
+  "SubLink" : [
+    ["/product"],
+    ["/community/list","/community/write","/community/detail","/community/modify"],
+    ["/cs/notice","/cs/qna"]
   ]
 }
