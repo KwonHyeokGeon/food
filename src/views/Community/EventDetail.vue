@@ -1,27 +1,25 @@
 <template>
-    <div class="basis-full">
+    <div>
         <div>
-            <div>
-                {{BoardContent.title}}
-            </div>
-            <div class="basis-full flex text-center">
-                <p><span>작성자</span>{{BoardContent.author}}</p>
-                <p><span>작성일시</span>{{dateTime}}</p>
-  
-            </div>
+            {{BoardContent.title}}
         </div>
-        <div >
-            {{ BoardContent.content }}
-            <img v-if="BoardContent.file" :src="BoardContent.file" alt="첨부파일">
+        <div class="basis-full flex text-center">
+            <p><span>작성자</span>{{BoardContent.author}}</p>
+            <p><span>작성일시</span>{{dateTime}}</p>
+
         </div>
-        <div class="flex justify-between">
-            <div>
-                <router-link to="/event/list" class="bg-indigo-400 hover:bg-indigo-600">목록으로</router-link>
-            </div>
-            <div class="flex gap-x-5">
-                <router-link to="/event/modify" class="bg-indigo-400 hover:bg-indigo-600">수정</router-link>
-                <button @click="Delete()" class="bg-red-400 hover:bg-red-600">삭제</button>
-            </div>
+    </div>
+    <div >
+        {{ BoardContent.content }}
+        <img v-if="BoardContent.file" :src="BoardContent.file" alt="첨부파일">
+    </div>
+    <div class="flex justify-between">
+        <div>
+            <router-link to="/event/list" class="bg-indigo-400 hover:bg-indigo-600">목록으로</router-link>
+        </div>
+        <div class="flex gap-x-5">
+            <router-link to="/event/modify" class="bg-indigo-400 hover:bg-indigo-600">수정</router-link>
+            <button @click="Delete()" class="bg-red-400 hover:bg-red-600">삭제</button>
         </div>
     </div>
   </template>

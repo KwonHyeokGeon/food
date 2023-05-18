@@ -1,29 +1,27 @@
 <template>
-  <div class="basis-full">
-      <div class="max-w-7xl mx-auto">
-          <template v-for="(e,index) in dataList" :key="index">
-              <ul v-if="calculateNumber(totalLength, perPage, page, index) >0" class="flex flex-wrap w-[300px] border p-3">
-                <router-link :to="{ name:'communityDetail', query:{docId: dataId[index]} }" @click="$store.commit('CommunityDetail', dataId[index])">
-                <li class="basis-full border text-center"><img :src="e.file" :alt="e.title" class="w-[280px]"/></li>
-                <li class="basis-full font-bold text-xl">{{ e.title }}</li>
-                </router-link>
-                <li class="basis-full text-sm">
-                  <span class="mr-2">게시물번호 {{ calculateNumber(totalLength, perPage, page, index) }} </span>
-                  <span class="mr-2">작성자 {{e.author}}</span>
-                  <span>작성일자 {{BoardDate(index)}}</span>
-                </li>
-              </ul>
-          </template>
-          <div class="flex justify-end">
-              <router-link to="/community/write" class="px-4 py-2 rounded text-white bg-vege-400 hover:bg-vege-200">글쓰기</router-link>
-          </div>
-          <div class="flex justify-center basis-full gap-x-2 items-center">
-              <button @click="prevPage" :disabled="currentPage <= 1" class="font-bold">이전</button>
-              <button v-for="e in pageCount.pagenation" :key="e" @click="goToPage(e)" :class="e === page ? 'font-bold text-point': 'text-slate-600'">{{ e }}</button>
-              <button @click="nextPage" :disabled="currentPage >= pageCount.totalPage / block" class="font-bold">다음</button>
-          </div>
-      </div>
-  </div>
+    <div class="w-full">
+        <template v-for="(e,index) in dataList" :key="index">
+        <ul v-if="calculateNumber(totalLength, perPage, page, index) >0" class="flex flex-wrap w-[24%] border">
+            <router-link :to="{ name:'communityDetail', query:{docId: dataId[index]} }" @click="$store.commit('CommunityDetail', dataId[index])">
+            <li class="basis-full border-b text-center"><img :src="e.file" :alt="e.title" class="w-full h-[200px] object-cover"/></li>
+            <li class="basis-full font-bold text-xl p-2">{{ e.title }}</li>
+            </router-link>
+            <li class="basis-full text-sm p-2">
+                <span class="mr-2">게시물번호 {{ calculateNumber(totalLength, perPage, page, index) }} </span>
+                <span class="mr-2">작성자 {{e.author}}</span>
+                <span>작성일자 {{BoardDate(index)}}</span>
+            </li>
+            </ul>
+        </template>
+        <div class="flex justify-end">
+            <router-link to="/recipe/write" class="px-4 py-2 rounded text-white bg-vege-400 hover:bg-vege-200">글쓰기</router-link>
+        </div>
+        <div class="flex justify-center basis-full gap-x-2 items-center">
+            <button @click="prevPage" :disabled="currentPage <= 1" class="font-bold">이전</button>
+            <button v-for="e in pageCount.pagenation" :key="e" @click="goToPage(e)" :class="e === page ? 'font-bold text-point': 'text-slate-600'">{{ e }}</button>
+            <button @click="nextPage" :disabled="currentPage >= pageCount.totalPage / block" class="font-bold">다음</button>
+        </div>
+    </div>
 </template>
 <script>
 import {db} from '../../firebase';

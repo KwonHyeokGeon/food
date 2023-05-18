@@ -1,5 +1,5 @@
 <template>
-    <div class="basis-full">
+    <div class="w-full">
         <div class="border-y-2 mb-10">
             <div>
                 {{BoardContent.title}}

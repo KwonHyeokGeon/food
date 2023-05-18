@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="max-w-7xl mx-auto">
     이벤트
     <router-view></router-view>
   </div>

@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="max-w-7xl mx-auto">
      큐앤에이쓰
     </div>
     <router-view></router-view>

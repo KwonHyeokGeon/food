@@ -1,14 +1,12 @@
 <template>
-    <div class="basis-full">
-        <div class="max-w-7xl mx-auto">
-            <div class="flex flex-wrap">
-                <label for="title">제목</label><input v-model="title" type="text" id="title" class="border">
-                <label for="author">작성자</label><input v-model="author" type="text" id="author" class="border">
-            </div>
-            <textarea v-model="content" class="border w-full my-10 h-24"></textarea>
-            <div class="flex justify-end">
-                <button @click="modify" class="bg-indigo-400">수정하기</button>
-            </div>
+    <div class="w-full">
+        <div class="flex flex-wrap">
+            <label for="title">제목</label><input v-model="title" type="text" id="title" class="border">
+            <label for="author">작성자</label><input v-model="author" type="text" id="author" class="border">
+        </div>
+        <textarea v-model="content" class="border w-full my-10 h-24"></textarea>
+        <div class="flex justify-end">
+            <button @click="modify" class="bg-indigo-400">수정하기</button>
         </div>
     </div>
 </template>
