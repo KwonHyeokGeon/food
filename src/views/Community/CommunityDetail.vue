@@ -37,7 +37,7 @@ export default {
   },
   mounted() {
       if ( this.$route.query.docId === null){
-          this.$router.replace("/community")
+          this.$router.replace("/recipe")
       }
       db.collection("community").doc(this.$route.query.docId).get().then((data)=>{
           this.BoardContent = data.data()
@@ -58,7 +58,7 @@ export default {
           if (msg){
               db.collection("community").doc(this.$route.query.docId).delete().then(() => {
                   alert("게시물이 삭제되었습니다.");
-                  this.$router.replace("/community")
+                  this.$router.replace("/recipe")
               }).catch((error) => {
                   console.error("Error removing document: ", error);
               });
