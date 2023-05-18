@@ -30,13 +30,13 @@
     </div>
   </div>
 
-  <div :class="SubMenuOpen && 'h-48'" class="transition-all duration-500 bg-yellow-300 rounded h-48 overflow-hidden z-50">
+  <div :class="SubMenuOpen && 'h-48'" class="transition-all duration-500 bg-yellow-300 rounded h-0 overflow-hidden z-50">
       <div class="flex right-24 ml-[490px]" @mouseover="SubMenuOpen=true" @mouseout="SubMenuOpen=false; NavSelectIndex=null">
-        <ul @mouseover="NavSelectIndex=index" v-for="(e,index) in SubList" :key="e" class="ml-[210px] text-center">
+        <ul @mouseover="NavSelectIndex=index" v-for="(e,index) in SubList" :key="e" class="ml-[205px] text-center">
           
 
             <!-- <li v-for="(el,i) in e" :key="el" class="hover:text-red-500"><router-link v-if="index != 0" :to="SubMenuLink[index][i]">{{ el }}</router-link> </li> -->
-            <li v-for="(el,i) in e" :key="el" class="hover:text-red-500"><router-link :to="SubMenuLink[index][i]">{{ el }}</router-link> </li>
+            <li v-for="(el,i) in e" :key="el" class="hover:text-red-500 hover:font-extrabold"><router-link :to="SubMenuLink[index][i]">{{ el }}</router-link> </li>
             <!-- <li v-for="(el,i) in e" :key="el" class="hover:text-red-500"><router-link :to="index != 0 && SubMenuLink[1][0]">{{i}}{{ el }}</router-link> </li> -->
             <!-- <li v-for="(el) in e" :key="el" class="hover:text-red-500">{{ el }}</li> -->
         </ul>
@@ -64,7 +64,7 @@
 
   
   <!-- 우측 hidden 메뉴 Click 사용!! 삼항X -->
-  <div :class="isOpen && '!right-0'" class="w-80 bg-gray-500 h-full z-30 fixed top-0 transiton-all duration-500 -right-80 lg:hidden">
+  <div :class="isOpen && '!right-0'" class="w-80 bg-gray-500 h-full z-30 fixed top-0 transiton-all duration-500 -right-80 lg:hidden ">
         <ul class=" mt-20">
             <li v-for="(e,index) in NavList[0]" :key="e" v-on:click="NavSelectIndex=index;SubDown(index)" class="text-center hover:font-extrabold"  :class="isSubOpen=false ? isSubOpen=true : false"><router-link :to="NavList[1][index]" class="hover:text-green-500">{{ e }}</router-link>
                  <ul  :style="NavSelectIndex==index && isSubDown" class="submenu text-center h-0 overflow-hidden transition-all duration-500">
