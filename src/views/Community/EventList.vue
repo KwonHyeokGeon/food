@@ -15,11 +15,11 @@
                 </ul>
             </template>
             <div class="flex justify-end">
-                <router-link to="/event/write" class="bg-indigo-400 hover:bg-indigo-600">글쓰기</router-link>
+                <router-link to="/event/write" class="px-4 py-2 rounded text-white bg-vege-400 hover:bg-vege-200">글쓰기</router-link>
             </div>
             <div class="flex justify-center basis-full gap-x-2 items-center">
                 <button @click="prevPage" :disabled="currentPage <= 1" class="font-bold">이전</button>
-                <button v-for="e in pageCount.pagenation" :key="e" @click="goToPage(e)" :class="e === page ? 'font-bold text-indigo-600': 'text-slate-600'">{{ e }}</button>
+                <button v-for="e in pageCount.pagenation" :key="e" @click="goToPage(e)" :class="e === page ? 'font-bold text-point': 'text-slate-600'">{{ e }}</button>
                 <button @click="nextPage" :disabled="currentPage >= pageCount.totalPage / block" class="font-bold">다음</button>
             </div>
         </div>
