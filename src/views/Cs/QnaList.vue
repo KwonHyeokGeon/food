@@ -1,11 +1,12 @@
 <template>
     <div class="basis-full">
         <div class="max-w-7xl mx-auto">
-            <ul class="flex justify-between border-b-2">
+            <ul class="flex justify-between bg-vege-600 text-white border-b-2">
                 <li class="basis-10">번호</li>
                 <li class="basis-7/12">제목</li>
-                <li class="basis-16">작성자</li>
-                <li class="basis-24">날짜</li>
+                <li class="basis-16 text-center">작성자</li>
+                <li class="basis-24 text-center">날짜</li>
+                <li class="basis-24 text-center">문의상태</li>
             </ul>
             <template v-for="(e,index) in dataList" :key="index">
                 <ul v-if="calculateNumber(totalLength, perPage, page, index) >0" class="flex justify-between">
@@ -15,10 +16,11 @@
                     </li>
                     <li class="basis-16 text-center">{{e.author}}</li>
                     <li class="basis-24 text-center">{{BoardDate(index)}}</li>
+                    <li class="basis-24 text-center"><p v-html="e.reply[0] === undefined? '접수완료':'답변완료'"></p></li>
                 </ul>
             </template>
             <div class="flex justify-end">
-                <router-link to="/cs/qna/write" class="bg-indigo-400 hover:bg-indigo-600">글쓰기</router-link>
+                <router-link to="/cs/qna/write" class="bg-indigo-400 hover:bg-indigo-600">문의 작성하기</router-link>
             </div>
             <div class="flex justify-center basis-full gap-x-2 items-center">
                 <button @click="prevPage" :disabled="currentPage <= 1" class="font-bold">이전</button>
