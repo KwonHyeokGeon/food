@@ -39,7 +39,7 @@
       </div>
   </div>
 
-  <!-- 햄버거 -->
+  <!-- 햄버거 -->g
   <div  class="absolute right-4 lg:hidden top-0 z-50 pt-5" @click="isOpen == true ? isOpen=false : isOpen=true" :class="isOpen && 'on'">
         <div v-for="e in 3" :key="e" class="h-1 w-7 bg-black rounded transition-all duration-500 m-1.5 top-5" :class="isOpen && 'bg-red-500 on'"></div>
     </div>
