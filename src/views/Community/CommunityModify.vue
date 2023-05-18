@@ -27,7 +27,7 @@ export default {
   },
   mounted() {
       if ( this.$store.state.communityId === 0){
-          this.$router.replace("/community")
+          this.$router.replace("/recipe")
       }
       db.collection("community").doc(this.$store.state.communityId).get().then((data)=>{
               this.BoardContent = data.data(),
@@ -40,7 +40,7 @@ export default {
       modify(){
           db.collection("community").doc(this.$store.state.communityId).update({"author":this.author,"title": this.title, "content":this.content,"date":this.date}).then(()=>{
               alert("수정이 완료되었습니다.");
-              this.$router.replace("/community");
+              this.$router.replace("/recipe");
           })
       }
   },

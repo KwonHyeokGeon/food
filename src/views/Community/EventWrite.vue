@@ -16,7 +16,7 @@
 <script>
 import { db, storage } from '../../firebase'
 export default {
-    name: "CommunityWrite",
+    name: "EventWrite",
     data() {
         return {
             title: "",
@@ -44,7 +44,7 @@ export default {
                 storage.ref().child("files/" + this.fileRandom).put(this.file).then(() => {
                     storage.ref().child("files/" + this.fileRandom).getDownloadURL().then((url) => {
                         //파일 경로 가져오기
-                        db.collection("community").add({
+                        db.collection("event").add({
                             "author": this.author,
                             "title": this.title,
                             "content": this.content,
@@ -52,18 +52,18 @@ export default {
                             "uid": this.$store.state.uid,
                             "file": url
                         })
-                        this.$router.replace("/recipe")
+                        this.$router.replace("/event")
                     })
                 })
             } else {
-                db.collection("community").add({
+                db.collection("event").add({
                     "author": this.author,
                     "title": this.title,
                     "content": this.content,
                     "date": this.date,
                     "uid": this.$store.state.uid
                 })
-                this.$router.replace("/recipe")
+                this.$router.replace("/event")
             }
         }
     },

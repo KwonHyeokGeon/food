@@ -1,26 +1,22 @@
 <template>
-  <div class="w-full mt-10">
-    <div class="max-w-7xl mx-auto justify-between flex">
-
-
-
+  <div class="w-full ">
+    <div class="max-w-7xl mx-auto justify-center md:justify-between items-center flex py-1">
       <!-- logo -->
-      <div class="basis-1/4">
-        <router-link to="/"><img src="http://via.placeholder.com/120x50" alt="" /></router-link>
-        
+      <div>
+        <router-link to="/"><img src="../assets/img/logo.png" alt="logo" class="w-20"></router-link>
       </div>
-
       <!-- navigation bar -->
       <div class="basis-2/4 hidden lg:block">
-        <ul class="basis-2/4 flex justify-between gap-x-[30px]" @mouseover="SubMenuOpen=true" @mouseout="SubMenuOpen=false">
-          <li v-for="(e, index) in NavList[0]" :key="e" :class="NavSelectIndex==index && 'after:h-0.5 text-green-500'" class="shrink-0 hover:text-green-500 h-20 leading-[80px] relative after:absolute after:transition-all after:left-0 after:bottom-0 hover:after:h-1 font-extrabold">
+        <ul class="basis-2/4 flex justify-between gap-x-7" @mouseover="SubMenuOpen = true"
+          @mouseout="SubMenuOpen = false">
+          <li v-for="(e, index) in NavList[0]" :key="e" :class="NavSelectIndex == index && 'after:h-0.5 text-green-500'"
+            class="shrink-0 hover:text-green-500 h-20 leading-[80px] relative after:absolute after:transition-all after:left-0 after:bottom-0 hover:after:h-1 font-extrabold">
             <router-link :to="NavList[1][index]">{{ e }} </router-link>
           </li>
         </ul>
       </div>
-
       <!-- 로그인 로그아웃 회원가입 -->
-      <div class="basis-1/6 ml-5 hidden lg:block mt-8">
+      <div class="basis-1/6 hidden lg:block ">
         <ul class="flex justify-center gap-x-[2%]">
           <li class="font-extrabold" v-if="!$store.state.loginChk"><router-link to="/login">로그인</router-link> </li>
           <li class="font-extrabold" v-else @click="logout"><router-link to="/">로그아웃</router-link></li>
@@ -44,46 +40,19 @@
   </div>
 
   <!-- 햄버거 -->
-  <div  class="absolute right-4 lg:hidden top-0 z-50 pt-5" @click="isOpen == true ? isOpen=false : isOpen=true" :class="isOpen && 'on'">
-        <div v-for="e in 3" :key="e" class="h-1 w-7 bg-black rounded transition-all duration-500 m-1.5 top-5" :class="isOpen && 'bg-red-500 on'"></div>
+  <div  class="absolute right-4 lg:hidden top-0 z-50 pt-5" @click="isOpen == true ? isOpen=false : isOpen=true">
+        <div v-for="e in 3" :key="e" class="h-1 w-7 bg-black rounded transition-all duration-500 m-1.5 top-5" :class="isOpen && 'bg-red-500'"></div>
     </div>
   <!-- 햄버거 끝! -->
 
-
-    <!-- 우측 hidden 메뉴 Click 사용!! 삼항O -->
+  <!-- 우측 hidden 메뉴 -->
   <div :class="isOpen && '!right-0'" class="w-80 bg-gray-500 h-full z-30 fixed top-0 transiton-all duration-500 -right-80 lg:hidden">
-        <ul class=" mt-20">
-            <li v-for="(e,index) in NavList[0]" :key="e" v-on:click="NavSelectIndex=index;SubDown(index);isSubOpen==false ? isSubOpen=true : isSubOpen=false" class="text-center hover:font-extrabold">{{ e }}
-                 <ul  :style="isSubOpen && isSubDown" class="submenu text-center h-0 overflow-hidden transition-all duration-500">
-                     <li v-for="(el,i) in SubList[index]" :key="el"><router-link :to="SubMenuLink[index][i]" class="hover:text-red-500"> {{ el }}</router-link></li>
-                 </ul>
-            </li>
-        </ul>
+    sdklfj;slkdjf;lksjd;lfj
+    sdlkfjlsdkjflkjsdlfk
+
+
+    
   </div>
-
-
-  
-  <!-- 우측 hidden 메뉴 Click 사용!! 삼항X -->
-  <!-- <div :class="isOpen && '!right-0'" class="w-80 bg-gray-500 h-full z-30 fixed top-0 transiton-all duration-500 -right-80 lg:hidden ">
-        <ul class=" mt-20">
-            <li v-for="(e,index) in NavList[0]" :key="e" v-on:click="NavSelectIndex=index;SubDown(index)" class="text-center hover:font-extrabold"  :class="isSubOpen=false ? isSubOpen=true : false"><router-link :to="NavList[1][index]" class="hover:text-green-500">{{ e }}</router-link>
-                 <ul  :style="NavSelectIndex==index && isSubDown" class="submenu text-center h-0 overflow-hidden transition-all duration-500">
-                     <li v-for="(el,i) in SubList[index]" :key="el"><router-link :to="SubMenuLink[index][i]" class="hover:text-red-500"> {{ el }}</router-link></li>
-                 </ul>
-            </li>
-        </ul>
-  </div> -->
-
-  <!-- 우측 hidden 메뉴 MouseOver 사용!!
-  <div :class="isOpen && '!right-0'" class="w-80 bg-gray-500 h-full z-30 fixed top-0 transiton-all duration-500 -right-80 lg:hidden">
-        <ul class=" mt-20">
-            <li v-for="(e,index) in NavList[0]" :key="e" @mouseover="NavSelectIndex=index;SubDown(index)" @mouseout="NavSelectIndex=null" class="text-center"  :class="NavSelectIndex==index && 'font-extrabold'"><router-link :to="NavList[1][index]" class="hover:text-green-500 ">{{ e }}</router-link>
-                <ul :style="NavSelectIndex==index && isSubDown" class="submenu text-center h-0 overflow-hidden transition-all duration-500">
-                    <li v-for="(el,i) in SubList[index]" :key="el"><router-link :to="SubMenuLink[index][i]" class="hover:text-red-500"> {{ el }}</router-link></li>
-                </ul>
-            </li>
-        </ul>
-  </div> -->
 
 
 </template>
@@ -100,9 +69,11 @@ export default {
       SubList:Nav.SubMenu,
       SubMenuOpen:false,
       NavSelectIndex:null,
-      SubMenuLink:Nav.SubLink,
-      isSubDown:'',
-      isSubOpen:false
+      SubMenuLink:Nav.SubLink
+
+
+
+
     }
   },
   methods: {

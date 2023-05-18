@@ -21,6 +21,34 @@ const routes = [
     component: MemberPage
   },
   {
+    path: '/recipe',
+    name: 'UserrecipePage',
+    component: () => import('../views/Product/UserRecipeView.vue'),
+    redirect: '/recipe/list',
+    children: [
+      {
+        path: "/recipe/list",
+        name: "communityList",
+        component: () => import('../views/Community/CommunityList.vue')
+      },
+      {
+        path: "/recipe/write",
+        name: "communityWrite",
+        component: () => import('../views/Community/CommunityWrite.vue')
+      },
+      {
+        path: "/recipe/detail",
+        name: "communityDetail",
+        component: () => import('../views/Community/CommunityDetail.vue')
+      },
+      {
+        path: "/recipe/modify",
+        name: "communityModify",
+        component: () => import('../views/Community/CommunityModify.vue')
+      }
+    ]
+  },
+  {
     path: '/product',
     name: 'product',
     component: () => import('../views/Product/ProductView.vue'),
@@ -31,32 +59,37 @@ const routes = [
     component: () => import('../views/Product/ProductDetail.vue'),
   },
   {
+    path: '/event',
+    name: 'event',
+    component: () => import('../views/Community/EventView.vue'),
+    redirect: '/event/list',
+    children: [
+      {
+        path: "/event/list",
+        name: "eventList",
+        component: () => import('../views/Community/EventList.vue')
+      },
+      {
+        path: "/event/write",
+        name: "eventWrite",
+        component: () => import('../views/Community/EventWrite.vue')
+      },
+      {
+        path: "/event/detail",
+        name: "eventDetail",
+        component: () => import('../views/Community/EventDetail.vue')
+      },
+      {
+        path: "/event/modify",
+        name: "eventModify",
+        component: () => import('../views/Community/EventModify.vue')
+      }
+    ]
+  },
+  {
     path: '/community',
     name: 'community',
     component: () => import('../views/Community/CommunityView.vue'),
-    redirect: '/community/list',
-    children: [
-      {
-        path: "/community/list",
-        name: "communityList",
-        component: () => import('../views/Community/CommunityList.vue')
-      },
-      {
-        path: "/community/write",
-        name: "communityWrite",
-        component: () => import('../views/Community/CommunityWrite.vue')
-      },
-      {
-        path: "/community/detail",
-        name: "communityDetail",
-        component: () => import('../views/Community/CommunityDetail.vue')
-      },
-      {
-        path: "/community/modify",
-        name: "communityModify",
-        component: () => import('../views/Community/CommunityModify.vue')
-      }
-    ]
   },
   {
     path: "/cs",

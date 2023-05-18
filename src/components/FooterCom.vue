@@ -4,7 +4,7 @@
       <div class="max-w-7xl flex justify-center gap-x-[5%] mx-auto border-blue-500 border">
           <div class="border">
             <!-- <img src="http://via.placeholder.com/120x50" alt="logo"> -->
-            <img src="../assets/img/logo.jpg" alt="logo" class="w-48 text-center">
+            <img src="../assets/img/logo.png" alt="logo" class="w-48 text-center">
             <p class=" text-center text-gray-400">이용약관</p>
             <p class=" text-center text-gray-400">개인정보처리방침</p>
             <p class=" text-center text-gray-400">이메일무단수집</p>
