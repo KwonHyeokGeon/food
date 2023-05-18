@@ -21,7 +21,8 @@
     <div class="mt-14 flex flex-col justify-center items-center">
       <p class="text-sm font-bold"><span>아이디 / </span>SNS로 로그인 하시겠습니까?</p>
       <ul>
-        <li></li>
+        <li>
+        </li>
       </ul>
     </div>
   </section>
@@ -39,7 +40,7 @@ export default {
   },
   methods: {
     login() {
-       if (!this.email) {
+      if (!this.email) {
         alert("이메일을 입력해주세요");
         return false
         // return false :  더이상 돌지말고 그만 
@@ -52,8 +53,8 @@ export default {
         auth.signInWithEmailAndPassword(this.email, this.password).then(((user) => {
           localStorage.setItem("refreshToken", user.user.refreshToken)
           localStorage.setItem("displayName", user.user.displayName)
-          
-          
+
+
           if (user.user.refreshToken) {
             this.$store.commit("loginToken", { refreshToken: user.user.refreshToken, uid: user.user.uid })
           }
