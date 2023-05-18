@@ -1,56 +1,57 @@
 <template>
-  
     <section>
-       <div class="w-full flex justify-center pt-56">
-           <div class="mx-auto basis-[32.5%] border-red-500 border rounded-2xl">
-               <h3 class="text-center border-red-300 text-red-500 font-extrabold text-2xl pb-12 pt-12">Sign In</h3>
-               <div class="flex flex-wrap jutify-center gap-y-5">
-
-                 <input type="email" placeholder="email" v-model="email" class="text-center border h-12 border-red-500 w-3/4 rounded-full placeholder:text-center gap-y-5 center mx-auto">
-
-                 <input type="password" placeholder="password" v-model="password" class="text-center w-3/4 border border-red-500 rounded-full  h-12 placeholder:text-center mx-auto">
-
-                 <input type="tel" placeholder="Tel." class="text-center w-3/4 h-12 border border-red-500 rounded-full placeholder:text-center mx-auto">
-
-                 <input type="text" placeholder="nick name" v-model="nickname" class="w-3/4 h-12 border border-red-500 rounded-full placeholder:text-center mx-auto text-center">
-
-               </div>
-               <button type="submit" class="w-full bg-gray-600 hover:bg-red-500 text-white text-2xl p-2 rounded-xl mt-6" @click="signUp">Submit</button>
-               
-             </div>
-         </div>
-         <!-- {{ email }}
-         {{ password }}
-         {{ nickname }}
-         {{ errorMsg }} -->
+        <div class="bg-[#cbcbcb] w-full flex flex-col justify-center items-center">
+            <h2 class=" font-bold text-2xl sm:text-4xl relative pt-20 pb-4"><span
+                    class="w-20 h-[2px] bg-black absolute bottom-0 left-1/2 -translate-x-1/2 inline-block"></span>SignUp
+            </h2>
+            <p class="py-2">회원가입</p>
+            <p class="px-20 pb-20">Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus nam earum corporis
+                minima praesentium libero accusantium, odit fugit quo tempora dolor porro dolorem laborum labore omnis
+                maxime, alias ipsum. Impedit, magnam natus eos cupiditate officiis esse! Nostrum eligendi officia assumenda!
+            </p>
+        </div>
+        <div class="mt-20 flex flex-col gap-y-5 w-96 mx-auto">
+            <input type="text" placeholder="닉네임" v-model="nickname" class="py-3 px-5 border-[#a1a1a1] border">
+            <input type="email" placeholder="이메일 주소" v-model="email" class="py-3 px-5 border-[#a1a1a1] border">
+            <input type="password" placeholder="비밀번호" v-model="password" class="py-3 px-5 border-[#a1a1a1] border">
+            <input type="password" placeholder="비밀번호 확인" v-model="passwordChk" class="py-3 px-5 border-[#a1a1a1] border">
+            <input type="tel" placeholder="전화번호" class="py-3 px-5 border-[#a1a1a1] border">
+            <button class="bg-[#b3b3b3] text-2xl py-4 font-bold" @click="signUp">회원가입</button>
+        </div>
     </section>
-    
 </template>
 
 <script>
-import {auth} from '../firebase'
-    export default {
-        name:"MemberPage",
-        data() {
-            return {
-                email:"",
-                password:"",
-                nickname:"",
-                errorMsg:""
-            }
-        },
-        methods :{
-            signUp(){
-                auth.createUserWithEmailAndPassword(this.email,this.password).then((result)=>{
-                    result.user.updateProfile({displayName:this.nickname})
+import { auth } from '../firebase'
+export default {
+    name: "MemberPage",
+    data() {
+        return {
+            email: "",
+            password: "",
+            nickname: "",
+            errorMsg: "",
+            passwordChk: ""
+        }
+    },
+    methods: {
+        signUp() {
+            if (this.password === this.passwordChk && this.password !== '') {
+                auth.createUserWithEmailAndPassword(this.email, this.password).then((result) => {
+                    result.user.updateProfile({ displayName: this.nickname })
                 })
                 alert("thank you")
                 this.$router.replace('/')
+            } else if(this.password !== this.passwordChk){
+                alert('비밀번호가 일치하지 않습니다.')
+            } else if(this.password === ''){
+                alert('작성이 완료되지 않았습니다.')
             }
+
+
         }
     }
+}
 </script>
 
-<style lang="scss" scoped>
-
-</style>
+<style lang="scss" scoped></style>
