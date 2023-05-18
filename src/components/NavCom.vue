@@ -5,9 +5,8 @@
 
 
       <!-- logo -->
-      <div class="basis-1/4">
-        <router-link to="/"><img src="http://via.placeholder.com/120x50" alt="" /></router-link>
-        
+      <div>
+        <router-link to="/"><img src="../assets/img/logo.png" alt="logo" class="w-20"></router-link>
       </div>
 
       <!-- navigation bar -->
