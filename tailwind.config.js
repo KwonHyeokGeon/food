@@ -12,6 +12,8 @@ module.exports = {
         'mayo': '#F2E7CF',
         'point':'#BB4849'
       },
+      margin: {
+      }
     }
   },
   plugins: [],
