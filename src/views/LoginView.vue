@@ -14,7 +14,7 @@
                       <input type="text" placeholder="nick name" class="w-3/4 h-12 border border-green-500 rounded-full placeholder:text-center mx-auto"> -->
         </div>
         <button type="submit" class="w-full bg-gray-600 hover:bg-red-600 text-white text-2xl p-2 rounded-xl mt-3"
-          @click="login">Submit</button>
+          @click="login">로그인</button>
 
       </div>
     </div>
