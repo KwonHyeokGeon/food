@@ -1,5 +1,4 @@
 <template>
-  yssohn
   <div class="w-full border-red-500 border relative bg-yellow-200">
     <div class="absolute right-10 bottom-10">
         <button><img src="http://via.placeholder.com/50x50" alt="img" class="rounded-full"></button><br>
