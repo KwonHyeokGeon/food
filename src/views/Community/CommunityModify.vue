@@ -91,7 +91,16 @@ export default {
             cook.appendChild(li)
         },
       modify(){
-          db.collection("community").doc(this.$store.state.communityId).update({"author":this.author,"title": this.title, "content":this.content,"date":this.date}).then(()=>{
+          db.collection("community").doc(this.$store.state.communityId).update({
+            "author":this.author,
+            "title": this.title,
+            "content":this.content,
+            "date":this.date,
+            "ingre":this.ingre,
+            "QNT":this.QNT,
+            "COOKING_TIME":this.COOKING_TIME,
+            "LEVEL_NM":this.LEVEL_NM,
+        }).then(()=>{
               alert("수정이 완료되었습니다.");
               this.$router.replace("/recipe");
           })
