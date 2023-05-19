@@ -7,7 +7,7 @@
             <li class="basis-24 text-center">날짜</li>
         </ul>
         <template v-for="(e,index) in dataList" :key="index">
-            <ul v-if="calculateNumber(totalLength, perPage, page, index) >0" class="flex justify-between">
+            <ul v-if="calculateNumber(totalLength, perPage, page, index) >0" class="flex justify-between py-1">
                 <li class="basis-12 text-center">{{ calculateNumber(totalLength, perPage, page, index) }}</li>
                 <li class="basis-7/12">
                     <router-link :to="{ name:'noticeDetail', query:{docId: dataId[index]} }" @click="$store.commit('NoticeDetail', dataId[index])">{{ e.title }}</router-link>

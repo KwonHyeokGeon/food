@@ -18,7 +18,7 @@
                 <li class="basis-24 text-center font-bold"><p v-html="e.reply[0] === undefined? '접수완료':'답변완료'" :class="e.reply[0] === undefined? 'text-point':'text-vege-400'"></p></li>
             </ul>
         </template>
-        <div class="flex justify-end mt-10 border-t border-vege-400 pt-10">
+        <div class="flex justify-end border-t border-vege-400 pt-10">
             <router-link to="/cs/qna/write" class="px-4 py-2 rounded text-white bg-vege-200 hover:bg-vege-400">문의 작성하기</router-link>
         </div>
         <div class="flex justify-center basis-full gap-x-2 items-center">
