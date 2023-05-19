@@ -25,18 +25,12 @@
           </div>
 
       </div>
-  </div>
-
-  <button class="z-50 rounded fixed right-5 bottom-5">
-
-  </button>
-
-
-  <div class="z-50 fixed right-5 bottom-5">
-        <button><img src="http://via.placeholder.com/50x50" alt="img" class="rounded-full"></button><br>
-        <button><img src="http://via.placeholder.com/50x50" alt="img" class="rounded-full"></button><br>
-        <!-- <button><img src="../assets/img/totop.png" alt="img" class="rounded-full w-[50px]"></button><br> -->
-        <button @click="scrollTop"><img src="../assets/img/totop.png" alt="img" class="w-[50px] rounded-full" ></button>
+    </div>
+    <!-- side-widget area-->
+    <div class="" :class="TopBtnChk ? 'visible opacity-100' : 'invisible opacity-0'" >
+      <!-- <img src="https://via.placeholder.com/74x74" alt="" class="absolute bottom-28 right-5 border rounded-full"> -->
+      <img :src="require(`@/assets/img/instagram_icon.png`)" alt="인스타그램" class="absolute bottom-28 right-5 rounded-full w-[74px]">
+      <button @click="scrollTop" class="uppercase text-black text-lg font-bold absolute bottom-5 right-5 border rounded-full p-5 py-[22px] bg-white">top</button>
     </div>
 </template>
 
@@ -44,17 +38,29 @@
 export default {
   name:"FooterPage",
   data() {
-    return {
-      TopBtnChk:false
-    }
-  },
-  methods: {
-    scrollTop(){
-      window.scrollTo({top:0,behavior:'smooth'})
-    }
-  }
-  
-
+      return {
+        windowScroll: window.scrollY,
+        TopBtnChk: false
+      }
+    },
+    mounted() {
+      window.addEventListener("scroll", this.updateScroll)
+    },
+    methods: {
+      scrollTop(){
+        window.scrollTo({top: 0, behavior: 'smooth'}) // window. - javascript 문법 
+        // document.body.scrollHeight - 문서 전체 세로 길이 값 가져오는 법 (아래로 )
+      },
+      updateScroll(){
+        this.windowScroll = window.scrollY;
+        // console.log(this.windowScroll)
+        if(this.windowScroll > 500){
+          this.TopBtnChk = true
+        }else{
+          this.TopBtnChk = false
+        }
+      }
+    },
 }
 </script>
 
