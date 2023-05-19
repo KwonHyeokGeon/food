@@ -18,10 +18,16 @@
         <p class="text-[#a6a6a6] text-xs text-right">회원이 아니신가요?</p>
       </router-link>
     </div>
-    <div class="mt-14 flex flex-col justify-center items-center">
-      <p class="text-sm font-bold"><span>아이디 / </span>SNS로 로그인 하시겠습니까?</p>
-      <ul>
-        <li>
+    <div class="mt-14 flex flex-col gap-2 justify-center items-center">
+      <p class="text-sm font-bold">SNS로 로그인 하시겠습니까?</p>
+      <ul class="flex gap-4">
+        <li class="border-2 rounded-full flex justify-center items-center p-1">
+          <button @click="signInWithGoogle"><img :src="require(`@/assets/img/googleLogin.png`)" alt="구글로그인"
+              class="w-8 h-8"></button>
+        </li>
+        <li class="border-2 rounded-full flex justify-center items-center p-1">
+          <button @click="signInWithKakao"><img :src="require(`@/assets/img/kakaoLogin.png`)" alt="카카오로그인"
+              class="w-8 h-8"></button>
         </li>
       </ul>
     </div>
@@ -29,6 +35,7 @@
 </template>
 
 <script>
+import firebase from "firebase/app";
 import { auth } from "../firebase"
 export default {
   name: "LoginPage",
@@ -53,8 +60,6 @@ export default {
         auth.signInWithEmailAndPassword(this.email, this.password).then(((user) => {
           localStorage.setItem("refreshToken", user.user.refreshToken)
           localStorage.setItem("displayName", user.user.displayName)
-
-
           if (user.user.refreshToken) {
             this.$store.commit("loginToken", { refreshToken: user.user.refreshToken, uid: user.user.uid })
           }
@@ -67,6 +72,52 @@ export default {
         )
       }
     },
+    signInWithGoogle() {
+      const provider = new firebase.auth.GoogleAuthProvider()
+      try {
+        firebase.auth().signInWithPopup(provider).then((Res) => {
+          console.log(Res);
+          localStorage.setItem("refreshToken", Res.user.refreshToken)
+          localStorage.setItem("displayName", Res.user.displayName)
+          if (Res.user.refreshToken) {
+            this.$store.commit("loginToken", { refreshToken: Res.user.refreshToken, uid: Res.user.uid })
+          }
+          this.$router.replace('/')
+        })
+      } catch (error) {
+        this.errorMsg = error.message
+      }
+    },
+    signInWithKakao() {
+      window.Kakao.cleanup();
+      window.Kakao.init('40efe3e8889c51f75afb99fa7d699b0a')
+      window.Kakao.Auth.login({
+        success: function (res) {
+          localStorage.setItem("refreshToken", res.refresh_token)
+          window.Kakao.API.request({
+            url: '/v2/user/me',
+            data: {
+              property_keys: [
+                "kakao_account.profile",
+                "kakao_account.email"
+              ]
+            },
+            success: async function (response) {
+              localStorage.setItem("displayName", response.kakao_account.profile.nickname)
+              localStorage.setItem("uid", response.id)
+            },
+            fail: function (error) {
+              alert(error)
+            },
+          })
+        },
+        fail: function (error) {
+          alert(error)
+        },
+      })
+      this.$router.replace('/')
+      this.$store.state.loginChk = true
+    }
   },
 }
 </script>

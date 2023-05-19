@@ -51,7 +51,7 @@ export default {
                         result.user.updateProfile({ displayName: this.nickname })
                     })
                     alert("thank you")
-                    this.$router.replace('/')
+                    this.$router.replace('/login')
                 } else if (this.password !== this.passwordChk) {
                     alert('비밀번호가 일치하지 않습니다.')
                 } else if (isInputEmpty) {
