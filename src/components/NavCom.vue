@@ -33,7 +33,7 @@
     </div>
   </div>
 
-  <div :class="SubMenuOpen && 'h-48'" class="transition-all duration-500 bg-point rounded h-0 overflow-hidden z-50  absolute w-full"
+  <div :class="SubMenuOpen && 'h-48'" class="mt-[90px] transition-all duration-500 bg-point rounded h-0 overflow-hidden z-50  absolute w-full"
     @mouseleave="SubMenuOpen = false; NavSelectIndex = null">
     <div class="flex ml-[405px]">
       <ul @mouseover="NavSelectIndex = index" v-for="(e, index) in SubList" :key="e" class=" ms-[50px] text-center">
@@ -58,7 +58,7 @@
   <!-- 수정중 -->
   
   <!-- 우측 hidden 메뉴 Click 사용!! 삼항O - 수정필요-->
-  <div :class="isOpen && '!right-0'"
+  <!-- <div :class="isOpen && '!right-0'"
     class="w-80 bg-gray-500 h-full z-30 fixed top-0 transiton-all duration-500 -right-80 lg:hidden">
     <ul class=" mt-20">
       <li v-for="(e, index) in NavList[0]" :key="e"
@@ -70,12 +70,12 @@
         </ul>
       </li>
     </ul>
-  </div>
+  </div> -->
 
 
 
   <!-- 우측 hidden 메뉴 Click 사용!! 삼항X -->
-  <!-- <div :class="isOpen && '!right-0'" class="w-80 bg-gray-500 h-full z-30 fixed top-0 transiton-all duration-500 -right-80 lg:hidden ">
+  <div :class="isOpen && '!right-0'" class="w-80 bg-gray-500 h-full z-30 fixed top-0 transiton-all duration-500 -right-80 lg:hidden ">
         <ul class=" mt-20">
             <li v-for="(e,index) in NavList[0]" :key="e" v-on:click="NavSelectIndex=index;SubDown(index)" class="text-center hover:font-extrabold"  :class="isSubOpen=false ? isSubOpen=true : false"><router-link :to="NavList[1][index]" class="hover:text-green-500">{{ e }}</router-link>
                  <ul  :style="NavSelectIndex==index && isSubDown" class="submenu text-center h-0 overflow-hidden transition-all duration-500">
@@ -83,7 +83,7 @@
                  </ul>
             </li>
         </ul>
-  </div> -->
+  </div>
 
   <!-- 우측 hidden 메뉴 MouseOver 사용!!-
   <div :class="isOpen && '!right-0'" class="w-80 bg-gray-500 h-full z-30 fixed top-0 transiton-all duration-500 -right-80 lg:hidden">
@@ -123,6 +123,12 @@ export default {
       const list = document.querySelectorAll('.submenu')[e]
       const length = list.querySelectorAll('li').length
       this.isSubDown = `height:${length * 32}px`
+
+      if(list.style.height ==='0px'){
+            list.style.height= '116px';
+          } else {
+            list.style.height='0px';
+          }
 
     },
     ColorChange(){
