@@ -16,10 +16,14 @@
                 <p><span class="mr-1">작성자</span>{{BoardContent.author}}</p>
 
             </div>
-            <div class="mt-5">
-                양 / 소요시간 / 난이도.<br/>
-                공유버튼?<br/>
-                재료
+            <div class="mt-5 flex gap-x-5 flex-wrap">
+                <p class="relative after:absolute after:inline-block after:bg-vege-200/50 after:w-0.5 after:h-4 after:rounded-full after:-right-2.5 after:top-1"><span class="mr-1">인원:</span> {{ BoardContent.QNT }}</p>
+                <p class="relative after:absolute after:inline-block after:bg-vege-200/50 after:w-0.5 after:h-4 after:rounded-full after:-right-2.5 after:top-1"><span class="mr-1">소요시간:</span> {{ BoardContent.COOKING_TIME }}</p>
+                <p><span class="mr-1">난이도:</span> {{ BoardContent.LEVEL_NM }}</p>
+                <div class="basis-full">
+                    공유버튼?<br/>
+                    재료
+                </div>
             </div>
         </div>
     </div>
