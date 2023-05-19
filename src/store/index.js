@@ -8,11 +8,15 @@ export default createStore({
     noticeId: 0,
     qnaId: 0,
     communityId: 0,
+    uid: "",
+    navSelectIndex : '',
     eventId:0,
     articleId:0,
-    uid: ""
   },
   mutations: {
+    NavSelectClick(state, payload){
+      state.navSelectIndex = payload
+    },
     loginToken(state, payload) {
       state.loginToken = payload.refreshToken
       state.loginChk = true

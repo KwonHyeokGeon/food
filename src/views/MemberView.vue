@@ -50,7 +50,7 @@ export default {
                     auth.createUserWithEmailAndPassword(this.email, this.password).then((result) => {
                         result.user.updateProfile({ displayName: this.nickname })
                     })
-                    alert("thank you")
+                    alert("▶ 농달 회원이되신것을 축하드립니다 ◀")
                     this.$router.replace('/')
                 } else if (this.password !== this.passwordChk) {
                     alert('비밀번호가 일치하지 않습니다.')
@@ -60,7 +60,10 @@ export default {
             }else{
                 alert('이용약관에 동의해주세요')
             }
+            
+            
         },
+        
 
     }
 }
