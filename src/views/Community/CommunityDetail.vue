@@ -1,29 +1,41 @@
 <template>
-  <div class="basis-full">
-      <div>
-          <div>
-              {{BoardContent.title}}
-          </div>
-          <div class="basis-full flex text-center">
-              <p><span>작성자</span>{{BoardContent.author}}</p>
-              <p><span>작성일시</span>{{dateTime}}</p>
-
-          </div>
-      </div>
-      <div >
-          {{ BoardContent.content }}
-          <img v-if="BoardContent.file" :src="BoardContent.file" alt="첨부파일">
-      </div>
-      <div class="flex justify-between mt-10 items-center">
-            <div>
-                <router-link to="/community/list" class="px-4 py-2 rounded text-white bg-vege-200 hover:bg-vege-400">목록으로</router-link>
-            </div>
-            <div class="flex gap-x-5">
-                <router-link to="/community/modify" class="px-4 py-2 rounded text-white bg-vege-200 hover:bg-vege-400">수정</router-link>
-                <button @click="Delete()" class="px-4 py-2 rounded text-white bg-point/70 hover:bg-point">삭제</button>
+    <div class="border-y border-t-vege-600 p-5 flex flex-wrap">
+        <div class="basis-full md:basis-1/2">
+            <div class="relative">
+                <img v-if="BoardContent.file" :src="BoardContent.file" alt="첨부파일" class="mx-auto mt-5">
+                <button class="absolute bottom-3 right-3 rounded-full w-10 h-10" :class="heartOn? 'bg-point': 'bg-gray-400'" @click="heartOn = !heartOn"><img :src="require(`@/assets/img/heart.png`)" alt="좋아요" class="w-2/3 mx-auto"></button>
             </div>
         </div>
-  </div>
+        <div class="basis-full md:basis-1/2 pl-0 md:pl-5">
+            <h2 class="text-2xl font-bold">
+                {{BoardContent.title}}
+            </h2>
+            <div class="flex text-sm gap-x-3 pb-3 border-b-0 md:border-b mt-1">
+                <p class="relative after:absolute after:inline-block after:bg-vege-200/50 after:w-0.5 after:h-4 after:rounded-full after:-right-2 after:top-0.5"><span class="mr-1">조회수?</span></p>
+                <p class="relative after:absolute after:inline-block after:bg-vege-200/50 after:w-0.5 after:h-4 after:rounded-full after:-right-2 after:top-0.5"><span class="mr-1">추천수?</span></p>
+                <p><span class="mr-1">작성자</span>{{BoardContent.author}}</p>
+
+            </div>
+            <div class="mt-5">
+                양 / 소요시간 / 난이도.<br/>
+                공유버튼?<br/>
+                재료
+            </div>
+        </div>
+    </div>
+    <div class="py-5 whitespace-pre-line">
+
+        {{ BoardContent.content }}
+    </div>
+    <div class="flex justify-between mt-10 items-center border-t border-vege-600 pt-10">
+        <div>
+            <router-link to="/recipe/list" class="px-4 py-2 rounded text-white bg-vege-200 hover:bg-vege-400">목록으로</router-link>
+        </div>
+        <div class="flex gap-x-5">
+            <router-link to="/recipe/modify" class="px-4 py-2 rounded text-white bg-vege-200 hover:bg-vege-400">수정</router-link>
+            <button @click="Delete()" class="px-4 py-2 rounded text-white bg-point/70 hover:bg-point">삭제</button>
+        </div>
+    </div>
 </template>
 <script>
 import {db} from '../../firebase';
@@ -32,7 +44,8 @@ export default {
   data() {
       return {
           BoardContent : [],
-          dateTime: ""
+          dateTime: "",
+          heartOn:false
       }
   },
   mounted() {
