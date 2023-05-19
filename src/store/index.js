@@ -8,9 +8,15 @@ export default createStore({
     noticeId: 0,
     qnaId: 0,
     communityId: 0,
-    uid: ""
+    uid: "",
+    navSelectIndex : '',
+    eventId:0,
+    articleId:0,
   },
   mutations: {
+    NavSelectClick(state, payload){
+      state.navSelectIndex = payload
+    },
     loginToken(state, payload) {
       state.loginToken = payload.refreshToken
       state.loginChk = true
@@ -23,6 +29,7 @@ export default createStore({
         state.uid = ''
       localStorage.removeItem("refreshToken")
       localStorage.removeItem("displayName")
+      localStorage.removeItem("uid")
     },
     loginState(state, payload) {
       state.loginToken = sessionStorage.getItem("refreshToken") || sessionStorage.getItem("Token")
@@ -38,6 +45,12 @@ export default createStore({
     },
     CommunityDetail(state, payload) {
       state.communityId = payload
+    },
+    EventDetail(state, payload) {
+      state.eventId = payload
+    },
+    ArticleDetail(state, payload) {
+      state.articleId = payload
     },
   },
   actions: {
