@@ -8,17 +8,18 @@
             <div>
               <router-link to="/"><img src="../assets/img/logo.png" alt="logo" class="w-20"></router-link>
             </div>
-            <!-- navigation bar -->
-            <div class="basis-2/4 hidden lg:block ml-10">
+            <!-- Navigation bar -->
+            <div class="basis-2/4 hidden lg:block ml-20">
               <ul class="basis-2/4 flex justify-between gap-x-7" @mouseenter="SubMenuOpen = true">
       
-                <li v-for="(e, index) in NavList[0]" :key="e" :class="NavSelectIndex == index && 'after:h-0.5 text-green-500'"
-                  class="shrink-0 hover:text-green-500 h-20 leading-[80px] relative after:absolute after:transition-all after:left-0 after:bottom-0 hover:after:h-1 font-extrabold"  @click="'text-green-500'">
-                  <router-link :to="NavList[1][index]">{{ e }} </router-link>
+                <li v-for="(e, index) in NavList[0]" :key="e" :class="NavSelectIndex == index && 'after:h-0.5 text-green-500' || index === $store.state.navSelectIndex && 'text-point font-extrabold'"
+                  class="shrink-0 hover:text-green-500 h-20 leading-[80px] relative after:absolute after:transition-all after:left-0 after:bottom-0 hover:after:h-1 font-extrabold change">
+                  <router-link @click="$store.commit('NavSelectClick', index)" :to="NavList[1][index]">{{ e }} </router-link>
                 </li>
               </ul>
             </div>
       </div>
+
 
       <!-- 로그인 로그아웃 회원가입 -->
       
@@ -122,6 +123,12 @@ export default {
       const length = list.querySelectorAll('li').length
       this.isSubDown = `height:${length * 32}px`
 
+    },
+    ColorChange(){
+      const text = document.querySelectorAll('.change')
+      text.onclick = function(){
+        text.style.color = 'green'
+      }
     }
   }
 }
@@ -142,5 +149,8 @@ export default {
 
 li {
   list-style: none;
+}
+.green{
+  color: green;
 }
 </style>
