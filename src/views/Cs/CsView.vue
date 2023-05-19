@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="max-w-7xl mx-auto">
     <h4>고객상담</h4> 
     <router-view></router-view>
   </div>

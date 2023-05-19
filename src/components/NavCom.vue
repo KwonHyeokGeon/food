@@ -8,6 +8,7 @@
       <!-- navigation bar -->
       <div class="basis-2/4 hidden lg:block">
         <ul class="basis-2/4 flex justify-between gap-x-7" @mouseenter="SubMenuOpen = true">
+
           <li v-for="(e, index) in NavList[0]" :key="e" :class="NavSelectIndex == index && 'after:h-0.5 text-green-500'"
             class="shrink-0 hover:text-green-500 h-20 leading-[80px] relative after:absolute after:transition-all after:left-0 after:bottom-0 hover:after:h-1 font-extrabold">
             <router-link :to="NavList[1][index]">{{ e }} </router-link>
