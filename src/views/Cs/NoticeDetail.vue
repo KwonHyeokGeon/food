@@ -1,18 +1,19 @@
 <template>
-    <div>
-        <div>
+<div class="mt-24 border-y border-vege-600 p-5">
+        <h2 class="text-2xl font-bold">
             {{BoardContent.title}}
-        </div>
-        <div class="basis-full flex text-center">
-            <p><span>작성자</span>{{BoardContent.author}}</p>
-            <p><span>작성일시</span>{{dateTime}}</p>
+        </h2>
+        <div class="basis-full flex text-center text-sm gap-x-3 pb-3 border-b mt-1">
+            <p class="relative after:absolute after:inline-block after:bg-vege-200/50 after:w-0.5 after:h-4 after:rounded-full after:-right-2 after:top-0.5"><span class="mr-1">작성자</span>{{BoardContent.author}}</p>
+            <p><span class="mr-1">작성일시</span>{{dateTime}}</p>
 
         </div>
+        <div class="py-5">
+            {{ BoardContent.content }}
+            <img v-if="BoardContent.file" :src="BoardContent.file" alt="첨부파일">
+        </div>
     </div>
-    <div >
-        {{ BoardContent.content }}
-        <img v-if="BoardContent.file" :src="BoardContent.file" alt="첨부파일">
-    </div>
+
     <div class="flex justify-between mt-10 items-center">
             <div>
                 <router-link to="/cs/notice/list" class="px-4 py-2 rounded text-white bg-vege-200 hover:bg-vege-400">목록으로</router-link>

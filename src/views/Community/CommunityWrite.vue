@@ -1,16 +1,14 @@
 <template>
-    <div class="basis-full">
-        <div class="max-w-7xl mx-auto">
-            <div class="flex flex-wrap">
-                <label for="title">제목</label><input v-model="title" type="text" id="title" class="border basis-5/12">
-                <label for="author">작성자</label><input v-model="author" type="text" id="author" class="border basis-5/12">
-            </div>
-            <textarea v-model="content" class="border w-full"></textarea>
-            <input type="file" id="image" required>
-            <div>
-                <button @click="write" class="bg-indigo-400 hover:bg-indigo-600">등록하기</button>
-            </div>
+    <div class="flex flex-wrap border-y py-10 border-vege-600">
+        <div class="basis-full flex flex-wrap justify-between items-center">
+            <label for="title">제목</label><input v-model="title" type="text" id="title" class="border basis-8/12 px-2 py-1">
+            <label for="author">작성자</label><input v-model="author" type="text" id="author" class="border basis-2/12 px-2 py-1">
         </div>
+        <textarea v-model="content" class="border basis-full mt-2 mb-5 p-3"></textarea>
+        <input type="file" id="image" required>
+    </div>
+    <div class="w-full flex justify-end pt-10">
+        <button @click="write" class="px-4 py-2 rounded text-white bg-vege-200 hover:bg-vege-400">등록하기</button>
     </div>
 </template>
 <script>

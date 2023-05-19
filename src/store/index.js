@@ -8,6 +8,8 @@ export default createStore({
     noticeId: 0,
     qnaId: 0,
     communityId: 0,
+    eventId:0,
+    articleId:0,
     uid: ""
   },
   mutations: {
@@ -38,6 +40,12 @@ export default createStore({
     },
     CommunityDetail(state, payload) {
       state.communityId = payload
+    },
+    EventDetail(state, payload) {
+      state.eventId = payload
+    },
+    ArticleDetail(state, payload) {
+      state.articleId = payload
     },
   },
   actions: {

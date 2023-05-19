@@ -59,6 +59,34 @@ const routes = [
     component: () => import('../views/Product/ProductDetail.vue'),
   },
   {
+    path: '/article',
+    name: 'article',
+    component: () => import('../views/Community/ArticleView.vue'),
+    redirect: '/article/list',
+    children: [
+      {
+        path: "/article/list",
+        name: "articleList",
+        component: () => import('../views/Community/ArticleList.vue')
+      },
+      {
+        path: "/article/write",
+        name: "articleWrite",
+        component: () => import('../views/Community/ArticleWrite.vue')
+      },
+      {
+        path: "/article/detail",
+        name: "articleDetail",
+        component: () => import('../views/Community/ArticleDetail.vue')
+      },
+      {
+        path: "/article/modify",
+        name: "articleModify",
+        component: () => import('../views/Community/ArticleModify.vue')
+      }
+    ]
+  },
+  {
     path: '/event',
     name: 'event',
     component: () => import('../views/Community/EventView.vue'),
