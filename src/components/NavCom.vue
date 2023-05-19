@@ -1,5 +1,5 @@
 <template>
-  <div class="w-full border border-red-500 fixed z-20 bg-white">
+  <div class="w-full fixed z-20 bg-white">
     <div class="max-w-7xl mx-auto justify-center md:justify-between items-center flex py-1">
       <!-- logo -->
       
@@ -33,7 +33,7 @@
     </div>
   </div>
 
-  <div :class="SubMenuOpen && 'h-48'" class="mt-[90px] transition-all duration-500 bg-point rounded h-0 overflow-hidden z-50  absolute w-full"
+  <div :class="SubMenuOpen && 'h-48'" class="mt-[90px] transition-all duration-500 bg-point rounded h-0 overflow-hidden z-50 w-full fixed"
     @mouseleave="SubMenuOpen = false; NavSelectIndex = null">
     <div class="flex ml-[405px]">
       <ul @mouseover="NavSelectIndex = index" v-for="(e, index) in SubList" :key="e" class=" ms-[50px] text-center">
