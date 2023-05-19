@@ -2,27 +2,37 @@
   <div class="w-full ">
     <div class="max-w-7xl mx-auto justify-center md:justify-between items-center flex py-1">
       <!-- logo -->
-      <div>
-        <router-link to="/"><img src="../assets/img/logo.png" alt="logo" class="w-20"></router-link>
+      
+    <div class="flex justify-between max-w-7xl border">
+      <div class="flex justify-center">
+            <div>
+              <router-link to="/"><img src="../assets/img/logo.png" alt="logo" class="w-20"></router-link>
+            </div>
+            <!-- navigation bar -->
+            <div class="basis-2/4 hidden lg:block ml-10">
+              <ul class="basis-2/4 flex justify-between gap-x-7" @mouseenter="SubMenuOpen = true">
+      
+                <li v-for="(e, index) in NavList[0]" :key="e" :class="NavSelectIndex == index && 'after:h-0.5 text-green-500'"
+                  class="shrink-0 hover:text-green-500 h-20 leading-[80px] relative after:absolute after:transition-all after:left-0 after:bottom-0 hover:after:h-1 font-extrabold"  @click="'text-green-500'">
+                  <router-link :to="NavList[1][index]">{{ e }} </router-link>
+                </li>
+              </ul>
+            </div>
       </div>
-      <!-- navigation bar -->
-      <div class="basis-2/4 hidden lg:block">
-        <ul class="basis-2/4 flex justify-between gap-x-7" @mouseenter="SubMenuOpen = true">
 
-          <li v-for="(e, index) in NavList[0]" :key="e" :class="NavSelectIndex == index && 'after:h-0.5 text-green-500'"
-            class="shrink-0 hover:text-green-500 h-20 leading-[80px] relative after:absolute after:transition-all after:left-0 after:bottom-0 hover:after:h-1 font-extrabold">
-            <router-link :to="NavList[1][index]">{{ e }} </router-link>
-          </li>
-        </ul>
-      </div>
       <!-- 로그인 로그아웃 회원가입 -->
-      <div class="basis-1/6 hidden lg:block ">
-        <ul class="flex justify-center gap-x-[2%]">
-          <li class="font-extrabold" v-if="!$store.state.loginChk"><router-link to="/login">로그인</router-link> </li>
-          <li class="font-extrabold" v-else @click="logout"><router-link to="/">로그아웃</router-link></li>
-          <li class="font-extrabold ml-3" v-if="!$store.state.loginChk"><router-link to="/member">회원가입</router-link></li>
-        </ul>
-      </div>
+      
+    </div>
+    <div class="basis-1/6 hidden lg:block ">
+      <ul class="flex justify-center gap-x-[2%]">
+        <li class="font-extrabold" v-if="!$store.state.loginChk"><router-link to="/login">로그인</router-link> </li>
+        <li class="font-extrabold" v-else @click="logout"><router-link to="/">로그아웃</router-link></li>
+        <li class="font-extrabold ml-3" v-if="!$store.state.loginChk"><router-link to="/member">회원가입</router-link></li>
+      </ul>
+    </div>
+
+
+
     </div>
   </div>
   <div :class="SubMenuOpen && 'h-48'" class="transition-all duration-500 bg-point rounded h-0 overflow-hidden z-50 "
