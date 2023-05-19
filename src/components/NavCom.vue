@@ -7,8 +7,8 @@
       </div>
       <!-- navigation bar -->
       <div class="basis-2/4 hidden lg:block">
-        <ul class="basis-2/4 flex justify-between gap-x-7" @mouseover="SubMenuOpen = true"
-          @mouseout="SubMenuOpen = false">
+        <ul class="basis-2/4 flex justify-between gap-x-7" @mouseenter="SubMenuOpen = true">
+
           <li v-for="(e, index) in NavList[0]" :key="e" :class="NavSelectIndex == index && 'after:h-0.5 text-green-500'"
             class="shrink-0 hover:text-green-500 h-20 leading-[80px] relative after:absolute after:transition-all after:left-0 after:bottom-0 hover:after:h-1 font-extrabold">
             <router-link :to="NavList[1][index]">{{ e }} </router-link>
@@ -25,18 +25,13 @@
       </div>
     </div>
   </div>
-
-  <div :class="SubMenuOpen && 'h-48'" class="transition-all duration-500 bg-yellow-300 rounded h-0 overflow-hidden z-50">
-    <div class="flex right-24 ml-[490px]" @mouseover="SubMenuOpen = true"
-      @mouseout="SubMenuOpen = false; NavSelectIndex = null">
-      <ul @mouseover="NavSelectIndex = index" v-for="(e, index) in SubList" :key="e" class="ml-[205px] text-center">
-
-
-        <!-- <li v-for="(el,i) in e" :key="el" class="hover:text-red-500"><router-link v-if="index != 0" :to="SubMenuLink[index][i]">{{ el }}</router-link> </li> -->
-        <li v-for="(el, i) in e" :key="el" class="hover:text-red-500 hover:font-extrabold"><router-link
-            :to="SubMenuLink[index][i]">{{ el }}</router-link> </li>
-        <!-- <li v-for="(el,i) in e" :key="el" class="hover:text-red-500"><router-link :to="index != 0 && SubMenuLink[1][0]">{{i}}{{ el }}</router-link> </li> -->
-        <!-- <li v-for="(el) in e" :key="el" class="hover:text-red-500">{{ el }}</li> -->
+  <div :class="SubMenuOpen && 'h-48'" class="transition-all duration-500 bg-point rounded h-0 overflow-hidden z-50 "
+    @mouseleave="SubMenuOpen = false; NavSelectIndex = null">
+    <div class="flex gap-x-56 justify-center">
+      <ul @mouseover="NavSelectIndex = index" v-for="(e, index) in SubList" :key="e">
+        <li v-for="(el, i) in e" :key="el" class="font-bold transition-all text-white opacity-80 hover:opacity-100">
+          <router-link :to="SubMenuLink[index][i]">{{ el }}</router-link>
+        </li>
       </ul>
     </div>
   </div>
@@ -137,4 +132,5 @@ export default {
 
 li {
   list-style: none;
-}</style>
+}
+</style>
