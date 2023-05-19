@@ -143,7 +143,7 @@ svg:hover .textcircle {
   bottom: 15px;
 }
 
-.swiper-pagination-bullet{
+.swiper-pagination-bullet{ 
   background-color: lightgray;
   width: 20px;
   height: 2px;
