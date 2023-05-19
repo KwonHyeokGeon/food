@@ -50,7 +50,6 @@ export default {
       this.product.push(this.data.Grid_20171128000000000572_1.row[i].PRDLST_NM)
       this.imgUrl.push(this.data.Grid_20171128000000000572_1.row[i].IMG_URL)
     }
-    this.product.sort();
   },
   mounted() {
       const today = new Date();
