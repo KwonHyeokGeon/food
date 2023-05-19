@@ -51,7 +51,7 @@ export default {
                         result.user.updateProfile({ displayName: this.nickname })
                     })
                     alert("▶ 농달 회원이되신것을 축하드립니다 ◀")
-                    this.$router.replace('/login')
+                    this.$router.replace('/')
                 } else if (this.password !== this.passwordChk) {
                     alert('비밀번호가 일치하지 않습니다.')
                 } else if (isInputEmpty) {
