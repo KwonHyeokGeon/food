@@ -9,7 +9,7 @@
 
         </div>
         <img v-if="BoardContent.file" :src="BoardContent.file" alt="첨부파일" class="mx-auto mt-5">
-        <div class="py-5">
+        <div class="py-5 whitespace-pre-line">
             {{ BoardContent.content }}
         </div>
     </div>

@@ -9,12 +9,12 @@
 
         </div>
         <img v-if="BoardContent.file" :src="BoardContent.file" alt="첨부파일" class="mx-auto mt-5">
-        <div class="py-5">
+        <div class="py-5 whitespace-pre-line">
             {{ BoardContent.content }}
         </div>
     </div>
     <ul>
-        <li v-for="e in BoardContent.reply" :key="e" class="flex justify-between border-b px-5 py-1"><p>{{ e.content }}</p> <span>{{e.author}}</span></li>
+        <li v-for="e in BoardContent.reply" :key="e" class="flex justify-between border-b px-5 py-1 whitespace-pre-line"><p>{{ e.content }}</p> <span>{{e.author}}</span></li>
     </ul>
     <div class="flex justify-between bg-vege-200/10 items-stretch pl-5">
         댓글내용<textarea v-model="reply.content" class="border basis-6/12 px-2 py-0.5" rows="1"></textarea>

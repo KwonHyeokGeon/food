@@ -8,7 +8,7 @@
             <p><span class="mr-1">작성일시</span>{{dateTime}}</p>
 
         </div>
-        <div class="py-5">
+        <div class="py-5 whitespace-pre-line">
             {{ BoardContent.content }}
             <img v-if="BoardContent.file" :src="BoardContent.file" alt="첨부파일">
         </div>
