@@ -21,6 +21,11 @@ const routes = [
     component: MemberPage
   },
   {
+    path: '/borad',
+    name: 'BoardPage',
+    component: () => import('../views/Community/BoardView.vue'),
+  },
+  {
     path: '/recipe',
     name: 'UserrecipePage',
     component: () => import('../views/Product/UserRecipeView.vue'),

@@ -13,12 +13,12 @@
   ],
   "SubMenu" : [
     ["이달의 농산물"],
-    ["이벤트","레시피"],
+    ["이벤트","레시피","게시판"],
     ["공지사항","QnA"]
   ],
   "SubLink" : [
     ["/product"],
-    ["/event","/recipe"],
+    ["/event","/recipe","/borad"],
     ["/cs/notice","/cs/qna"]
   ]
 }

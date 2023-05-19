@@ -9,7 +9,7 @@ export default createStore({
     qnaId: 0,
     communityId: 0,
     uid: "",
-    navSelectIndex : 0
+    navSelectIndex : ''
   },
   mutations: {
     NavSelectClick(state, payload){
