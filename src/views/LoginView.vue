@@ -89,6 +89,7 @@ export default {
       }
     },
     signInWithKakao() {
+      window.Kakao.cleanup();
       window.Kakao.init('40efe3e8889c51f75afb99fa7d699b0a')
       window.Kakao.Auth.login({
         success: function (res) {
