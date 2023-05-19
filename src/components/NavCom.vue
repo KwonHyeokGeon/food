@@ -3,7 +3,7 @@
     <div class="max-w-7xl mx-auto justify-center md:justify-between items-center flex py-1">
       <!-- logo -->
       
-    <div class="flex justify-between max-w-7xl border">
+    <div class="flex justify-between max-w-7xl">
       <div class="flex justify-center">
             <div>
               <router-link to="/"><img src="../assets/img/logo.png" alt="logo" class="w-20"></router-link>
@@ -36,10 +36,10 @@
 
     </div>
   </div>
-  <div :class="SubMenuOpen && 'h-48'" class="transition-all duration-500 bg-point rounded h-0 overflow-hidden z-50 "
+  <div :class="SubMenuOpen && 'h-48'" class="transition-all duration-500 bg-point rounded h-0 overflow-hidden z-50  absolute w-full"
     @mouseleave="SubMenuOpen = false; NavSelectIndex = null">
-    <div class="flex gap-x-56 justify-center">
-      <ul @mouseover="NavSelectIndex = index" v-for="(e, index) in SubList" :key="e">
+    <div class="flex ml-[405px]">
+      <ul @mouseover="NavSelectIndex = index" v-for="(e, index) in SubList" :key="e" class=" ms-[50px] text-center">
         <li v-for="(el, i) in e" :key="el" class="font-bold transition-all text-white opacity-80 hover:opacity-100">
           <router-link :to="SubMenuLink[index][i]">{{ el }}</router-link>
         </li>
