@@ -23,6 +23,7 @@ export default createStore({
         state.uid = ''
       localStorage.removeItem("refreshToken")
       localStorage.removeItem("displayName")
+      localStorage.removeItem("uid")
     },
     loginState(state, payload) {
       state.loginToken = sessionStorage.getItem("refreshToken") || sessionStorage.getItem("Token")
