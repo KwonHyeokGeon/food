@@ -1,11 +1,7 @@
 <template>
     <div class="flex flex-wrap border-y py-10 border-vege-600">
         <div class="basis-full flex flex-wrap justify-between items-center">
-            <select name="" v-model="eventOn" class="basis-1/12 px-3 py-1 border">
-                <option value="true">이벤트중</option>
-                <option value="false">이벤트종료</option>
-            </select>
-            <label for="title">제목</label><input v-model="title" type="text" id="title" class="border basis-7/12 px-2 py-1">
+            <label for="title">제목</label><input v-model="title" type="text" id="title" class="border basis-8/12 px-2 py-1">
             <label for="author">작성자</label><input v-model="author" type="text" id="author" class="border basis-2/12 px-2 py-1">
         </div>
         <textarea v-model="content" class="border basis-full mt-2 mb-5 p-3"></textarea>
@@ -18,7 +14,7 @@
 <script>
 import { db, storage } from '../../firebase'
 export default {
-    name: "EventWrite",
+    name: "ArticleWrite",
     data() {
         return {
             title: "",
@@ -27,7 +23,6 @@ export default {
             file: "",
             date: new Date(),
             fileRandom: null,
-            eventOn:true
         }
     },
     mounted() {
@@ -47,28 +42,26 @@ export default {
                 storage.ref().child("files/" + this.fileRandom).put(this.file).then(() => {
                     storage.ref().child("files/" + this.fileRandom).getDownloadURL().then((url) => {
                         //파일 경로 가져오기
-                        db.collection("event").add({
+                        db.collection("article").add({
                             "author": this.author,
                             "title": this.title,
                             "content": this.content,
                             "date": this.date,
                             "uid": this.$store.state.uid,
                             "file": url,
-                            "eventOn": this.eventOn
                         })
-                        this.$router.replace("/event")
+                        this.$router.replace("/article")
                     })
                 })
             } else {
-                db.collection("event").add({
+                db.collection("article").add({
                     "author": this.author,
                     "title": this.title,
                     "content": this.content,
                     "date": this.date,
                     "uid": this.$store.state.uid,
-                    "eventOn": this.eventOn
                 })
-                this.$router.replace("/event")
+                this.$router.replace("/article")
             }
         }
     },
