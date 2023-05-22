@@ -68,6 +68,14 @@
 
   <!-- 우측 hidden 메뉴 Click 사용!! 삼항X -->
   <div :class="isOpen && '!right-0'" class="w-80 bg-gray-500 h-full z-30 fixed top-0 transiton-all duration-500 -right-80 lg:hidden ">
+        <!--  -->
+      <ul class="flex justify-center gap-x-[2%] text-white">
+        <li class="font-extrabold" v-if="!$store.state.loginChk"><router-link to="/login">로그인</router-link> </li>
+        <li class="font-extrabold" v-else @click="logout"><router-link to="/">로그아웃</router-link></li>
+        <li class="font-extrabold ml-3" v-if="!$store.state.loginChk"><router-link to="/member">회원가입</router-link></li>
+      </ul>
+        <!--  -->
+
         <ul class=" mt-20">
             <li v-for="(e,index) in NavList[0]" :key="e" v-on:click="NavSelectIndex=index;SubDown(index)" class="text-center hover:font-extrabold"  :class="isSubOpen=false ? isSubOpen=true : false"><router-link :to="NavList[1][index]" class="hover:text-green-500">{{ e }}</router-link>
                  <ul  :style="NavSelectIndex==index && isSubDown" class="submenu text-center h-0 overflow-hidden transition-all duration-500">
