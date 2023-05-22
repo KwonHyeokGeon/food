@@ -81,9 +81,12 @@
   <!-- 우측 hidden 메뉴 Click 사용!! 삼항X -->
   <div :class="isOpen && '!right-0'" class="w-80 bg-gray-500 h-full z-30 fixed top-0 transiton-all duration-500 -right-80 lg:hidden">
     <img src="@/assets/img/logo_white.png" alt="" class="w-[120px] mx-auto mt-10">
+    <p class="mr-7 text-point text-center">{{ $store.state.displayName }}<span class="pl-2 text-black">님</span></p>
         <!--  -->
       <ul class="w-[190px] flex justify-center gap-x-[2%] border-b border-gray-400 pb-3 mx-auto mt-10">
-        <li class="font-extrabold" v-if="!$store.state.loginChk"><router-link to="/login relative"><img :src="require('@/assets/img/lock-solid.svg')" alt="lock" class="w-4 absolute -ml-5 mt-0"> 로그인</router-link> </li>
+        <li class="font-extrabold mx-auto" v-if="!$store.state.loginChk"><router-link to="/login"><img
+                :src="require('@/assets/img/lock-solid.svg')" alt="lock " class="w-3 absolute mt-1 -ml-4">
+              로그인</router-link> </li>
         <li class="font-extrabold" v-else @click="logout"><router-link to="/">로그아웃</router-link></li>
         <li class="font-extrabold ml-10" v-if="!$store.state.loginChk"  ><router-link to="/member"><img :src="require('@/assets/img/user-solid.svg')" alt="user" class="w-4 absolute -ml-5"> 회원가입</router-link></li>
       </ul>
