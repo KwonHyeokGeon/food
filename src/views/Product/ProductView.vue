@@ -23,12 +23,10 @@
       </div>
     </section>
   </div>
-  <UserRecipeView></UserRecipeView>
 </template>
 
 <script>
 import data from '@/assets/Data.json'
-import UserRecipeView from './UserRecipeView.vue';
 export default {
   data() {
     return {
@@ -41,7 +39,6 @@ export default {
     }
   },
   components: {
-    UserRecipeView
   },
   methods: {
   },
