@@ -9,4 +9,12 @@ import loading from '@/assets/img/loading.png'
 import AOS from 'aos'
 import 'aos/dist/aos.css'
 
-createApp(App).use(store).use(router).use(VueLazyload,{loading: loading, error:''}).use(AOS).mount('#app')
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
+
+
+
+
+
+
+
+createApp(App).component('font-awesome-icon',FontAwesomeIcon).use(store).use(router).use(VueLazyload,{loading: loading, error:''}).use(AOS).mount('#app')
