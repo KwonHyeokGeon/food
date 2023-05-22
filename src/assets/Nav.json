@@ -18,7 +18,7 @@
   ],
   "SubLink" : [
     ["/product"],
-    ["/event","/recipe","/borad"],
+    ["/event","/recipe","/article"],
     ["/cs/notice","/cs/qna"]
   ]
 }

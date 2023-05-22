@@ -1,7 +1,7 @@
 <template>
-    <div class="w-full flex flex-wrap gap-x-10">
+    <div class="w-full flex flex-wrap gap-x-10 gap-y-2">
         <template v-for="(e,index) in dataList" :key="index">
-        <ul v-if="calculateNumber(totalLength, perPage, page, index) >0" class="flex flex-wrap w-full lg:w-[49%] xl:w-[24%] border">
+        <ul v-if="calculateNumber(totalLength, perPage, page, index) >0" class="flex flex-wrap w-full lg:w-[48%] xl:w-[24%] border">
             <router-link :to="{ name:'communityDetail', query:{docId: dataId[index]} }" @click="$store.commit('CommunityDetail', dataId[index])" class="basis-full">
             <li class="w-full text-center"><img :src="e.file" :alt="e.title" class="w-full h-[200px] object-cover"/></li>
             <li class="w-full border-t font-bold text-xl p-2">{{ e.title }}</li>
