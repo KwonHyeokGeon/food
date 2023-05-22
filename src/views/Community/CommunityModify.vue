@@ -123,6 +123,7 @@ export default {
                 let cookingFile = li.getElementsByTagName("input")[0].files[0];
                 storage.ref().child("recipes/" + this.fileRandom + i).put(cookingFile).then(() => {
                     storage.ref().child("recipes/" + this.fileRandom + i).getDownloadURL().then((url) => {
+                            this.COOKING = [];
                             this.COOKING.push(
                                         {
                                     COOKING_NO:i+1,
@@ -133,22 +134,23 @@ export default {
                         })
                 }).catch((error)=>{console.log(error)})
             }
-            console.log(this.COOKING)
-            db.collection("community").doc(this.$store.state.communityId).update({
-                "author": this.author,
-                "title": this.title,
-                "content": this.content,
-                "date": this.date,
-                "uid": this.$store.state.uid,
-                "ingre":this.ingre,
-                "QNT":this.QNT,
-                "COOKING_TIME":this.COOKING_TIME,
-                "LEVEL_NM":this.LEVEL_NM,
-                "COOKING":this.COOKING
-            }).then(()=>{
-                alert("수정이 완료되었습니다.");
-                this.$router.replace("/recipe");
-            })
+            setTimeout(()=>{
+                db.collection("community").doc(this.$store.state.communityId).update({
+                    "author": this.author,
+                    "title": this.title,
+                    "content": this.content,
+                    "date": this.date,
+                    "uid": this.$store.state.uid,
+                    "ingre":this.ingre,
+                    "QNT":this.QNT,
+                    "COOKING_TIME":this.COOKING_TIME,
+                    "LEVEL_NM":this.LEVEL_NM,
+                    "COOKING":this.COOKING
+                }).then(()=>{
+                    alert("수정이 완료되었습니다.");
+                    this.$router.replace("/recipe");
+                })
+            },1000)
       }
   },
 }

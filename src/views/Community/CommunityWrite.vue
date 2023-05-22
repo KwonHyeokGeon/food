@@ -107,44 +107,46 @@ export default {
                 const li = cook.getElementsByTagName("li")[i];
                 const cookingDc = li.getElementsByTagName("textarea")[0].value
                 let cookingFile = li.getElementsByTagName("input")[0].files[0];
+                
                 storage.ref().child("recipes/" + this.fileRandom + i).put(cookingFile).then(() => {
                     storage.ref().child("recipes/" + this.fileRandom + i).getDownloadURL().then((url) => {
-                            this.COOKING.push(
-                                        {
-                                    COOKING_NO:i+1,
-                                    COOKING_DC:cookingDc,
-                                    COOKING_FILE: url
-                                }
-                            )
-                        })
+                        this.COOKING.push(
+                                    {
+                                COOKING_NO:i+1,
+                                COOKING_DC:cookingDc,
+                                COOKING_FILE: url
+                            }
+                        )
+                    })
                 }).catch((error)=>{console.log(error)})
             }
-            this.COOKING = this.COOKING.sort((a,b)=>a.COOKING_NO - b.COOKING_NO)
-            console.log(this.COOKING)
-            this.file = document.querySelector("#image").files[0];
-            storage.ref().child("files/" + this.fileRandom).put(this.file).then(() => {
-                storage.ref().child("files/" + this.fileRandom).getDownloadURL().then((url) => {
-                    //파일 경로 가져오기
-                    db.collection("community").add({
-                        "author": this.author,
-                        "title": this.title,
-                        "content": this.content,
-                        "date": this.date,
-                        "uid": this.$store.state.uid,
-                        "file": url,
-                        "ingre":this.ingre,
-                        "QNT":this.QNT,
-                        "COOKING_TIME":this.COOKING_TIME,
-                        "LEVEL_NM":this.LEVEL_NM,
-                        "COOKING":this.COOKING,
-                        "hit":0,
-                        "likeddate":[],
-                        "likedlist":[],
-                        "liked":0
+            this.COOKING.sort((a,b)=> a.COOKING_NO - b.COOKING_NO)
+            setTimeout(()=>{
+                this.file = document.querySelector("#image").files[0];
+                storage.ref().child("files/" + this.fileRandom).put(this.file).then(() => {
+                    storage.ref().child("files/" + this.fileRandom).getDownloadURL().then((url) => {
+                        //파일 경로 가져오기
+                        db.collection("community").add({
+                            "author": this.author,
+                            "title": this.title,
+                            "content": this.content,
+                            "date": this.date,
+                            "uid": this.$store.state.uid,
+                            "file": url,
+                            "ingre":this.ingre,
+                            "QNT":this.QNT,
+                            "COOKING_TIME":this.COOKING_TIME,
+                            "LEVEL_NM":this.LEVEL_NM,
+                            "COOKING":this.COOKING,
+                            "hit":0,
+                            "likeddate":[],
+                            "likedlist":[],
+                            "liked":0
+                        })
+                        this.$router.replace("/recipe")
                     })
-                    this.$router.replace("/recipe")
                 })
-            })
+            },1000)
         }
     },
 }
