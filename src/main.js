@@ -8,13 +8,14 @@ import loading from '@/assets/img/loading.png'
 // AOS
 import AOS from 'aos'
 import 'aos/dist/aos.css'
-
-import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
-
-
-
-
+// import {library} from '@fortawesome/fornawesome-svg-core'
+// import { faLock, faUser } from '@fortawesome/free-solid-svg-icons'
+// import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
+// library.add(faLock,faUser)
 
 
 
-createApp(App).component('font-awesome-icon',FontAwesomeIcon).use(store).use(router).use(VueLazyload,{loading: loading, error:''}).use(AOS).mount('#app')
+
+
+
+createApp(App).use(store).use(router).use(VueLazyload,{loading: loading, error:''}).use(AOS).mount('#app')
