@@ -33,7 +33,7 @@
     <!-- 조리과정 -->
     <div class="basis-full">
         <ol class="flex gap-y-5 flex-wrap">
-            <li v-for="e in Cooking" :key="e" class="basis-full lg:basis-1/2 flex flex-wrap justify-between border-b-0 py-2 lg:border-b px-[2%] lg:px-0">
+            <li v-for="e in Cooking" :key="e" class="basis-full flex flex-wrap justify-between border-b-0 py-2 px-[2%] lg:px-0">
                 <span class="basis-1/5 order-2 lg:order-1 lg:basis-1/12 text-center text-4xl font-bold">{{ e.COOKING_NO }}</span>
                 <div class="basis-full order-1 lg:order-2 lg:basis-5/12">
                     <img :src="e.COOKING_FILE" class="w-full">
@@ -65,7 +65,8 @@ export default {
           heartOn:false,
           Cooking:[],
           date:new Date(),
-          likeddate: []
+          likeddate:[],
+          likedlist:[]
       }
   },
   mounted() {
@@ -74,9 +75,12 @@ export default {
       }
       db.collection("community").doc(this.$route.query.docId).get().then((data)=>{
           this.BoardContent = data.data()
-          this.likeddate = this.BoardContent.likeddate
-        //   this.heartOn = this.BoardContent.heartOn
-          this.Cooking = this.BoardContent.COOKING.sort((a,b)=>a.COOKING_NO - b.COOKING_NO)
+          this.likeddate = data.data().likeddate;
+          this.likedlist = data.data().likedlist;
+          this.Cooking = this.BoardContent.COOKING
+          if(this.likedlist.includes(this.$store.state.uid)){
+            this.heartOn = true
+        }
           db.collection("community").doc(this.$route.query.docId).update({
                 hit: data.data().hit+1,
             })
@@ -106,17 +110,21 @@ export default {
       liked(){
         if(this.heartOn === false){
             this.likeddate.push(this.date);
+            this.likedlist.push(this.$store.state.uid);
             db.collection("community").doc(this.$route.query.docId).update({
                 liked: this.BoardContent.liked + 1,
                 heartOn: true,
-                likeddate : this.likeddate
+                likeddate : this.likeddate,
+                likedlist:this.likedlist
             }).then(()=>{
                 db.collection("community").doc(this.$route.query.docId).get().then((data)=>{this.BoardContent = data.data()})
             })
             this.heartOn = true;
         }else{
+            this.likedlist= this.likedlist.filter((e) => e !== this.$store.state.uid);
             db.collection("community").doc(this.$route.query.docId).update({
                 liked: this.BoardContent.liked - 1,
+                likedlist:this.likedlist,
                 heartOn: false
             }).then(()=>{
                 db.collection("community").doc(this.$route.query.docId).get().then((data)=>{this.BoardContent = data.data()})

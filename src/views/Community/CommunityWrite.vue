@@ -91,7 +91,7 @@ export default {
             }
             const li = document.createElement('li')
             li.classList.add("flex","flex-wrap","items-center");
-            li.innerHTML = `<span class="basis-1/12 text-center">`+(idx+1)+`</span><textarea class="border basis-11/12 lg:basis-8/12 mb-1" row="1"></textarea><input type="file" id="step`+(idx+1)+`file" class="basis-60 mx-0 lg:mx-auto">`
+            li.innerHTML = `<span class="basis-1/12 text-center">`+(idx+1)+`</span><textarea class="border basis-11/12 lg:basis-8/12 mb-1" row="1"></textarea><input type="file" class="basis-60 mx-0 lg:mx-auto">`
             cook.appendChild(li)
         },
         GetDate() {
@@ -107,39 +107,46 @@ export default {
                 const li = cook.getElementsByTagName("li")[i];
                 const cookingDc = li.getElementsByTagName("textarea")[0].value
                 let cookingFile = li.getElementsByTagName("input")[0].files[0];
+                
                 storage.ref().child("recipes/" + this.fileRandom + i).put(cookingFile).then(() => {
                     storage.ref().child("recipes/" + this.fileRandom + i).getDownloadURL().then((url) => {
-                            this.COOKING.push(
-                                        {
-                                    COOKING_NO:i+1,
-                                    COOKING_DC:cookingDc,
-                                    COOKING_FILE: url
-                                }
-                            )
-                        })
-                })
-            }
-            console.log(this.COOKING)
-            this.file = document.querySelector("#image").files[0];
-            storage.ref().child("files/" + this.fileRandom).put(this.file).then(() => {
-                storage.ref().child("files/" + this.fileRandom).getDownloadURL().then((url) => {
-                    //파일 경로 가져오기
-                    db.collection("community").add({
-                        "author": this.author,
-                        "title": this.title,
-                        "content": this.content,
-                        "date": this.date,
-                        "uid": this.$store.state.uid,
-                        "file": url,
-                        "ingre":this.ingre,
-                        "QNT":this.QNT,
-                        "COOKING_TIME":this.COOKING_TIME,
-                        "LEVEL_NM":this.LEVEL_NM,
-                        "COOKING":this.COOKING
+                        this.COOKING.push(
+                                    {
+                                COOKING_NO:i+1,
+                                COOKING_DC:cookingDc,
+                                COOKING_FILE: url
+                            }
+                        )
                     })
-                    this.$router.replace("/recipe")
+                }).catch((error)=>{console.log(error)})
+            }
+            this.COOKING.sort((a,b)=> a.COOKING_NO - b.COOKING_NO)
+            setTimeout(()=>{
+                this.file = document.querySelector("#image").files[0];
+                storage.ref().child("files/" + this.fileRandom).put(this.file).then(() => {
+                    storage.ref().child("files/" + this.fileRandom).getDownloadURL().then((url) => {
+                        //파일 경로 가져오기
+                        db.collection("community").add({
+                            "author": this.author,
+                            "title": this.title,
+                            "content": this.content,
+                            "date": this.date,
+                            "uid": this.$store.state.uid,
+                            "file": url,
+                            "ingre":this.ingre,
+                            "QNT":this.QNT,
+                            "COOKING_TIME":this.COOKING_TIME,
+                            "LEVEL_NM":this.LEVEL_NM,
+                            "COOKING":this.COOKING,
+                            "hit":0,
+                            "likeddate":[],
+                            "likedlist":[],
+                            "liked":0
+                        })
+                        this.$router.replace("/recipe")
+                    })
                 })
-            })
+            },1000)
         }
     },
 }

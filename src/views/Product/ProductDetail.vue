@@ -86,7 +86,7 @@ export default {
     }
   },
   mounted() {
-    axios.get(`https://www.googleapis.com/youtube/v3/search?key=AIzaSyCR9mmHFr20k2bLtka2OX-zpj8zHotzHEg1&part=snippet&type=video&q=${this.product[this.$route.params.id]}&maxResults=6`)
+    axios.get(`https://www.googleapis.com/youtube/v3/search?key=AIzaSyCR9mmHFr20k2bLtka2OX-zpj8zHotzHEg&part=snippet&type=video&q=${this.product[this.$route.params.id]}&maxResults=6`)
       .then((res) => {
         this.items = res.data.items
         console.log(res);
