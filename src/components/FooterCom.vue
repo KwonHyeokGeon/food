@@ -1,4 +1,5 @@
 <template>
+
   <div class="h-[370px] bg-vege-600 text-white relative">
 
 
@@ -87,8 +88,10 @@
       </a>
       <!-- <img src="https://via.placeholder.com/74x74" alt="" class="absolute bottom-28 right-5 border rounded-full"> -->
 
+
       <button @click="scrollTop"
         class="uppercase text-black text-lg font-bold absolute bottom-5 right-5 border rounded-full w-12 h-12 bg-white">top</button>
+
     </div>
   </div>
 </template>
