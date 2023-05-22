@@ -3,8 +3,8 @@
     <div class="max-w-7xl mx-auto justify-center md:justify-between items-center flex py-1">
       <!-- logo -->
     <div class="flex">
-      <div>
-        <router-link to="/"><img src="../assets/img/logo.png" alt="logo" class="w-20"></router-link>
+      <div class="ml-10">
+        <router-link to="/"><img src="../assets/img/logo.png" alt="logo" class="w-20 ml-10 sm:mx-auto"></router-link>
       </div>
       <!-- Navigation bar -->
       <ul class="basis-2/4 hidden lg:flex ml-20 gap-x-16 text-center" @mouseenter="SubMenuOpen = true">
@@ -17,9 +17,9 @@
     </div>
     <div class="basis-1/6 hidden lg:block ">
       <ul class="flex justify-center gap-x-[2%]">
-        <li class="font-extrabold relative" v-if="!$store.state.loginChk"><router-link to="/login"><img :src="require('@/assets/img/lock-solid.svg')" alt="lock " class="w-3 absolute mt-1 -ml-3"> 로그인</router-link> </li>
-        <li class="font-extrabold relative" v-else @click="logout"><router-link to="/"><img :src="require('@/assets/img/lock-solid.svg')" alt="lock" class="w-3 absolute mt-1 -ml-4">로그아웃</router-link></li>
-        <li class="font-extrabold ml-7 relative" v-if="!$store.state.loginChk"><router-link to="/member"><img :src="require('@/assets/img/user-solid.svg')" alt="user" class="w-3 absolute mt-1 -ml-3">회원가입</router-link></li>
+        <li class="font-extrabold relative" v-if="!$store.state.loginChk"><router-link to="/login"><img :src="require('@/assets/img/lock-solid.svg')" alt="lock " class="w-3 absolute mt-1 -ml-5"> 로그인</router-link> </li>
+        <li class="font-extrabold relative" v-else @click="logout"><router-link to="/"><img :src="require('@/assets/img/lock-solid.svg')" alt="lock" class="w-3 absolute mt-1 -ml-5">로그아웃</router-link></li>
+        <li class="font-extrabold ml-7 relative" v-if="!$store.state.loginChk"><router-link to="/member"><img :src="require('@/assets/img/user-solid.svg')" alt="user" class="w-3 absolute mt-1 -ml-5">회원가입</router-link></li>
       </ul>
     </div>
     </div>
@@ -71,14 +71,14 @@
     <img src="@/assets/img/logo_white.png" alt="" class="w-[120px] mx-auto mt-10">
         <!--  -->
       <ul class="w-[190px] flex justify-center gap-x-[2%] border-b border-gray-400 pb-3 mx-auto mt-10">
-        <li class="font-extrabold" v-if="!$store.state.loginChk"><router-link to="/login">로그인</router-link> </li>
+        <li class="font-extrabold" v-if="!$store.state.loginChk"><router-link to="/login relative"><img :src="require('@/assets/img/lock-solid.svg')" alt="lock" class="w-4 absolute -ml-5 mt-0"> 로그인</router-link> </li>
         <li class="font-extrabold" v-else @click="logout"><router-link to="/">로그아웃</router-link></li>
-        <li class="font-extrabold ml-3" v-if="!$store.state.loginChk"><router-link to="/member">회원가입</router-link></li>
+        <li class="font-extrabold ml-10" v-if="!$store.state.loginChk"  ><router-link to="/member"><img :src="require('@/assets/img/user-solid.svg')" alt="user" class="w-4 absolute -ml-5"> 회원가입</router-link></li>
       </ul>
         <!--  -->
 
         <ul class=" mt-20">
-            <li v-for="(e,index) in NavList[0]" :key="e" v-on:click="NavSelectIndex=index;SubDown(index)" class="text-center hover:font-extrabold leading-[80px] w-24 mx-auto pb-1 relative after:absolute after:h-0.5 after:bg-gray-800 after:w-[100px] after:-left-1 after:bottom-6"  :class="isSubOpen=false ? isSubOpen=true : false"><router-link :to="NavList[1][index]" class="hover:text-green-500">{{ e }}</router-link>
+            <li v-for="(e,index) in NavList[0]" :key="e" v-on:click="NavSelectIndex=index;SubDown(index)" class="text-center hover:font-extrabold mb-12"  :class="isSubOpen=false ? isSubOpen=true : false"><router-link :to="NavList[1][index]" class="hover:text-green-500 relative after:absolute after:h-0.5 after:bg-gray-800 after:w-[80px] after:-left-0.5 after:bottom-0 text-center">{{ e }}</router-link>
                  <ul  :style="NavSelectIndex==index && isSubDown" class="submenu text-center h-0 overflow-hidden transition-all duration-500">
                      <li v-for="(el,i) in SubList[index]" :key="el"><router-link :to="SubMenuLink[index][i]" class="hover:text-red-500"> {{ el }}</router-link></li>
                  </ul>
@@ -139,7 +139,7 @@ export default {
       this.isSubDown = `height:${length * 32}px`
 
       if(list.style.height ==='0px'){
-            list.style.height= '116px';
+            list.style.height= `${length*32}px`;
           } else {
             list.style.height='0px';
           }
