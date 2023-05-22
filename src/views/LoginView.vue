@@ -84,7 +84,7 @@ export default {
           window.scrollTo({ top: 0, behavior: 'auto' })
         }),
           ((error) => {
-            this.errorMsg = error.message
+            alert(error.message)
           })
         )
       }
@@ -141,7 +141,8 @@ export default {
     findPassword(email) {
       firebase.auth().sendPasswordResetEmail(email)
         .then((Res) => {
-          console.log(Res);
+          Res
+          alert('메일이 전송되었습니다.')
         })
         .catch((error) => {
           error

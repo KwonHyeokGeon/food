@@ -2,8 +2,9 @@
   <div class="product-wrap">
     <section class="bg-white">
       <div class="container px-6 py-10 mx-auto">
-        <ul class="flex flex-wrap w-full lg:w-1/2 mx-auto justify-around">
-          <li v-for="el in month" :key="el" class="basis-1/6  text-center cursor-pointer text-lg" @click="selectMonth = el"><span class="px-8 py-0.5" :class="selectMonth === el && 'bg-vege-400 rounded-full text-white'">{{ el }}</span></li>
+        <ul class="flex flex-wrap w-full lg:w-1/2 mx-auto justify-around
+        ">
+          <li v-for="el in month" :key="el" class="basis-1/6 text-center cursor-pointer text-base flex flex-wrap justify-center items-center" @click="selectMonth = el"><span class="px-2 box-border w-20 py-0.5" :class="selectMonth === el && 'bg-vege-400 rounded-full text-white'">{{ el }}</span></li>
         </ul>
         <div class="grid grid-cols-1 gap-8 mt-8 xl:mt-12 xl:gap-12 sm:grid-cols-2 xl:grid-cols-4 lg:grid-cols-3">
           <template v-for="(e, idx) in product" :key="e">
@@ -22,12 +23,10 @@
       </div>
     </section>
   </div>
-  <UserRecipeView></UserRecipeView>
 </template>
 
 <script>
 import data from '@/assets/Data.json'
-import UserRecipeView from './UserRecipeView.vue';
 export default {
   data() {
     return {
@@ -40,7 +39,6 @@ export default {
     }
   },
   components: {
-    UserRecipeView
   },
   methods: {
   },
