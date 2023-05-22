@@ -10,7 +10,7 @@
   </div>
   <div class="max-w-7xl mx-auto flex flex-col sm:flex-row">
     <div class="basis-6/12 flex justify-center items-center">
-      <img :src="imgUrl[idx]" :alt="product[idx]" class=" w-4/5 h-80 border rounded-md">
+      <img :src="imgUrl[idx]" :alt="product[idx]" class=" w-4/5 h-80 border rounded-md object-cover">
     </div>
     <div class="flex flex-col basis-6/12 justify-center items-center gap-y-2">
       <h2 class="text-2xl font-bold text-center flex flex-col gap-y-2 mb-4 sm:mt-0 mt-5">{{ product[idx] }}<span
