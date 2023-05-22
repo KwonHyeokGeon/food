@@ -82,11 +82,11 @@
     
     <!-- side-widget area-->
     <div class="" :class="TopBtnChk ? 'visible opacity-100' : 'invisible opacity-0'" ><a href="https://instagram.com/nongdal_fresh?igshid=MmJiY2I4NDBkZg==">
-      <img :src="require(`@/assets/img/instagram_icon.png`)" alt="인스타그램" class="absolute bottom-28 right-5 rounded-full w-[74px]">
+      <img :src="require(`@/assets/img/instagram-icon.png`)" alt="인스타그램" class="absolute bottom-28 right-5 rounded-full w-12">
     </a>
       <!-- <img src="https://via.placeholder.com/74x74" alt="" class="absolute bottom-28 right-5 border rounded-full"> -->
       
-      <button @click="scrollTop" class="uppercase text-black text-lg font-bold absolute bottom-5 right-5 border rounded-full p-5 py-[22px] bg-white">top</button>
+      <button @click="scrollTop" class="uppercase text-black text-lg font-bold absolute bottom-5 right-5 border rounded-full w-12 h-12 bg-white">top</button>
     </div>
   </div>
 </template>
