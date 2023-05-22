@@ -1,6 +1,6 @@
 <template>
   <div class="product-wrap">
-    <section class="bg-white dark:bg-gray-900">
+    <section class="bg-white">
       <div class="container px-6 py-10 mx-auto">
         <ul class="flex flex-wrap w-full lg:w-1/2 mx-auto justify-around">
           <li v-for="el in month" :key="el" class="basis-1/6  text-center cursor-pointer text-lg" @click="selectMonth = el"><span class="px-8 py-0.5" :class="selectMonth === el && 'bg-vege-400 rounded-full text-white'">{{ el }}</span></li>

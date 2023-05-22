@@ -1,5 +1,4 @@
 <template>
-<<<<<<< HEAD
   <div class="w-full border relative bg-yellow-200">
     
       <div class="max-w-7xl lg:flex lg:justify-center lg:gap-x-[5%] mx-auto">
@@ -23,12 +22,6 @@
               <p class="text-center"> 2023.(저작권자) all rights reserved</p>
           </div>
       </div>
-=======
-  <div class="border-t border-b h-[70px] bg-vege-600 flex justify-center text-white/40 cursor-pointer">
-    <p class="mx-4 mt-6">이용약관</p>
-    <p class="mx-4 mt-6">개인정보처리방침</p>
-    <p class="mx-4 mt-6">이메일무단수집거부</p>
->>>>>>> 31dd3efd0c4d9f3cb79638286ad88e8d3f57607f
   </div>
   <div class="h-[370px] bg-vege-600 flex justify-center text-white relative">
     <!-- left area -->
@@ -50,7 +43,7 @@
     <!-- side-widget area-->
     <div class="" :class="TopBtnChk ? 'visible opacity-100' : 'invisible opacity-0'" >
       <!-- <img src="https://via.placeholder.com/74x74" alt="" class="absolute bottom-28 right-5 border rounded-full"> -->
-      <img :src="require(`@/assets/img/instagram_icon.png`)" alt="인스타그램" class="absolute bottom-28 right-5 rounded-full w-[74px]">
+      <a href="https://www.instagram.com/nongdal_fresh/?igshid=MmJiY2I4NDBkZg%3D%3D"><img :src="require(`@/assets/img/instagram_icon.png`)" alt="인스타그램" class="absolute bottom-28 right-5 rounded-full w-[74px]"></a>
       <button @click="scrollTop" class="uppercase text-black text-lg font-bold absolute bottom-5 right-5 border rounded-full p-5 py-[22px] bg-white">top</button>
     </div>
   </div>
