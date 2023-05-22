@@ -1,5 +1,5 @@
 <template>
-  <div class="w-full z-20 bg-white">
+  <div class="w-full z-20 bg-white relative">
     <div class="max-w-7xl mx-auto justify-center md:justify-between items-center flex py-1">
       <!-- logo -->
     <div class="flex">
