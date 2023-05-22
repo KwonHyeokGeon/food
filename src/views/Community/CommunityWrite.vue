@@ -91,7 +91,7 @@ export default {
             }
             const li = document.createElement('li')
             li.classList.add("flex","flex-wrap","items-center");
-            li.innerHTML = `<span class="basis-1/12 text-center">`+(idx+1)+`</span><textarea class="border basis-11/12 lg:basis-8/12 mb-1" row="1"></textarea><input type="file" id="step`+(idx+1)+`file" class="basis-60 mx-0 lg:mx-auto">`
+            li.innerHTML = `<span class="basis-1/12 text-center">`+(idx+1)+`</span><textarea class="border basis-11/12 lg:basis-8/12 mb-1" row="1"></textarea><input type="file" class="basis-60 mx-0 lg:mx-auto">`
             cook.appendChild(li)
         },
         GetDate() {
@@ -117,7 +117,7 @@ export default {
                                 }
                             )
                         })
-                })
+                }).catch((error)=>{console.log(error)})
             }
             console.log(this.COOKING)
             this.file = document.querySelector("#image").files[0];
@@ -135,7 +135,11 @@ export default {
                         "QNT":this.QNT,
                         "COOKING_TIME":this.COOKING_TIME,
                         "LEVEL_NM":this.LEVEL_NM,
-                        "COOKING":this.COOKING
+                        "COOKING":this.COOKING,
+                        "hit":0,
+                        "likeddate":[],
+                        "likedlist":[],
+                        "liked":0
                     })
                     this.$router.replace("/recipe")
                 })
