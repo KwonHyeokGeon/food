@@ -17,16 +17,16 @@
     </div>
     <div class="basis-1/6 hidden lg:block ">
       <ul class="flex justify-center gap-x-[2%]">
-        <li class="font-extrabold" v-if="!$store.state.loginChk"><router-link to="/login">로그인</router-link> </li>
-        <li class="font-extrabold flex gap-x-4 items-center" v-else @click="logout"><p class="bg-[#f2f2f2] hover:bg-[#cecece] rounded-md p-1 box-border"><span class="text-vege-400">{{ $store.state.displayName }}</span> 님</p><router-link to="/">로그아웃</router-link></li>
-        <li class="font-extrabold ml-3" v-if="!$store.state.loginChk"><router-link to="/member">회원가입</router-link></li>
+        <li class="font-extrabold relative" v-if="!$store.state.loginChk"><router-link to="/login"><img :src="require('@/assets/img/lock-solid.svg')" alt="lock " class="w-3 absolute mt-1 -ml-4"> 로그인</router-link> </li>
+        <li class="font-extrabold relative" v-else @click="logout"><router-link to="/"><img :src="require('@/assets/img/lock-solid.svg')" alt="lock" class="w-3 absolute mt-1 -ml-5">로그아웃</router-link></li>
+        <li class="font-extrabold ml-7 relative" v-if="!$store.state.loginChk"><router-link to="/member"><img :src="require('@/assets/img/user-solid.svg')" alt="user" class="w-3 absolute mt-1 -ml-4">회원가입</router-link></li>
       </ul>
     </div>
     </div>
   </div>
 
-  <div :class="SubMenuOpen && 'h-48'" class="transition-all duration-500 bg-point rounded h-0 overflow-hidden z-50 w-full absolute"
-    @mouseleave="SubMenuOpen = false; NavSelectIndex = null">
+  <div :class="SubMenuOpen && 'h-48'" class="transition-all duration-500 bg-point rounded h-0 overflow-hidden z-50 w-full fixed"
+    @mouseleave="SubMenuOpen = false; NavSelectIndex = null;">
     <div class="max-w-7xl mx-auto pl-40 flex gap-x-16">
       <ul @mouseover="NavSelectIndex = index" v-for="(e, index) in SubList" :key="e" class="basis-32 text-center">
         <li v-for="(el, i) in e" :key="el" class="font-bold transition-all text-gray-300 opacity-40 hover:text-white hover:opacity-100">
@@ -71,9 +71,9 @@
     <img src="@/assets/img/logo_white.png" alt="" class="w-[120px] mx-auto mt-10">
         <!--  -->
       <ul class="w-[190px] flex justify-center gap-x-[2%] border-b border-gray-400 pb-3 mx-auto mt-10">
-        <li class="font-extrabold" v-if="!$store.state.loginChk"><router-link to="/login">로그인</router-link> </li>
-        <li class="font-extrabold" v-else @click="logout"><router-link to="/">로그아웃</router-link></li>
-        <li class="font-extrabold ml-3" v-if="!$store.state.loginChk"><router-link to="/member">회원가입</router-link></li>
+        <li class="font-extrabold mr-4" v-if="!$store.state.loginChk"><router-link to="/login"><img :src="require('@/assets/img/lock-solid.svg')" alt="lock " class="w-3 absolute mt-1 -ml-4">로그인</router-link> </li>
+        <li class="font-extrabold" v-else @click="logout"><router-link to="/"><img :src="require('@/assets/img/lock-solid.svg')" alt="lock " class="w-3 absolute mt-1 -ml-4">로그아웃</router-link></li>
+        <li class="font-extrabold ml-3" v-if="!$store.state.loginChk"><router-link to="/member"><img :src="require('@/assets/img/user-solid.svg')" alt="user" class="w-3 absolute mt-1 -ml-4">회원가입</router-link></li>
       </ul>
         <!--  -->
 
@@ -109,6 +109,7 @@
 </template>
 
 <script>
+
 import Nav from '../assets/Nav.json'
 import { auth } from '../firebase'
 export default {
@@ -124,7 +125,9 @@ export default {
       isSubDown: '',
       isSubOpen: false
     }
+    
   },
+ 
   methods: {
     logout() {
       auth.signOut();
