@@ -4,7 +4,7 @@
       <!-- logo -->
     <div class="flex">
       <div>
-        <router-link to="/"><img src="../assets/img/logo.png" alt="logo" class="w-20"></router-link>
+        <router-link to="/" @click="$store.state.navSelectIndex = 999"><img src="../assets/img/logo.png" alt="logo" class="w-20"></router-link>
       </div>
       <!-- Navigation bar -->
       <ul class="basis-2/4 hidden lg:flex ml-20 gap-x-16 text-center" @mouseenter="SubMenuOpen = true">
@@ -18,18 +18,18 @@
     <div class="basis-1/6 hidden lg:block ">
       <ul class="flex justify-center gap-x-[2%]">
         <li class="font-extrabold relative" v-if="!$store.state.loginChk"><router-link to="/login"><img :src="require('@/assets/img/lock-solid.svg')" alt="lock " class="w-3 absolute mt-1 -ml-4"> 로그인</router-link> </li>
-        <li class="font-extrabold relative" v-else @click="logout"><router-link to="/"><img :src="require('@/assets/img/lock-solid.svg')" alt="lock" class="w-3 absolute mt-1 -ml-5">로그아웃</router-link></li>
+        <li class="font-extrabold relative flex" v-else @click="logout"><p class="mr-7 text-point">{{ $store.state.displayName }}<span class="pl-2 text-black">님</span></p><router-link to="/"><img :src="require('@/assets/img/lock-solid.svg')" alt="lock" class="w-3 absolute mt-1 -ml-5">로그아웃</router-link></li>
         <li class="font-extrabold ml-7 relative" v-if="!$store.state.loginChk"><router-link to="/member"><img :src="require('@/assets/img/user-solid.svg')" alt="user" class="w-3 absolute mt-1 -ml-4">회원가입</router-link></li>
       </ul>
     </div>
     </div>
   </div>
 
-  <div :class="SubMenuOpen && 'h-48'" class="transition-all duration-500 bg-point rounded h-0 overflow-hidden z-50 w-full fixed"
+  <div :class="SubMenuOpen && 'h-48'" class="transition-all duration-500 bg-point rounded h-0 overflow-hidden z-50 w-full absolute"
     @mouseleave="SubMenuOpen = false; NavSelectIndex = null;">
     <div class="max-w-7xl mx-auto pl-40 flex gap-x-16">
       <ul @mouseover="NavSelectIndex = index" v-for="(e, index) in SubList" :key="e" class="basis-32 text-center">
-        <li v-for="(el, i) in e" :key="el" class="font-bold transition-all text-gray-300 opacity-40 hover:text-white hover:opacity-100">
+        <li v-for="(el, i) in e" :key="el" class="font-bold transition-all text-gray-300 opacity-80 hover:text-white hover:opacity-100">
           <router-link :to="SubMenuLink[index][i]">{{ el }}</router-link>
         </li>
       </ul>
