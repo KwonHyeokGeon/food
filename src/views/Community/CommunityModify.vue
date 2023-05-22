@@ -10,7 +10,6 @@
                 <span class="basis-1/5 xl:basis-1/12">요리 설명</span>
                 <input type="text" v-model="content" class="border basis-4/5 xl:basis-11/12 p-3">
             </div>
-            <span class="basis-1/5 xl:basis-1/12">완성이미지</span><input type="file" id="image" required>
             <div class="basis-full mt-5 flex gap-x-5 pl-0 xl:pl-[108px]">
                 <label for="QNT">인원</label><select v-model="QNT" id="QNT" class="border">
                 <option value="1인분" selected>1인분</option>
@@ -42,16 +41,17 @@
                 <textarea v-model="ingre" class="border basis-4/5 xl:basis-11/12 p-3"></textarea>
             </div>
         </div>
-        <div class="mt-5">
+        <div class="mt-5 basis-full">
             <h4 class="text-xl mb-5">조리과정</h4>
-            <ul class="cook">
-                <li v-for="(e,i) in COOKING" :key="i">
-                    <span>{{ e.COOKING_NO }}</span>
-                    <textarea :v-model="e.COOKING_DC" class="border"></textarea>
-                    <input type="file" :id="'step'+i+'file'" class="border">
+            <span class="font-bold text-point">※게시글 수정 시 이미지 파일은 모두 새로 올려주셔야 합니다.</span>
+            <ol class="cook w-full my-2">
+                <li v-for="(e,i) in COOKING" :key="i" class="flex flex-wrap items-center">
+                    <span class="basis-1/12 text-center">{{ e.COOKING_NO }}</span>
+                    <textarea :value="e.COOKING_DC" class="border basis-11/12 lg:basis-8/12 mb-1" row="1"></textarea>
+                    <input type="file" class="basis-60 mx-0 lg:mx-auto">
                 </li>
-            </ul>
-            <button class="bg-vege-200 w-10 h-10 rounded-full" @click="addList">과정 추가</button>
+            </ol>
+            <button class="border border-vege-400 hover:bg-vege-400 hover:text-white px-10 py-1 rounded-full" @click="addList">과정 추가</button>
         </div>
     </div>
     <div class="w-full flex justify-end pt-10">
@@ -59,19 +59,27 @@
     </div>
 </template>
 <script>
-import {db} from '../../firebase'
+import {db,storage} from '../../firebase'
 export default {
   name:"communityModify",
   data() {
       return {
-          BoardContent : [],
-          author: this.$store.state.displayName,
-          title:"",
-          content:"",
-          date: new Date()
+        BoardContent : [],
+        author: this.$store.state.displayName,
+        title:"",
+        content:"",
+        ingre:"",
+        QNT:"",
+        COOKING_TIME:"",
+        LEVEL_NM:"",
+        date: new Date(),
+        COOKING:[],
+        fileRandom: null
       }
   },
   mounted() {
+        const formattedDate = this.GetDate();
+        this.fileRandom = formattedDate
       if ( this.$store.state.communityId === 0){
           this.$router.replace("/recipe")
       }
@@ -80,30 +88,69 @@ export default {
               this.author = this.BoardContent.author;
               this.title = this.BoardContent.title;
               this.content = this.BoardContent.content;
+              this.QNT = this.BoardContent.QNT;
+              this.ingre = this.BoardContent.ingre;
+              this.COOKING_TIME = this.BoardContent.COOKING_TIME;
+              this.LEVEL_NM = this.BoardContent.LEVEL_NM;
+              this.COOKING = this.BoardContent.COOKING;
       })
   },
   methods: {
+        GetDate() {
+            const new_date = new Date();
+            const RandomNum = Math.floor(Math.random() * 999) + 100;
+            const formattedDate = ('' + new_date.getFullYear()) + ('0' + (new_date.getMonth() + 1)).slice(-2) + ('0' + new_date.getDate()).slice(-2) + '_' + ('0' + new_date.getHours()).slice(-2) + ('0' + new_date.getMinutes()).slice(-2) + ('0' + new_date.getSeconds()).slice(-2) + '' + RandomNum;
+            return formattedDate
+        },
         addList(){
             let cook = document.querySelector(".cook")
             const idx = cook.childElementCount
+            if(idx>=20){
+                alert("조리과정은 20개를 넘을 수 없습니다.")
+                return;
+            }
             const li = document.createElement('li')
-            li.innerHTML = `<span>`+(idx+1)+`</span> <textarea :v-model="e.COOKING_DC" class="border"></textarea><input type="file" :id="'step'+i+'file'" class="border">`
+            li.classList.add("flex","flex-wrap","items-center");
+            li.innerHTML = `<span class="basis-1/12 text-center">`+(idx+1)+`</span><textarea class="border basis-11/12 lg:basis-8/12 mb-1" row="1"></textarea><input type="file" class="basis-60 mx-0 lg:mx-auto">`
             cook.appendChild(li)
         },
-      modify(){
-          db.collection("community").doc(this.$store.state.communityId).update({
-            "author":this.author,
-            "title": this.title,
-            "content":this.content,
-            "date":this.date,
-            "ingre":this.ingre,
-            "QNT":this.QNT,
-            "COOKING_TIME":this.COOKING_TIME,
-            "LEVEL_NM":this.LEVEL_NM,
-        }).then(()=>{
-              alert("수정이 완료되었습니다.");
-              this.$router.replace("/recipe");
-          })
+        modify(){
+            const cook = document.querySelector(".cook");
+            const idx = cook.childElementCount;            
+            for(let i=0; i < idx; i++){
+                const li = cook.getElementsByTagName("li")[i];
+                const cookingDc = li.getElementsByTagName("textarea")[0].value
+                let cookingFile = li.getElementsByTagName("input")[0].files[0];
+                storage.ref().child("recipes/" + this.fileRandom + i).put(cookingFile).then(() => {
+                    storage.ref().child("recipes/" + this.fileRandom + i).getDownloadURL().then((url) => {
+                            this.COOKING = [];
+                            this.COOKING.push(
+                                        {
+                                    COOKING_NO:i+1,
+                                    COOKING_DC:cookingDc,
+                                    COOKING_FILE: url
+                                }
+                            )
+                        })
+                }).catch((error)=>{console.log(error)})
+            }
+            setTimeout(()=>{
+                db.collection("community").doc(this.$store.state.communityId).update({
+                    "author": this.author,
+                    "title": this.title,
+                    "content": this.content,
+                    "date": this.date,
+                    "uid": this.$store.state.uid,
+                    "ingre":this.ingre,
+                    "QNT":this.QNT,
+                    "COOKING_TIME":this.COOKING_TIME,
+                    "LEVEL_NM":this.LEVEL_NM,
+                    "COOKING":this.COOKING
+                }).then(()=>{
+                    alert("수정이 완료되었습니다.");
+                    this.$router.replace("/recipe");
+                })
+            },1000)
       }
   },
 }
