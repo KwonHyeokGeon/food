@@ -1,5 +1,5 @@
 <template>
-    <div class="w-full flex flex-wrap gap-x-10 gap-y-2">
+    <div class="w-full flex flex-wrap gap-x-4 gap-y-2 mb-10">
         <template v-for="(e,index) in dataList" :key="index">
         <ul v-if="calculateNumber(totalLength, perPage, page, index) >0" class="flex flex-wrap w-full lg:w-[48%] xl:w-[24%] border">
             <router-link :to="{ name:'communityDetail', query:{docId: dataId[index]} }" @click="$store.commit('CommunityDetail', dataId[index])" class="basis-full">

@@ -10,7 +10,6 @@
                 <span class="basis-1/5 xl:basis-1/12">요리 설명</span>
                 <input type="text" v-model="content" class="border basis-4/5 xl:basis-11/12 p-3">
             </div>
-            <span class="basis-1/5 xl:basis-1/12">완성이미지</span><input type="file" id="image" required>
             <div class="basis-full mt-5 flex gap-x-5 pl-0 xl:pl-[108px]">
                 <label for="QNT">인원</label><select v-model="QNT" id="QNT" class="border">
                 <option value="1인분" selected>1인분</option>
@@ -106,7 +105,12 @@ export default {
         addList(){
             let cook = document.querySelector(".cook")
             const idx = cook.childElementCount
+            if(idx>=20){
+                alert("조리과정은 20개를 넘을 수 없습니다.")
+                return;
+            }
             const li = document.createElement('li')
+            li.classList.add("flex","flex-wrap","items-center");
             li.innerHTML = `<span class="basis-1/12 text-center">`+(idx+1)+`</span><textarea class="border basis-11/12 lg:basis-8/12 mb-1" row="1"></textarea><input type="file" class="basis-60 mx-0 lg:mx-auto">`
             cook.appendChild(li)
         },

@@ -77,7 +77,7 @@ export default {
           this.BoardContent = data.data()
           this.likeddate = data.data().likeddate;
           this.likedlist = data.data().likedlist;
-          this.Cooking = this.BoardContent.COOKING.sort((a,b)=>a.COOKING_NO - b.COOKING_NO)
+          this.Cooking = this.BoardContent.COOKING
           if(this.likedlist.includes(this.$store.state.uid)){
             this.heartOn = true
         }

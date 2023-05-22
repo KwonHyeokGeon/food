@@ -119,6 +119,7 @@ export default {
                         })
                 }).catch((error)=>{console.log(error)})
             }
+            this.COOKING = this.COOKING.sort((a,b)=>a.COOKING_NO - b.COOKING_NO)
             console.log(this.COOKING)
             this.file = document.querySelector("#image").files[0];
             storage.ref().child("files/" + this.fileRandom).put(this.file).then(() => {
