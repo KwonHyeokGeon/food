@@ -29,7 +29,7 @@
               class="w-8 h-8"></button>
         </li>
         <li class="border-2 rounded-full flex justify-center items-center p-1">
-          <button @click="signInWithKakao"><img :src="require(`@/assets/img/kakaoLogin.png`)" alt="카카오로그인"
+          <button @click="signInWithKakao"><img :src="require(`@/assets/img/kakaologin.png`)" alt="카카오로그인"
               class="w-8 h-8"></button>
         </li>
       </ul>
@@ -43,7 +43,8 @@
         <div class="flex w-full gap-2 justify-center">
           <button class="border rounded-md bg-vege-200 text-white p-1 basis-4/12 hover:bg-vege-400 transition-all"
             @click="findPassword(this.userEmail); modal = false">제출</button>
-          <button class="border rounded-md bg-vege-200 text-white p-1 basis-4/12 hover:bg-vege-400 transition-all" @click="modal = false">취소</button>
+          <button class="border rounded-md bg-vege-200 text-white p-1 basis-4/12 hover:bg-vege-400 transition-all"
+            @click="modal = false">취소</button>
         </div>
       </div>
     </div>
@@ -107,6 +108,9 @@ export default {
       }
     },
     signInWithKakao() {
+      const router = this.$router
+      const store = this.$store
+
       window.Kakao.cleanup();
       window.Kakao.init('40efe3e8889c51f75afb99fa7d699b0a')
       window.Kakao.Auth.login({
@@ -123,6 +127,8 @@ export default {
             success: async function (response) {
               localStorage.setItem("displayName", response.kakao_account.profile.nickname)
               localStorage.setItem("uid", response.id)
+              router.replace('/')
+              store.state.loginChk = true
             },
             fail: function (error) {
               alert(error)
@@ -133,8 +139,6 @@ export default {
           alert(error)
         },
       })
-      this.$router.replace('/')
-      this.$store.state.loginChk = true
     },
     findPassword(email) {
       firebase.auth().sendPasswordResetEmail(email)
