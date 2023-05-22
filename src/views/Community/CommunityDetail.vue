@@ -75,7 +75,7 @@ export default {
       db.collection("community").doc(this.$route.query.docId).get().then((data)=>{
           this.BoardContent = data.data()
           this.likeddate = this.BoardContent.likeddate
-          this.heartOn = this.BoardContent.heartOn
+        //   this.heartOn = this.BoardContent.heartOn
           this.Cooking = this.BoardContent.COOKING.sort((a,b)=>a.COOKING_NO - b.COOKING_NO)
           db.collection("community").doc(this.$route.query.docId).update({
                 hit: data.data().hit+1,
