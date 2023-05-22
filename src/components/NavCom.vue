@@ -1,27 +1,19 @@
 <template>
-  <div class="w-full fixed z-20 bg-white">
+  <div class="w-full z-20 bg-white">
     <div class="max-w-7xl mx-auto justify-center md:justify-between items-center flex py-1">
       <!-- logo -->
-      
-    <div class="flex justify-between max-w-7xl">
-      <div class="flex justify-center">
-            <div>
-              <router-link to="/"><img src="../assets/img/logo.png" alt="logo" class="w-20"></router-link>
-            </div>
-            <!-- Navigation bar -->
-            <div class="basis-2/4 hidden lg:block ml-20">
-              <ul class="basis-2/4 flex justify-between gap-x-7" @mouseenter="SubMenuOpen = true">
-      
-                <li v-for="(e, index) in NavList[0]" :key="e" :class="NavSelectIndex == index && 'after:h-0.5 text-green-500' || index === $store.state.navSelectIndex && 'text-point font-extrabold'"
-                  class="shrink-0 hover:text-green-500 h-20 leading-[80px] relative after:absolute after:transition-all after:left-0 after:bottom-0 hover:after:h-1 font-extrabold change">
-                  <router-link @click="$store.commit('NavSelectClick', index)" :to="NavList[1][index]">{{ e }} </router-link>
-                </li>
-              </ul>
-            </div>
+    <div class="flex">
+      <div>
+        <router-link to="/"><img src="../assets/img/logo.png" alt="logo" class="w-20"></router-link>
       </div>
-
+      <!-- Navigation bar -->
+      <ul class="basis-2/4 hidden lg:flex ml-20 gap-x-16 text-center" @mouseenter="SubMenuOpen = true">
+        <li v-for="(e, index) in NavList[0]" :key="e" :class="NavSelectIndex == index && 'after:h-0.5 text-green-500' || index === $store.state.navSelectIndex && 'text-point font-extrabold'"
+          class="shrink-0 hover:text-green-500 basis-32 text-center h-20 leading-[80px] relative after:absolute after:transition-all after:left-0 after:bottom-0 hover:after:h-1 font-extrabold change">
+          <router-link @click="$store.commit('NavSelectClick', index)" :to="NavList[1][index]">{{ e }} </router-link>
+        </li>
+      </ul>
       <!-- 로그인 로그아웃 회원가입 -->
-      
     </div>
     <div class="basis-1/6 hidden lg:block ">
       <ul class="flex justify-center gap-x-[2%]">
@@ -33,10 +25,10 @@
     </div>
   </div>
 
-  <div :class="SubMenuOpen && 'h-48'" class="mt-[88px] transition-all duration-500 bg-point rounded h-0 overflow-hidden z-50 w-full fixed"
+  <div :class="SubMenuOpen && 'h-48'" class="transition-all duration-500 bg-point rounded h-0 overflow-hidden z-50 w-full fixed"
     @mouseleave="SubMenuOpen = false; NavSelectIndex = null">
-    <div class="flex ml-[405px]">
-      <ul @mouseover="NavSelectIndex = index" v-for="(e, index) in SubList" :key="e" class=" ms-[50px] text-center">
+    <div class="max-w-7xl mx-auto pl-40 flex gap-x-16">
+      <ul @mouseover="NavSelectIndex = index" v-for="(e, index) in SubList" :key="e" class="basis-32 text-center">
         <li v-for="(el, i) in e" :key="el" class="font-bold transition-all text-gray-300 opacity-40 hover:text-white hover:opacity-100">
           <router-link :to="SubMenuLink[index][i]">{{ el }}</router-link>
         </li>
