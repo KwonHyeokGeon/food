@@ -1,9 +1,9 @@
 <template>
-    <div class="border-y border-t-vege-600 p-5 flex flex-wrap">
+    <div class="border-y border-vege-600 p-5 flex flex-wrap">
         <div class="basis-full md:basis-1/2">
             <div class="relative">
                 <img v-if="BoardContent.file" :src="BoardContent.file" alt="첨부파일" class="mx-auto mt-5">
-                <button class="absolute bottom-3 right-3 rounded-full w-10 h-10" :class="heartOn? 'bg-point': 'bg-gray-400'" @click="heartOn = !heartOn"><img :src="require(`@/assets/img/heart.png`)" alt="좋아요" class="w-2/3 mx-auto"></button>
+                <button class="absolute bottom-3 right-3 rounded-full w-10 h-10" :class="heartOn? 'bg-point': 'bg-gray-400'" @click="liked"><img :src="require(`@/assets/img/heart.png`)" alt="좋아요" class="w-2/3 mx-auto"></button>
             </div>
         </div>
         <div class="basis-full md:basis-1/2 pl-0 md:pl-5">
@@ -11,25 +11,38 @@
                 {{BoardContent.title}}
             </h2>
             <div class="flex text-sm gap-x-3 pb-3 border-b-0 md:border-b mt-1">
-                <p class="relative after:absolute after:inline-block after:bg-vege-200/50 after:w-0.5 after:h-4 after:rounded-full after:-right-2 after:top-0.5"><span class="mr-1">조회수?</span></p>
-                <p class="relative after:absolute after:inline-block after:bg-vege-200/50 after:w-0.5 after:h-4 after:rounded-full after:-right-2 after:top-0.5"><span class="mr-1">추천수?</span></p>
+                <p class="relative after:absolute after:inline-block after:bg-vege-200/50 after:w-0.5 after:h-4 after:rounded-full after:-right-2 after:top-0.5"><span class="mr-1">조회수</span>{{ BoardContent.hit }}</p>
+                <p class="relative after:absolute after:inline-block after:bg-vege-200/50 after:w-0.5 after:h-4 after:rounded-full after:-right-2 after:top-0.5"><span class="mr-1">추천수</span>{{ BoardContent.liked}}</p>
                 <p><span class="mr-1">작성자</span>{{BoardContent.author}}</p>
 
             </div>
             <div class="mt-5 flex gap-x-5 flex-wrap">
-                <p class="relative after:absolute after:inline-block after:bg-vege-200/50 after:w-0.5 after:h-4 after:rounded-full after:-right-2.5 after:top-1"><span class="mr-1">인원:</span> {{ BoardContent.QNT }}</p>
-                <p class="relative after:absolute after:inline-block after:bg-vege-200/50 after:w-0.5 after:h-4 after:rounded-full after:-right-2.5 after:top-1"><span class="mr-1">소요시간:</span> {{ BoardContent.COOKING_TIME }}</p>
-                <p><span class="mr-1">난이도:</span> {{ BoardContent.LEVEL_NM }}</p>
-                <div class="basis-full">
-                    공유버튼?<br/>
-                    재료
+                <p class="relative after:absolute after:inline-block after:bg-vege-200/50 after:w-0.5 after:h-4 after:rounded-full after:-right-2.5 after:top-1"><span class="font-bold mr-1">인원:</span> {{ BoardContent.QNT }}</p>
+                <p class="relative after:absolute after:inline-block after:bg-vege-200/50 after:w-0.5 after:h-4 after:rounded-full after:-right-2.5 after:top-1"><span class="font-bold mr-1">소요시간:</span> {{ BoardContent.COOKING_TIME }}</p>
+                <p><span class="font-bold mr-1">난이도:</span> {{ BoardContent.LEVEL_NM }}</p>
+                <div class="basis-full border-t py-5">
+                    <h5 class="text-xl font-bold">재료</h5>
+                    <p class="">{{ BoardContent.ingre }}</p>
+                    <div class="border-t py-5 whitespace-pre-line">
+                        {{ BoardContent.content }}
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-    <div class="py-5 whitespace-pre-line">
-
-        {{ BoardContent.content }}
+    <!-- 조리과정 -->
+    <div class="basis-full">
+        <ol class="flex gap-y-5 flex-wrap">
+            <li v-for="e in Cooking" :key="e" class="basis-full lg:basis-1/2 flex flex-wrap justify-between border-b-0 py-2 lg:border-b px-[2%] lg:px-0">
+                <span class="basis-1/5 order-2 lg:order-1 lg:basis-1/12 text-center text-4xl font-bold">{{ e.COOKING_NO }}</span>
+                <div class="basis-full order-1 lg:order-2 lg:basis-5/12">
+                    <img :src="e.COOKING_FILE" class="w-full">
+                </div>
+                <div class="basis-4/5 order-3 lg:order-3 lg:basis-5/12">
+                    <p class="whitespace-pre-line">{{ e.COOKING_DC }}</p>
+                </div>
+            </li>
+        </ol>
     </div>
     <div class="flex justify-between mt-10 items-center border-t border-vege-600 pt-10">
         <div>
@@ -49,7 +62,10 @@ export default {
       return {
           BoardContent : [],
           dateTime: "",
-          heartOn:false
+          heartOn:false,
+          Cooking:[],
+          date:new Date(),
+          likeddate: []
       }
   },
   mounted() {
@@ -58,6 +74,12 @@ export default {
       }
       db.collection("community").doc(this.$route.query.docId).get().then((data)=>{
           this.BoardContent = data.data()
+          this.likeddate = this.BoardContent.likeddate
+          this.heartOn = this.BoardContent.heartOn
+          this.Cooking = this.BoardContent.COOKING.sort((a,b)=>a.COOKING_NO - b.COOKING_NO)
+          db.collection("community").doc(this.$route.query.docId).update({
+                hit: data.data().hit+1,
+            })
       }).then(()=>{
           db.collection("community").doc(this.$route.query.docId).get().then((update)=>{
               this.BoardContent = update.data();
@@ -80,8 +102,29 @@ export default {
                   console.error("Error removing document: ", error);
               });
           }
+      },
+      liked(){
+        if(this.heartOn === false){
+            this.likeddate.push(this.date);
+            db.collection("community").doc(this.$route.query.docId).update({
+                liked: this.BoardContent.liked + 1,
+                heartOn: true,
+                likeddate : this.likeddate
+            }).then(()=>{
+                db.collection("community").doc(this.$route.query.docId).get().then((data)=>{this.BoardContent = data.data()})
+            })
+            this.heartOn = true;
+        }else{
+            db.collection("community").doc(this.$route.query.docId).update({
+                liked: this.BoardContent.liked - 1,
+                heartOn: false
+            }).then(()=>{
+                db.collection("community").doc(this.$route.query.docId).get().then((data)=>{this.BoardContent = data.data()})
+            })
+            this.heartOn = false;
+        }
       }
-  }
+  },
 }
 </script>
 <style>
