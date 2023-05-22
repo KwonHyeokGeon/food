@@ -39,10 +39,10 @@
 
 
   <!-- 햄버거 -->
-  <div class="absolute right-4 lg:hidden top-0 z-50 pt-5" @click="isOpen == true ? isOpen = false : isOpen = true"
+  <div class="absolute right-1 lg:hidden -top-3 z-50 pt-5" @click="isOpen == true ? isOpen = false : isOpen = true"
     :class="isOpen && 'on'">
-    <div v-for="e in 3" :key="e" class="h-1 w-7 bg-black rounded transition-all duration-500 m-1.5 top-5"
-      :class="isOpen && 'bg-red-500 on'"></div>
+    <div v-for="e in 3" :key="e" class="h-0.5 w-7 bg-black rounded transition-all duration-500 m-1.5 top-5"
+      :class="isOpen && ' on'"></div>
   </div>
   <!-- 햄버거 끝! -->
 
@@ -67,9 +67,10 @@
 
 
   <!-- 우측 hidden 메뉴 Click 사용!! 삼항X -->
-  <div :class="isOpen && '!right-0'" class="w-80 bg-gray-500 h-full z-30 fixed top-0 transiton-all duration-500 -right-80 lg:hidden ">
+  <div :class="isOpen && '!right-0'" class="w-80 bg-gray-500 h-full z-30 fixed top-0 transiton-all duration-500 -right-80 lg:hidden">
+    <img src="@/assets/img/logo_white.png" alt="" class="w-[120px] mx-auto mt-10">
         <!--  -->
-      <ul class="flex justify-center gap-x-[2%] text-white">
+      <ul class="w-[190px] flex justify-center gap-x-[2%] border-b border-gray-400 pb-3 mx-auto mt-10">
         <li class="font-extrabold" v-if="!$store.state.loginChk"><router-link to="/login">로그인</router-link> </li>
         <li class="font-extrabold" v-else @click="logout"><router-link to="/">로그아웃</router-link></li>
         <li class="font-extrabold ml-3" v-if="!$store.state.loginChk"><router-link to="/member">회원가입</router-link></li>
@@ -77,12 +78,22 @@
         <!--  -->
 
         <ul class=" mt-20">
-            <li v-for="(e,index) in NavList[0]" :key="e" v-on:click="NavSelectIndex=index;SubDown(index)" class="text-center hover:font-extrabold"  :class="isSubOpen=false ? isSubOpen=true : false"><router-link :to="NavList[1][index]" class="hover:text-green-500">{{ e }}</router-link>
+            <li v-for="(e,index) in NavList[0]" :key="e" v-on:click="NavSelectIndex=index;SubDown(index)" class="text-center hover:font-extrabold leading-[80px] w-24 mx-auto pb-1 relative after:absolute after:h-0.5 after:bg-gray-800 after:w-[100px] after:-left-1 after:bottom-6"  :class="isSubOpen=false ? isSubOpen=true : false"><router-link :to="NavList[1][index]" class="hover:text-green-500">{{ e }}</router-link>
                  <ul  :style="NavSelectIndex==index && isSubDown" class="submenu text-center h-0 overflow-hidden transition-all duration-500">
                      <li v-for="(el,i) in SubList[index]" :key="el"><router-link :to="SubMenuLink[index][i]" class="hover:text-red-500"> {{ el }}</router-link></li>
                  </ul>
             </li>
         </ul>
+
+        <div class="leading-8 absolute bottom-10 flex justify-center flex-wrap">
+            <p>CompanyName | 대표자 : 홍길동</p>
+            <p>TEL : 053 - 572 - 1005</p>
+            <div class="text-gray-400">
+              <span class="mr-3">이용약관</span>
+              <span>개인정보처리방침</span>
+            </div>
+        </div>
+      
   </div>
 
   <!-- 우측 hidden 메뉴 MouseOver 사용!!-
@@ -151,7 +162,7 @@ export default {
 }
 
 .on div:nth-child(3) {
-  transform: rotate(-45deg) translateY(-14px)
+  transform: rotate(-45deg) translateY(-12px)
 }
 
 li {
