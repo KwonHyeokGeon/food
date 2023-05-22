@@ -6,14 +6,9 @@
       <div>
         <router-link to="/" @click="$store.state.navSelectIndex = 999"><img src="../assets/img/logo.png" alt="logo" class="w-20"></router-link>
       </div>
-      <!-- Navigation bar -->
-      <ul class="basis-2/4 hidden lg:flex ml-20 gap-x-16 text-center" @mouseenter="SubMenuOpen = true">
-        <li v-for="(e, index) in NavList[0]" :key="e" :class="NavSelectIndex == index && 'after:h-0.5 text-green-500' || index === $store.state.navSelectIndex && 'text-point font-extrabold'"
-          class="shrink-0 hover:text-green-500 basis-32 text-center h-20 leading-[80px] relative after:absolute after:transition-all after:left-0 after:bottom-0 hover:after:h-1 font-extrabold change">
-          <router-link @click="$store.commit('NavSelectClick', index)" :to="NavList[1][index]">{{ e }} </router-link>
-        </li>
-      </ul>
+
       <!-- 로그인 로그아웃 회원가입 -->
+      
     </div>
     <div class="basis-1/6 hidden lg:block ">
       <ul class="flex justify-center gap-x-[2%]">
@@ -47,23 +42,16 @@
   <!-- 햄버거 끝! -->
 
 
-  <!-- 수정중 -->
-  
-  <!-- 우측 hidden 메뉴 Click 사용!! 삼항O - 수정필요-->
-  <!-- <div :class="isOpen && '!right-0'"
+  <!-- 우측 hidden 메뉴 Click 사용!! 삼항O -->
+  <div :class="isOpen && '!right-0'"
     class="w-80 bg-gray-500 h-full z-30 fixed top-0 transiton-all duration-500 -right-80 lg:hidden">
-    <ul class=" mt-20">
-      <li v-for="(e, index) in NavList[0]" :key="e"
-        v-on:click="NavSelectIndex = index; SubDown(index); isSubOpen == false ? isSubOpen = true : isSubOpen = false"
-        class="text-center hover:font-extrabold">{{ e }}
-        <ul :style="isSubOpen && isSubDown" class="submenu text-center h-0 overflow-hidden transition-all duration-500">
-          <li v-for="(el, i) in SubList[index]" :key="el"><router-link :to="SubMenuLink[index][i]"
-              class="hover:text-red-500"> {{ el }}</router-link></li>
-        </ul>
-      </li>
-    </ul>
-  </div> -->
 
+    <ul class="flex justify-start gap-x-[2%] text-white mt-2 ml-2">
+        <li class="font-extrabold" v-if="!$store.state.loginChk"><router-link to="/login">로그인</router-link> </li>
+        <li class="font-extrabold" v-else @click="logout"><router-link to="/">로그아웃</router-link></li>
+        <li class="font-extrabold ml-3" v-if="!$store.state.loginChk"><router-link to="/member">회원가입</router-link></li>
+      </ul>
+</div>
 
 
   <!-- 우측 hidden 메뉴 Click 사용!! 삼항X -->
@@ -96,7 +84,23 @@
       
   </div>
 
-  <!-- 우측 hidden 메뉴 MouseOver 사용!!-
+
+
+  <!-- 우측 hidden 메뉴 Click 사용!! 삼항X -->
+  <!-- <div :class="isOpen && '!right-0'" class="w-80 bg-gray-500 h-full z-30 fixed top-0 transiton-all duration-500 -right-80 lg:hidden ">
+
+       
+
+        <ul class=" mt-20">
+            <li v-for="(e,index) in NavList[0]" :key="e" v-on:click="NavSelectIndex=index;SubDown(index)" class="text-center hover:font-extrabold"  :class="isSubOpen=false ? isSubOpen=true : false"><router-link :to="NavList[1][index]" class="hover:text-green-500">{{ e }}</router-link>
+                 <ul  :style="NavSelectIndex==index && isSubDown" class="submenu text-center h-0 overflow-hidden transition-all duration-500">
+                     <li v-for="(el,i) in SubList[index]" :key="el"><router-link :to="SubMenuLink[index][i]" class="hover:text-red-500"> {{ el }}</router-link></li>
+                 </ul>
+            </li>
+        </ul>
+  </div> -->
+
+  <!-- 우측 hidden 메뉴 MouseOver 사용!!
   <div :class="isOpen && '!right-0'" class="w-80 bg-gray-500 h-full z-30 fixed top-0 transiton-all duration-500 -right-80 lg:hidden">
         <ul class=" mt-20">
             <li v-for="(e,index) in NavList[0]" :key="e" @mouseover="NavSelectIndex=index;SubDown(index)" @mouseout="NavSelectIndex=null" class="text-center"  :class="NavSelectIndex==index && 'font-extrabold'"><router-link :to="NavList[1][index]" class="hover:text-green-500 ">{{ e }}</router-link>
