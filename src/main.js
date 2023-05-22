@@ -4,7 +4,7 @@ import router from './router'
 import store from './store'
 import "./index.css"
 import VueLazyload from 'vue-lazyload';
-import loading from '@/assets/img/loading.png'
+import loading from '@/assets/img/load1.gif'
 // AOS
 import AOS from 'aos'
 import 'aos/dist/aos.css'
