@@ -6,10 +6,10 @@
             <li class="w-full text-center"><img :src="e.file" :alt="e.title" class="w-full h-[200px] object-cover"/></li>
             <li class="w-full border-t font-bold text-xl p-2">{{ e.title }}</li>
             </router-link>
-            <li class="basis-full text-sm p-2">
+            <li class="basis-full text-sm p-2 flex flex-wrap">
                 <span class="mr-2">게시물번호 {{ calculateNumber(totalLength, perPage, page, index) }} </span>
                 <span class="mr-2">작성자 {{e.author}}</span>
-                <span>작성일자 {{BoardDate(index)}}</span>
+                <span class="basis-full">작성일자 {{BoardDate(index)}}</span>
             </li>
             </ul>
         </template>

@@ -40,18 +40,17 @@
   
       </div>
     </div>
-  
-    <div :class="SubMenuOpen && 'h-48'"
-      class="transition-all duration-500 bg-point rounded h-0 overflow-hidden z-50 w-full absolute"
-      @mouseleave="SubMenuOpen = false; NavSelectIndex = null;">
-      <div class="max-w-7xl mx-auto pl-40 flex gap-x-16">
-        <ul @mouseover="NavSelectIndex = index" v-for="(e, index) in SubList" :key="e" class="basis-32 text-center">
-          <li v-for="(el, i) in e" :key="el"
-            class="font-bold transition-all text-gray-300 opacity-80 hover:text-white hover:opacity-100">
-            <router-link :to="SubMenuLink[index][i]">{{ el }}</router-link>
-          </li>
-        </ul>
-      </div>
+  </div>
+  <div :class="SubMenuOpen && 'h-48'"
+    class="transition-all duration-500 bg-point rounded h-0 overflow-hidden z-[9999] w-full absolute"
+    @mouseleave="SubMenuOpen = false; NavSelectIndex = null;">
+    <div class="max-w-7xl mx-auto pl-40 flex gap-x-16">
+      <ul @mouseover="NavSelectIndex = index" v-for="(e, index) in SubList" :key="e" class="basis-32 text-center">
+        <li v-for="(el, i) in e" :key="el"
+          class="font-bold transition-all text-gray-300 opacity-80 hover:text-white hover:opacity-100">
+          <router-link :to="SubMenuLink[index][i]">{{ el }}</router-link>
+        </li>
+      </ul>
     </div>
   </div>
 
@@ -76,10 +75,10 @@
     </div>
 
 
-  <!-- 우측 hidden 메뉴 Click 사용!! -->
-  <div :class="isOpen && '!right-0'" class="w-80 bg-mayo h-full z-40 top-0 transiton-all duration-500 -right-80 fixed">
+  <!-- 우측 hidden 메뉴 Click 사용!! 삼항X -->
+  <div :class="isOpen && '!right-0'" class="w-80 bg-gray-500 h-full z-30 fixed top-0 transiton-all duration-500 -right-80 md:hidden">
     <img src="@/assets/img/logo_white.png" alt="" class="w-[120px] mx-auto mt-10">
-    <p class="mr-7 text-point text-center font-extrabold mt-5">{{ $store.state.displayName }}<span v-if="$store.state.displayName !==''" class="pl-2 text-black">님</span></p>
+    <p class="mr-7 text-point text-center font-extrabold mt-5">{{ $store.state.displayName }}<span class="pl-2 text-black">님</span></p>
         <!--  -->
       <ul class="w-[190px] flex justify-center gap-x-[2%] border-b border-gray-400 pb-3 mx-auto mt-5">
         <li class="font-extrabold mx-auto" v-if="!$store.state.loginChk"><router-link to="/login"><img
@@ -90,21 +89,21 @@
       </ul>
 
         <ul class=" mt-20">
-            <li v-for="(e,index) in NavList[0]" :key="e" v-on:click="NavSelectIndex=index;SubDown(index)" class="text-center hover:font-extrabold mb-12"  :class="isSubOpen=false ? isSubOpen=true : false"><router-link :to="NavList[1][index]"  class="hover:text-green-500 relative after:absolute after:h-[1px] after:bg-gray-800 after:w-[80px] after:left-1/2 after:-translate-x-1/2 after:bottom-0 text-center">{{ e }}</router-link>
+            <li v-for="(e,index) in NavList[0]" :key="e" v-on:click="NavSelectIndex=index;SubDown(index)" class="text-center hover:font-extrabold mb-12"  :class="isSubOpen=false ? isSubOpen=true : false"><router-link :to="NavList[1][index]" class="hover:text-green-500 relative after:absolute after:h-0.5 after:bg-gray-800 after:w-[80px] after:-left-0.5 after:bottom-0 text-center">{{ e }}</router-link>
                  <ul  :style="NavSelectIndex==index && isSubDown" class="submenu text-center h-0 overflow-hidden transition-all duration-500">
                      <li v-for="(el,i) in SubList[index]" :key="el"><router-link :to="SubMenuLink[index][i]" class="hover:text-red-500"> {{ el }}</router-link></li>
                  </ul>
             </li>
         </ul>
 
-        <div class="leading-8 absolute bottom-10 flex justify-center flex-wrap">
-            <p>CompanyName | 대표자 : 홍길동</p>
-            <p>TEL : 053 - 572 - 1005</p>
-            <div class="text-gray-400">
-              <span class="mr-3">이용약관</span>
-              <span>개인정보처리방침</span>
-            </div>
-        </div>
+    <div class="leading-8 absolute bottom-10 flex justify-center flex-wrap">
+      <p>CompanyName | 대표자 : 홍길동</p>
+      <p>TEL : 053 - 572 - 1005</p>
+      <div class="text-gray-400">
+        <span class="mr-3">이용약관</span>
+        <span>개인정보처리방침</span>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -138,11 +137,11 @@ export default {
       const length = list.querySelectorAll('li').length
       this.isSubDown = `height:${length * 32}px`
 
-      if(list.style.height ==='0px'){
-            list.style.height= `${length*32}px`;
-          } else {
-            list.style.height='0px';
-          }
+      if (list.style.height === '0px') {
+        list.style.height = `${length * 32}px`;
+      } else {
+        list.style.height = '0px';
+      }
 
     },
     ColorChange() {
@@ -151,10 +150,10 @@ export default {
         text.style.color = 'green'
       }
     },
-    admin(){
-      if(this.uid === this.adminUid){
+    admin() {
+      if (this.uid === this.adminUid) {
         this.adminChk = true
-      }else{
+      } else {
         this.adminChk = false
       }
     }
@@ -162,7 +161,8 @@ export default {
 }
 </script>
 
-<style>.on div:nth-child(1) {
+<style>
+.on div:nth-child(1) {
   transform: rotate(45deg) translateY(13px)
 }
 
