@@ -92,11 +92,15 @@
       <h3 class="basis-1/12 bg-vege-200 text-center text-xl font-bold py-5">Q&A</h3>
       <div class="basis-11/12 mt-2 px-1 py-3">
         <ul class="flex flex-col gap-y-3 px-2">
-          <li v-for="e in qnaList" :key="e" class="border-b-black border-b py-1">
-            <p class="text-[#787676] text-sm">{{ e.author }}</p>
-            <p class="flex justify-between">{{ e.title }}<span class="flex text-sm gap-x-1 items-center"><img
-                  :src="require(`@/assets/img/reply.png`)" alt="댓글" class="w-6" />{{ e.reply.length }}</span></p>
-          </li>
+          <router-link v-for="(e, index) in qnaList" :key="e" :to="{ name: 'qnaDetail', query: { docId: qnaId[index] } }"
+            @click="$store.commit('QnaDetail', qnaId[index])">
+            <li class="border-b-black border-b py-1">
+              <p class="text-[#787676] text-sm">{{ e.author }}</p>
+              <p class="flex justify-between font-bold hover:text-point hover:bg-mayo/80 p-1 hover:rounded-md">{{
+                e.title }}<span class="flex text-sm gap-x-1 items-center"><img :src="require(`@/assets/img/reply.png`)"
+                    alt="댓글" class="w-6" />{{ e.reply.length }}</span></p>
+            </li>
+          </router-link>
         </ul>
       </div>
     </div>
@@ -106,10 +110,15 @@
       <h3 class="basis-1/12 bg-vege-200 text-center text-xl font-bold py-5">공지사항</h3>
       <div class="basis-11/12 mt-2 px-1 py-3">
         <ul class="flex flex-col gap-y-3 px-2">
-          <li v-for="(e, index) in noticeList" :key="e" class="border-b-black border-b py-1">
-            <p class="text-[#787676] text-sm">{{ e.author }}</p>
-            <p class="flex justify-between">{{ e.title }}<span class="text-xs">{{ noticeDate[index] }}</span></p>
-          </li>
+          <router-link v-for="(e, index) in noticeList" :key="e"
+            :to="{ name: 'noticeDetail', query: { docId: noticeId[index] } }"
+            @click="$store.commit('NoticeDetail', noticeId[index])">
+            <li class="border-b-black border-b py-1">
+              <p class="text-[#787676] text-sm">{{ e.author }}</p>
+              <p class="flex justify-between font-bold hover:text-point hover:bg-mayo/80 p-1 hover:rounded-md">{{
+                e.title }}<span class="text-xs">{{ noticeDate[index] }}</span></p>
+            </li>
+          </router-link>
         </ul>
       </div>
     </div>
@@ -127,8 +136,10 @@ export default {
       NewRecipeData: [],
       NewRecipeId: [],
       qnaList: [],
+      qnaId: [],
       noticeList: [],
-      noticeDate: []
+      noticeDate: [],
+      noticeId: []
     }
   },
   components: {
@@ -137,14 +148,16 @@ export default {
     db.collection('qna').limit(6).get().then((data) => {
       data.forEach((e) => {
         this.qnaList.push(e.data())
+        this.qnaId.push(e.id)
       });
     }),
       db.collection('notice').limit(6).get().then((data) => {
         data.forEach((e) => {
           this.noticeList.push(e.data())
+          this.noticeId.push(e.id)
           const date = new Date(e.data().date.seconds * 1000 + e.data().date.nanoseconds / 1000000)
           const dateFormat = date.toLocaleString('ko-KR', { timeZone: 'Asia/Seoul' })
-          .replace(/ GMT\+\d{4} \(\S+\)/, '')
+            .replace(/ GMT\+\d{4} \(\S+\)/, '')
           this.noticeDate.push(dateFormat);
         })
       }),
