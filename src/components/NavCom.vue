@@ -10,7 +10,7 @@
         <!-- Navigation bar -->
         <ul class="basis-2/4 hidden md:flex ml-20 gap-x-16 text-center" @mouseenter="SubMenuOpen = true">
           <li v-for="(e, index) in NavList[0]" :key="e"
-            :class="NavSelectIndex == index && 'after:h-0.5 text-green-500' || index === $store.state.navSelectIndex && 'text-point font-extrabold' || index == 3 && ($store.state.uid == $store.state.adminUid ? 'block' : 'hidden') "
+            :class="NavSelectIndex == index && 'after:h-0.5 text-green-500' || index === $store.state.navSelectIndex && 'text-point font-extrabold' || index == 3 && ($store.state.uid == $store.state.adminUid ? 'block' : 'hidden')"
             class="shrink-0 hover:text-green-500 basis-32 text-center h-20 leading-[80px] relative after:absolute after:transition-all after:left-0 after:bottom-0 hover:after:h-1 font-extrabold change">
             <router-link @click="$store.commit('NavSelectClick', index)" :to="NavList[1][index]">{{ e }} </router-link>
           </li>
@@ -78,34 +78,43 @@
   </div> -->
 
   <!-- 우측 hidden 메뉴 Click 사용!! 삼항X -->
-  <div :class="isOpen && '!right-0'" class="w-80 bg-gray-500 h-full z-30 fixed top-0 transiton-all duration-500 -right-80 md:hidden">
-    <img src="@/assets/img/logo_white.png" alt="" class="w-[120px] mx-auto mt-10">
-    <p class="mr-7 text-point text-center font-extrabold mt-5">{{ $store.state.displayName }}<span class="pl-2 text-black">님</span></p>
-        <!--  -->
-      <ul class="w-[190px] flex justify-center gap-x-[2%] border-b border-gray-400 pb-3 mx-auto mt-5">
-        <li class="font-extrabold mx-auto" v-if="!$store.state.loginChk"><router-link to="/login"><img
-                :src="require('@/assets/img/lock-solid.svg')" alt="lock " class="w-3 absolute mt-1 -ml-4">
-              로그인</router-link> </li>
-        <li class="font-extrabold" v-else @click="logout"><router-link to="/">로그아웃</router-link></li>
-        <li class="font-extrabold ml-10" v-if="!$store.state.loginChk"  ><router-link to="/member"><img :src="require('@/assets/img/user-solid.svg')" alt="user" class="w-4 absolute -ml-5"> 회원가입</router-link></li>
-      </ul>
+  <div :class="isOpen && '!right-0'"
+    class="w-80 bg-mayo h-full z-30 fixed top-0 transiton-all duration-500 -right-80 md:hidden">
+    <img src="@/assets/img/logo.png" alt="" class="w-[120px] mx-auto mt-10">
+    <p class="mr-7 text-point text-center font-extrabold mt-5">{{ $store.state.displayName }}<span class="pl-2 text-black"
+        v-if="$store.state.displayName">님</span></p>
+    <!--  -->
+    <ul class="w-[190px] flex justify-center gap-x-[2%] border-b border-gray-400 pb-3 mx-auto mt-5">
+      <li class="font-extrabold mx-auto" v-if="!$store.state.loginChk"><router-link to="/login"><img
+            :src="require('@/assets/img/lock-solid.svg')" alt="lock " class="w-3 absolute mt-1 -ml-4">
+          로그인</router-link> </li>
+      <li class="font-extrabold" v-else @click="logout"><router-link to="/">로그아웃</router-link></li>
+      <li class="font-extrabold ml-10" v-if="!$store.state.loginChk"><router-link to="/member"><img
+            :src="require('@/assets/img/user-solid.svg')" alt="user" class="w-4 absolute -ml-5"> 회원가입</router-link></li>
+    </ul>
 
-        <ul class=" mt-20">
-            <li v-for="(e,index) in NavList[0]" :key="e" v-on:click="NavSelectIndex=index;SubDown(index)" class="text-center hover:font-extrabold mb-12"  :class="isSubOpen=false ? isSubOpen=true : false"><router-link :to="NavList[1][index]" class="hover:text-green-500 relative after:absolute after:h-0.5 after:bg-gray-800 after:w-[80px] after:-left-0.5 after:bottom-0 text-center">{{ e }}</router-link>
-                 <ul  :style="NavSelectIndex==index && isSubDown" class="submenu text-center h-0 overflow-hidden transition-all duration-500">
-                     <li v-for="(el,i) in SubList[index]" :key="el"><router-link :to="SubMenuLink[index][i]" class="hover:text-red-500"> {{ el }}</router-link></li>
-                 </ul>
-            </li>
+    <ul class=" mt-20">
+      <li v-for="(e, index) in NavList[0]" :key="e" v-on:click="NavSelectIndex = index; SubDown(index)"
+        class="text-center hover:font-extrabold mb-12" :class="isSubOpen = false ? isSubOpen = true : false"><router-link
+          :to="NavList[1][index]"
+          class="hover:text-green-500 relative after:absolute after:h-0.5 after:bg-gray-800 after:w-[80px] after:left-1/2 after:-translate-x-1/2 after:bottom-0 text-center">{{
+            e }}</router-link>
+        <ul :style="NavSelectIndex == index && isSubDown"
+          class="submenu text-center h-0 overflow-hidden transition-all duration-500">
+          <li v-for="(el, i) in SubList[index]" :key="el"><router-link :to="SubMenuLink[index][i]"
+              class="hover:text-red-500"> {{ el }}</router-link></li>
         </ul>
+      </li>
+    </ul>
 
-        <div class="leading-8 absolute bottom-10 flex justify-center flex-wrap">
-            <p>CompanyName | 대표자 : 홍길동</p>
-            <p>TEL : 053 - 572 - 1005</p>
-            <div class="text-gray-400">
-              <span class="mr-3">이용약관</span>
-              <span>개인정보처리방침</span>
-            </div>
-        </div>
+    <div class="leading-8 absolute bottom-10 flex justify-center flex-wrap">
+      <p>CompanyName | 대표자 : 홍길동</p>
+      <p>TEL : 053 - 572 - 1005</p>
+      <div class="text-gray-400">
+        <span class="mr-3">이용약관</span>
+        <span>개인정보처리방침</span>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -139,11 +148,11 @@ export default {
       const length = list.querySelectorAll('li').length
       this.isSubDown = `height:${length * 32}px`
 
-      if(list.style.height ==='0px'){
-            list.style.height= `${length*32}px`;
-          } else {
-            list.style.height='0px';
-          }
+      if (list.style.height === '0px') {
+        list.style.height = `${length * 32}px`;
+      } else {
+        list.style.height = '0px';
+      }
 
     },
     ColorChange() {
@@ -152,10 +161,10 @@ export default {
         text.style.color = 'green'
       }
     },
-    admin(){
-      if(this.uid === this.adminUid){
+    admin() {
+      if (this.uid === this.adminUid) {
         this.adminChk = true
-      }else{
+      } else {
         this.adminChk = false
       }
     }
@@ -163,7 +172,8 @@ export default {
 }
 </script>
 
-<style>.on div:nth-child(1) {
+<style>
+.on div:nth-child(1) {
   transform: rotate(45deg) translateY(13px)
 }
 

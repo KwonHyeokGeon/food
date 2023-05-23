@@ -4,8 +4,15 @@
       <div class="container px-6 py-10 mx-auto">
         <ul class="flex flex-wrap w-full lg:w-1/2 mx-auto justify-around
         ">
-          <li v-for="el in month" :key="el" class="basis-1/6 text-center cursor-pointer text-base flex flex-wrap justify-center items-center" @click="selectMonth = el"><span class="px-2 box-border w-20 py-0.5" :class="selectMonth === el && 'bg-vege-400 rounded-full text-white'">{{ el }}</span></li>
+          <li v-for="el in month" :key="el"
+            class="basis-1/6 text-center cursor-pointer text-base flex flex-wrap justify-center items-center"
+            @click="selectMonth = el"><span class="px-2 box-border w-20 py-0.5"
+              :class="selectMonth === el && 'bg-vege-400 rounded-full text-white'">{{ el }}</span></li>
         </ul>
+        <div class="border max-w-2xl mx-auto m-4 p-2 flex"><input type="text" class="rounded-md px-2 w-full"
+            v-model="searchPdc"><img :src="require(`@/assets/img/magnify.png`)" alt="검색" class="w-8"
+            @click="detailModal = !detailModal">
+        </div>
         <div class="grid grid-cols-1 gap-8 mt-8 xl:mt-12 xl:gap-12 sm:grid-cols-2 xl:grid-cols-4 lg:grid-cols-3">
           <template v-for="(e, idx) in product" :key="e">
             <div class="w-full border p-3 rounded hover:bg-vege-200/20" v-if="selectMonth === seasonItem[idx]">
@@ -35,7 +42,9 @@ export default {
       imgUrl: [],
       seasonItem: [],
       month: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
-      selectMonth: ''
+      selectMonth: '',
+      searchPdc: '',
+      detailModal: false
     }
   },
   components: {
@@ -50,9 +59,9 @@ export default {
     }
   },
   mounted() {
-      const today = new Date();
-      const tmonth = today.getMonth()+1;
-      this.selectMonth = tmonth+'월';
+    const today = new Date();
+    const tmonth = today.getMonth() + 1;
+    this.selectMonth = tmonth + '월';
   },
 }
 </script>

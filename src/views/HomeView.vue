@@ -39,13 +39,13 @@
       <div>
         <h3 class="text-[30px] font-medium mb-8 pl-10">금주의 베스트 레시피</h3>
         <!-- contents -->
-        <ul class="flex justify-center relative border flex-wrap h-full">
-          <li v-for="e in WeekRecipeData" :key="e" class="mx-6 md:basis-[48%] relative  lg:basis-[20%] basis-[98%] sm:basis-[98%] sm:mx-auto border">
+        <ul class="flex justify-center relative  flex-wrap h-full">
+          <li v-for="e in WeekRecipeData" :key="e" class="mx-6 md:basis-[48%] relative  lg:basis-[20%] basis-[98%] sm:basis-[98%] sm:mx-auto ">
             <!-- <router-link :to="{ name:'articleDetail', query:{docId: dataId[index]} }" @click="$store.commit('ArticleDetail', dataId[index])" class="flex flex-wrap "></router-link> -->
             <!-- <img src="https://via.placeholder.com/250" alt="img" class="mx-auto w-full"> -->
-            <img :src="e.file" :alt="e.title" class="mx-auto w-full">
-            <span class="absolute top-0 left-0 bg-[#bb4849]/90 w-[100px] h-10 text-[#f2e7cf] text-center leading-10 rounded-br-lg ">베스트 레시피</span>
-            <div class="pt-5 mx-auto lg:w-full w-full relative bottom-3 border md:w-full">
+            <img :src="e.file" :alt="e.title" class="mx-auto w-[420px] h-60">
+            <span class="absolute top-0 left-0 bg-[#bb4849]/90 w-[100px] h-10 text-[#f2e7cf] text-sm text-center leading-10 rounded-br-lg ">베스트 레시피</span>
+            <div class="pt-5 mx-auto lg:w-full w-full relative bottom-0 border md:w-full">
               <h5 class="mb-5 text-lg font-semibold text-center">{{ e.title }}</h5>
               <p class="text-right text-gray-400 pr-3 pb-3 right-0 md:w-full">by.{{ e.author }}</p>
             </div>
