@@ -82,7 +82,7 @@
 
     <!-- side-widget area-->
     <div class="" :class="TopBtnChk ? 'visible opacity-100' : 'invisible opacity-0'"><a
-        href="https://instagram.com/nongdal_fresh?igshid=MmJiY2I4NDBkZg==">
+        href="https://instagram.com/nongdal_fresh?igshid=MmJiY2I4NDBkZg==" target="_blank">
         <img :src="require(`@/assets/img/instagram-icon.png`)" alt="인스타그램"
           class="absolute bottom-24 right-5 rounded-full w-12">
       </a>
