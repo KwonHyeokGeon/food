@@ -47,7 +47,7 @@
       <div class="max-w-7xl mx-auto pl-40 flex gap-x-16">
         <ul @mouseover="NavSelectIndex = index" v-for="(e, index) in SubList" :key="e" class="basis-32 text-center">
           <li v-for="(el, i) in e" :key="el"
-            class="font-bold transition-all text-gray-300 opacity-80 hover:text-white hover:opacity-100">
+            class="font-bold transition-all text-gray-300 opacity-80 hover:text-white hover:opacity-100 my-4">
             <router-link :to="SubMenuLink[index][i]">{{ el }}</router-link>
           </li>
         </ul>
