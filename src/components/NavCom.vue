@@ -81,9 +81,9 @@
   <!-- 우측 hidden 메뉴 Click 사용!! 삼항X -->
   <div :class="isOpen && '!right-0'" class="w-80 bg-gray-500 h-full z-30 fixed top-0 transiton-all duration-500 -right-80 lg:hidden">
     <img src="@/assets/img/logo_white.png" alt="" class="w-[120px] mx-auto mt-10">
-    <p class="mr-7 text-point text-center">{{ $store.state.displayName }}<span class="pl-2 text-black">님</span></p>
+    <p class="mr-7 text-point text-center font-extrabold mt-5">{{ $store.state.displayName }}<span class="pl-2 text-black">님</span></p>
         <!--  -->
-      <ul class="w-[190px] flex justify-center gap-x-[2%] border-b border-gray-400 pb-3 mx-auto mt-10">
+      <ul class="w-[190px] flex justify-center gap-x-[2%] border-b border-gray-400 pb-3 mx-auto mt-5">
         <li class="font-extrabold mx-auto" v-if="!$store.state.loginChk"><router-link to="/login"><img
                 :src="require('@/assets/img/lock-solid.svg')" alt="lock " class="w-3 absolute mt-1 -ml-4">
               로그인</router-link> </li>
