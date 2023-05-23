@@ -1,56 +1,70 @@
 <template>
-  
     <section>
-       <div class="w-full flex justify-center pt-56">
-           <div class="mx-auto basis-[32.5%] border-red-500 border rounded-2xl">
-               <h3 class="text-center border-red-300 text-red-500 font-extrabold text-2xl pb-12 pt-12">Sign In</h3>
-               <div class="flex flex-wrap jutify-center gap-y-5">
-
-                 <input type="email" placeholder="email" v-model="email" class="text-center border h-12 border-red-500 w-3/4 rounded-full placeholder:text-center gap-y-5 center mx-auto">
-
-                 <input type="password" placeholder="password" v-model="password" class="text-center w-3/4 border border-red-500 rounded-full  h-12 placeholder:text-center mx-auto">
-
-                 <input type="tel" placeholder="Tel." class="text-center w-3/4 h-12 border border-red-500 rounded-full placeholder:text-center mx-auto">
-
-                 <input type="text" placeholder="nick name" v-model="nickname" class="w-3/4 h-12 border border-red-500 rounded-full placeholder:text-center mx-auto text-center">
-
-               </div>
-               <button type="submit" class="w-full bg-gray-600 hover:bg-red-500 text-white text-2xl p-2 rounded-xl mt-6" @click="signUp">Submit</button>
-               
-             </div>
-         </div>
-         <!-- {{ email }}
-         {{ password }}
-         {{ nickname }}
-         {{ errorMsg }} -->
+        <div class="bg-vege-600 w-full flex flex-col justify-center items-center">
+            <h2 class=" font-bold text-2xl sm:text-4xl relative pt-20 pb-4 text-white"><span
+                    class="w-20 h-[2px] bg-white absolute bottom-0 left-1/2 -translate-x-1/2 inline-block"></span>SignUp
+            </h2>
+            <p class="py-2 text-white">회원가입</p>
+            <p class="px-20 pb-20 text-mayo">너, 내 동료가 되라
+            </p>
+        </div>
+        <div class="my-20 flex flex-col gap-y-5 w-96 mx-auto">
+            <input type="text" placeholder="닉네임" v-model="nickname" class="py-3 px-5 border-[#a1a1a1] border">
+            <input type="email" placeholder="이메일 주소" v-model="email" class="py-3 px-5 border-[#a1a1a1] border">
+            <input type="password" placeholder="비밀번호" v-model="password" class="py-3 px-5 border-[#a1a1a1] border">
+            <input type="password" placeholder="비밀번호 확인" v-model="passwordChk" class="py-3 px-5 border-[#a1a1a1] border">
+            <input type="tel" placeholder="전화번호" class="py-3 px-5 border-[#a1a1a1] border">
+            <div class="flex items-center gap-2 px-4 mt-5"><input type="checkbox" v-model="checked"><span class="text-xs">
+                    이용 약관에 동의 해주세요</span></div>
+            <button class="bg-point text-white hover:opacity-80 hover:duration-300 text-2xl py-4 font-bold border-black border" @click="signUp">회원가입</button>
+            <router-link to="/login">
+                <p class="text-[#a6a6a6] text-xs text-right">이미 회원계정이 있으신가요?</p>
+            </router-link>
+        </div>
     </section>
-    
 </template>
 
 <script>
-import {auth} from '../firebase'
-    export default {
-        name:"MemberPage",
-        data() {
-            return {
-                email:"",
-                password:"",
-                nickname:"",
-                errorMsg:""
-            }
-        },
-        methods :{
-            signUp(){
-                auth.createUserWithEmailAndPassword(this.email,this.password).then((result)=>{
-                    result.user.updateProfile({displayName:this.nickname})
-                })
-                alert("thank you")
-                this.$router.replace('/')
-            }
+import { auth } from '../firebase'
+export default {
+    name: "MemberPage",
+    data() {
+        return {
+            email: "",
+            password: "",
+            nickname: "",
+            errorMsg: "",
+            passwordChk: "",
+            checked: false
         }
+    },
+    methods: {
+        signUp() {
+            const inputList = [this.nickname, this.email, this.password, this.passwordChk, this.tel];
+            const isInputEmpty = inputList.some(input => input === '');
+            // input에 빈값체크
+            if (this.checked) {
+                if (this.password === this.passwordChk && this.password !== '') {
+                    auth.createUserWithEmailAndPassword(this.email, this.password).then((result) => {
+                        result.user.updateProfile({ displayName: this.nickname })
+                    })
+                    alert("▶ 농달 회원이되신것을 축하드립니다 ◀")
+                    this.$router.replace('/')
+                } else if (this.password !== this.passwordChk) {
+                    alert('비밀번호가 일치하지 않습니다.')
+                } else if (isInputEmpty) {
+                    alert('작성이 완료되지 않았습니다.')
+                }
+            }else{
+                alert('이용약관에 동의해주세요')
+            }
+            
+            
+        },
+        
+
     }
+}
 </script>
 
-<style lang="scss" scoped>
-
-</style>
+<style lang="scss" scoped></style>

@@ -7,13 +7,13 @@
         <textarea v-model="content" class="border basis-full mt-2 mb-5 p-3"></textarea>
     </div>
     <div class="w-full flex justify-end pt-10">
-                <button @click="modify" class="px-4 py-2 rounded text-white bg-vege-200 hover:bg-vege-400">수정하기</button>
+        <button @click="modify" class="px-4 py-2 rounded text-white bg-vege-200 hover:bg-vege-400">수정하기</button>
     </div>
-</template>
-<script>
-import {db} from '../../firebase'
-export default {
-    name:"QnaModify",
+  </template>
+  <script>
+  import {db} from '../../firebase'
+  export default {
+    name:"ArticleModify",
     data() {
         return {
             BoardContent : [],
@@ -21,31 +21,35 @@ export default {
             title:"",
             content:"",
             date: new Date(),
-            reply: []
+            articleOn:false
         }
     },
     mounted() {
-        if ( this.$store.state.qnaId === 0){
-            this.$router.replace("/service/qna")
+        if ( this.$store.state.articleId === 0){
+            this.$router.replace("/article")
         }
-        db.collection("qna").doc(this.$store.state.qnaId).get().then((data)=>{
+        db.collection("article").doc(this.$store.state.articleId).get().then((data)=>{
                 this.BoardContent = data.data(),
                 this.author = this.BoardContent.author;
                 this.title = this.BoardContent.title;
                 this.content = this.BoardContent.content;
-                this.reply = this.BoardContent.reply;
         })
     },
     methods: {
         modify(){
-            db.collection("qna").doc(this.$store.state.qnaId).update({"author":this.author,"title": this.title, "content":this.content,"date":this.date, "reply": this.reply}).then(()=>{
+            db.collection("article").doc(this.$store.state.articleId).update({
+                "author":this.author,
+                "title": this.title,
+                "content":this.content,
+                "date":this.date,
+            }).then(()=>{
                 alert("수정이 완료되었습니다.");
-                this.$router.replace("/service/qna");
+                this.$router.replace("/article");
             })
         }
     },
-}
-</script>
-<style>
+  }
+  </script>
+  <style>
     
-</style>
+  </style>

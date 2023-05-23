@@ -1,7 +1,11 @@
 <template>
     <div class="flex flex-wrap border-y py-10 border-vege-600">
         <div class="basis-full flex flex-wrap justify-between items-center">
-            <label for="title">제목</label><input v-model="title" type="text" id="title" class="border basis-8/12 px-2 py-1">
+            <select name="" v-model="eventOn" class="basis-1/12 px-3 py-1 border">
+                <option value="true">이벤트중</option>
+                <option value="false">이벤트종료</option>
+            </select>
+            <label for="title">제목</label><input v-model="title" type="text" id="title" class="border basis-7/12 px-2 py-1">
             <label for="author">작성자</label><input v-model="author" type="text" id="author" class="border basis-2/12 px-2 py-1">
         </div>
         <textarea v-model="content" class="border basis-full mt-2 mb-5 p-3"></textarea>
@@ -9,11 +13,11 @@
     <div class="w-full flex justify-end pt-10">
                 <button @click="modify" class="px-4 py-2 rounded text-white bg-vege-200 hover:bg-vege-400">수정하기</button>
     </div>
-</template>
-<script>
-import {db} from '../../firebase'
-export default {
-    name:"QnaModify",
+  </template>
+  <script>
+  import {db} from '../../firebase'
+  export default {
+    name:"EventModify",
     data() {
         return {
             BoardContent : [],
@@ -21,31 +25,37 @@ export default {
             title:"",
             content:"",
             date: new Date(),
-            reply: []
+            eventOn:false
         }
     },
     mounted() {
-        if ( this.$store.state.qnaId === 0){
-            this.$router.replace("/service/qna")
+        if ( this.$store.state.eventId === 0){
+            this.$router.replace("/event")
         }
-        db.collection("qna").doc(this.$store.state.qnaId).get().then((data)=>{
+        db.collection("event").doc(this.$store.state.eventId).get().then((data)=>{
                 this.BoardContent = data.data(),
                 this.author = this.BoardContent.author;
                 this.title = this.BoardContent.title;
                 this.content = this.BoardContent.content;
-                this.reply = this.BoardContent.reply;
+                this.eventOn = this.BoardContent.eventOn;
         })
     },
     methods: {
         modify(){
-            db.collection("qna").doc(this.$store.state.qnaId).update({"author":this.author,"title": this.title, "content":this.content,"date":this.date, "reply": this.reply}).then(()=>{
+            db.collection("event").doc(this.$store.state.eventId).update({
+                "author":this.author,
+                "title": this.title,
+                "content":this.content,
+                "date":this.date,
+                "eventOn": this.eventOn
+            }).then(()=>{
                 alert("수정이 완료되었습니다.");
-                this.$router.replace("/service/qna");
+                this.$router.replace("/event");
             })
         }
     },
-}
-</script>
-<style>
+  }
+  </script>
+  <style>
     
-</style>
+  </style>

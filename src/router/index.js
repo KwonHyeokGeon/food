@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 import LoginPage from '../views/LoginView.vue'
 import MemberPage from '../views/MemberView.vue'
+import AdminView from '../views/AdminView.vue'
 
 const routes = [
   {
@@ -20,6 +21,48 @@ const routes = [
     name: 'MemberPage',
     component: MemberPage
   },
+  // 관리자 
+  {
+    path: '/admin',
+    name: 'AdminView',
+    component: AdminView,
+    meta: {
+      manager: true
+    }
+  },
+  {
+    path: '/borad',
+    name: 'BoardPage',
+    component: () => import('../views/Community/BoardView.vue'),
+  },
+  {
+    path: '/recipe',
+    name: 'UserrecipePage',
+    component: () => import('../views/Product/UserRecipeView.vue'),
+    redirect: '/recipe/list',
+    children: [
+      {
+        path: "/recipe/list",
+        name: "communityList",
+        component: () => import('../views/Community/CommunityList.vue')
+      },
+      {
+        path: "/recipe/write",
+        name: "communityWrite",
+        component: () => import('../views/Community/CommunityWrite.vue')
+      },
+      {
+        path: "/recipe/detail",
+        name: "communityDetail",
+        component: () => import('../views/Community/CommunityDetail.vue')
+      },
+      {
+        path: "/recipe/modify",
+        name: "communityModify",
+        component: () => import('../views/Community/CommunityModify.vue')
+      }
+    ]
+  },
   {
     path: '/product',
     name: 'product',
@@ -31,32 +74,65 @@ const routes = [
     component: () => import('../views/Product/ProductDetail.vue'),
   },
   {
+    path: '/article',
+    name: 'article',
+    component: () => import('../views/Community/ArticleView.vue'),
+    redirect: '/article/list',
+    children: [
+      {
+        path: "/article/list",
+        name: "articleList",
+        component: () => import('../views/Community/ArticleList.vue')
+      },
+      {
+        path: "/article/write",
+        name: "articleWrite",
+        component: () => import('../views/Community/ArticleWrite.vue')
+      },
+      {
+        path: "/article/detail",
+        name: "articleDetail",
+        component: () => import('../views/Community/ArticleDetail.vue')
+      },
+      {
+        path: "/article/modify",
+        name: "articleModify",
+        component: () => import('../views/Community/ArticleModify.vue')
+      }
+    ]
+  },
+  {
+    path: '/event',
+    name: 'event',
+    component: () => import('../views/Community/EventView.vue'),
+    redirect: '/event/list',
+    children: [
+      {
+        path: "/event/list",
+        name: "eventList",
+        component: () => import('../views/Community/EventList.vue')
+      },
+      {
+        path: "/event/write",
+        name: "eventWrite",
+        component: () => import('../views/Community/EventWrite.vue')
+      },
+      {
+        path: "/event/detail",
+        name: "eventDetail",
+        component: () => import('../views/Community/EventDetail.vue')
+      },
+      {
+        path: "/event/modify",
+        name: "eventModify",
+        component: () => import('../views/Community/EventModify.vue')
+      }
+    ]
+  },
+  {
     path: '/community',
     name: 'community',
     component: () => import('../views/Community/CommunityView.vue'),
-    redirect: '/community/list',
-    children: [
-      {
-        path: "/community/list",
-        name: "communityList",
-        component: () => import('../views/Community/CommunityList.vue')
-      },
-      {
-        path: "/community/write",
-        name: "communityWrite",
-        component: () => import('../views/Community/CommunityWrite.vue')
-      },
-      {
-        path: "/community/detail",
-        name: "communityDetail",
-        component: () => import('../views/Community/CommunityDetail.vue')
-      },
-      {
-        path: "/community/modify",
-        name: "communityModify",
-        component: () => import('../views/Community/CommunityModify.vue')
-      }
-    ]
   },
   {
     path: "/cs",
@@ -128,5 +204,17 @@ const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
   routes
 })
+
+import store from "@/store"
+
+router.beforeEach((to, from, next)=>{
+  if(to.meta.manager && !store.state.chkManager){
+    // console.log("접근 권한이 없습니다.")
+    alert('접근 권한이 없습니다.');
+    next('/');
+    return;
+  }
+  next();
+});
 
 export default router

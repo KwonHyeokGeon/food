@@ -1,5 +1,5 @@
 <template>
-  <div class="border-y border-vege-600 p-5">
+    <div class="mt-24 border-y border-vege-600 p-5">
         <h2 class="text-2xl font-bold">
             {{BoardContent.title}}
         </h2>
@@ -13,46 +13,34 @@
             {{ BoardContent.content }}
         </div>
     </div>
-    <ul>
-        <li v-for="e in BoardContent.reply" :key="e" class="flex justify-between border-b px-5 py-1 whitespace-pre-line"><p>{{ e.content }}</p> <span>{{e.author}}</span></li>
-    </ul>
-    <div class="flex justify-between bg-vege-200/10 items-stretch pl-5">
-        댓글내용<textarea v-model="reply.content" class="border basis-6/12 px-2 py-0.5" rows="1"></textarea>
-        작성자<input type="text" v-model="reply.author" class="basis-2/12 border px-2 py-0.5">
-        <button @click="Comment()" class="px-5 text-white bg-vege-200 hover:bg-vege-400">등록하기</button>
-    </div>
-    <div class="flex justify-between mt-10 items-center">
+    <div class="flex justify-between mt-10 mb-24 items-center">
         <div>
-            <router-link to="/cs/qna/list" class="px-4 py-2 rounded text-white bg-vege-200 hover:bg-vege-400">목록으로</router-link>
+            <router-link to="/article/list" class="px-4 py-2 rounded text-white bg-vege-200 hover:bg-vege-400">목록으로</router-link>
         </div>
         <div class="flex gap-x-5">
-            <router-link to="/cs/qna/modify" class="px-4 py-2 rounded text-white bg-vege-200 hover:bg-vege-400">수정</router-link>
+            <router-link to="/article/modify" class="px-4 py-2 rounded text-white bg-vege-200 hover:bg-vege-400">수정</router-link>
             <button @click="Delete()" class="px-4 py-2 rounded text-white bg-point/70 hover:bg-point">삭제</button>
         </div>
     </div>
-</template>
-<script>
-import {db} from '../../firebase';
-export default {
-    name:"qnaDetail",
+  </template>
+  <script>
+  import {db} from '../../firebase';
+  export default {
+    name:"ArticleDetail",
     data() {
         return {
             BoardContent : [],
-            dateTime: "",
-            reply:{
-                content:"",
-                author:this.$store.displayName
-            }
+            dateTime: ""
         }
     },
     mounted() {
         if ( this.$route.query.docId === null){
-            this.$router.replace("/cs/qna")
+            this.$router.replace("/article")
         }
-        db.collection("qna").doc(this.$route.query.docId).get().then((data)=>{
+        db.collection("article").doc(this.$route.query.docId).get().then((data)=>{
             this.BoardContent = data.data()
         }).then(()=>{
-            db.collection("qna").doc(this.$route.query.docId).get().then((update)=>{
+            db.collection("article").doc(this.$route.query.docId).get().then((update)=>{
                 this.BoardContent = update.data();
                 const date = this.BoardContent.date.seconds*1000 + this.BoardContent.date.nanoseconds/1000000;
                 const new_date = new Date(date);
@@ -66,26 +54,17 @@ export default {
         Delete(){
             let msg = confirm("삭제된 데이터는 복구할 수 없습니다 \r\r 삭제하시겠습니까?")
             if (msg){
-                db.collection("qna").doc(this.$route.query.docId).delete().then(() => {
+                db.collection("article").doc(this.$route.query.docId).delete().then(() => {
                     alert("게시물이 삭제되었습니다.");
-                    this.$router.replace("/cs/qna")
+                    this.$router.replace("/article")
                 }).catch((error) => {
                     console.error("Error removing document: ", error);
                 });
             }
-        },
-        Comment(){
-            this.BoardContent.reply.push(this.reply);
-            db.collection("qna").doc(this.$store.state.qnaId).update({"reply":this.BoardContent.reply}).then(()=>{
-                alert("댓글이 등록되었습니다.");
-                db.collection("qna").doc(this.$route.query.docId).get().then((data)=>{
-                    this.BoardContent = data.data()
-                })
-            })
         }
     }
-}
-</script>
-<style>
+  }
+  </script>
+  <style>
     
-</style>
+  </style>
