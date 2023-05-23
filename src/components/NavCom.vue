@@ -5,7 +5,7 @@
       <div class="flex">
         <div>
           <router-link to="/" @click="$store.state.navSelectIndex = 999"><img src="../assets/img/logo.png" alt="logo"
-              class="w-20"></router-link>
+              class="w-20 sm:mx-auto md:mx-auto ml-10"></router-link>
         </div>
         <!-- Navigation bar -->
         <ul class="basis-2/4 hidden lg:flex ml-20 gap-x-16 text-center" @mouseenter="SubMenuOpen = true">
