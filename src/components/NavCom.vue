@@ -8,20 +8,20 @@
               class="w-20 sm:mx-auto md:mx-auto ml-10"></router-link>
         </div>
         <!-- Navigation bar -->
-        <ul class="basis-2/4 hidden lg:flex ml-20 gap-x-16 text-center" @mouseenter="SubMenuOpen = true">
+        <ul class="basis-2/4 hidden md:flex ml-20 gap-x-16 text-center" @mouseenter="SubMenuOpen = true">
           <li v-for="(e, index) in NavList[0]" :key="e"
-            :class="NavSelectIndex == index && 'after:h-0.5 text-green-500' || index === $store.state.navSelectIndex && 'text-point font-extrabold'"
+            :class="NavSelectIndex == index && 'after:h-0.5 text-green-500' || index === $store.state.navSelectIndex && 'text-point font-extrabold' || index == 3 && ($store.state.uid == $store.state.adminUid ? 'block' : 'hidden') "
             class="shrink-0 hover:text-green-500 basis-32 text-center h-20 leading-[80px] relative after:absolute after:transition-all after:left-0 after:bottom-0 hover:after:h-1 font-extrabold change">
             <router-link @click="$store.commit('NavSelectClick', index)" :to="NavList[1][index]">{{ e }} </router-link>
           </li>
         </ul>
-        <p v-if="$store.state.uid == $store.state.adminUid" class="absolute right-[500px] top-8"><router-link to="/admin">관리자페이지</router-link></p>
+        <!-- <p v-if="$store.state.uid == $store.state.adminUid" class="absolute right-[500px] top-8"><router-link to="/admin">관리자페이지</router-link></p> -->
 
 
 
         <!-- 로그인 로그아웃 회원가입 -->
       </div>
-      <div class="basis-1/6 hidden lg:block ">
+      <div class="basis-1/6 hidden md:block ">
         <ul class="flex justify-center gap-x-[2%]">
           <li class="font-extrabold relative" v-if="!$store.state.loginChk"><router-link to="/login"><img
                 :src="require('@/assets/img/lock-solid.svg')" alt="lock " class="w-3 absolute mt-1 -ml-4">
@@ -54,7 +54,7 @@
 
 
   <!-- 햄버거 -->
-  <div class="absolute right-1 lg:hidden -top-3 z-50 pt-5" @click="isOpen == true ? isOpen = false : isOpen = true"
+  <div class="absolute right-1 md:hidden -top-3 z-50 pt-5" @click="isOpen == true ? isOpen = false : isOpen = true"
     :class="isOpen && 'on'">
     <div v-for="e in 3" :key="e" class="h-0.5 w-7 bg-black rounded transition-all duration-500 m-1.5 top-5"
       :class="isOpen && ' on'"></div>
@@ -64,7 +64,7 @@
   <!-- 수정중 -->
   <!-- 우측 hidden 메뉴 Click 사용!! 삼항O - 수정필요-->
   <!-- <div :class="isOpen && '!right-0'"
-    class="w-80 bg-gray-500 h-full z-30 fixed top-0 transiton-all duration-500 -right-80 lg:hidden">
+    class="w-80 bg-gray-500 h-full z-30 fixed top-0 transiton-all duration-500 -right-80 md:hidden">
     <ul class=" mt-20">
       <li v-for="(e, index) in NavList[0]" :key="e"
         v-on:click="NavSelectIndex = index; SubDown(index); isSubOpen == false ? isSubOpen = true : isSubOpen = false"
@@ -78,7 +78,7 @@
   </div> -->
 
   <!-- 우측 hidden 메뉴 Click 사용!! 삼항X -->
-  <div :class="isOpen && '!right-0'" class="w-80 bg-gray-500 h-full z-30 fixed top-0 transiton-all duration-500 -right-80 lg:hidden">
+  <div :class="isOpen && '!right-0'" class="w-80 bg-gray-500 h-full z-30 fixed top-0 transiton-all duration-500 -right-80 md:hidden">
     <img src="@/assets/img/logo_white.png" alt="" class="w-[120px] mx-auto mt-10">
     <p class="mr-7 text-point text-center font-extrabold mt-5">{{ $store.state.displayName }}<span class="pl-2 text-black">님</span></p>
         <!--  -->

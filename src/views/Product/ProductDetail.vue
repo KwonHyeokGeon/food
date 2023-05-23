@@ -11,7 +11,7 @@
   </div>
   <div class="max-w-7xl mx-auto flex flex-col sm:flex-row">
     <div class="basis-6/12 flex justify-center items-center">
-      <img :src="imgUrl[idx]" :alt="product[idx]" class=" w-full h-80 border rounded-md object-cover">
+      <img :src="imgUrl[idx]" :alt="product[idx]" class=" w-full h-80 border rounded-md object-contain">
     </div>
     <div class="flex flex-col basis-6/12 justify-center items-center gap-y-2">
       <h2 class="text-2xl font-bold text-center flex flex-col gap-y-2 mb-4 sm:mt-0 mt-5">{{ product[idx] }}<span
@@ -87,7 +87,7 @@ export default {
     }
   },
   mounted() {
-    axios.get(`https://www.googleapis.com/youtube/v3/search?key=AIzaSyCR9mmHFr20k2bLtka2OX-zpj8zHotzHEg&part=snippet&type=video&q=${this.product[this.$route.params.id]}&maxResults=6`)
+    axios.get(`https://www.googleapis.com/youtube/v3/search?key=AIzaSyCR9mmHFr20k2bLtka2OX-zpj8zHotzHEg&part=snippet&type=video&q=${this.product[this.$route.params.id] + '레시피'}&maxResults=6`)
       .then((res) => {
         this.items = res.data.items
         console.log(res);

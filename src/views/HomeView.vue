@@ -50,7 +50,7 @@
               <p class="text-right text-gray-400 pr-3 pb-3 right-0 md:w-full">by.{{ e.author }}</p>
             </div>
           </li>
-          <p class="cursor-pointer absolute -top-10 right-7">+ 더보기</p>
+          <p class="cursor-pointer absolute -top-10 right-7"><router-link to="/recipe"> + 더보기</router-link></p>
         </ul>
       </div>
     </div>
