@@ -102,8 +102,10 @@ export default {
             return formattedDate
         },
         async recipeMade(){
+            return new Promise((resolve)=>{
             const cook = document.querySelector(".cook");
-            const idx = cook.childElementCount;            
+            const idx = cook.childElementCount; 
+            let arr = []           
             for(let i=0; i < idx; i++){
                 const li = cook.getElementsByTagName("li")[i];
                 const cookingDc = li.getElementsByTagName("textarea")[0].value
@@ -112,15 +114,17 @@ export default {
                 storageRef.child("recipes/" + this.fileRandom + i).put(cookingFile).then(() => {
                     storageRef.child("recipes/" + this.fileRandom + i).getDownloadURL().then((url) => {
                         const e =  {COOKING_NO:i+1,COOKING_DC:cookingDc,COOKING_FILE: url}
-                        this.COOKING.push(e)
+                        arr.push(e)
                     })
                 }).catch((error)=>{console.log(error)})
             }
+            resolve(arr)
+            })
         },
         async write() {
-            await this.recipeMade();
             this.file = document.querySelector("#image").files[0];
             const storageRef = firebase.storage().ref(); // firebase.storage()
+            this.COOKING = await this.recipeMade();
             storageRef.child("files/" + this.fileRandom).put(this.file).then(() => {
                 storageRef.child("files/" + this.fileRandom).getDownloadURL().then((url) => {
                     //파일 경로 가져오기
