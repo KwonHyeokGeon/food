@@ -54,7 +54,7 @@
 
 
   <!-- 햄버거 -->
-  <div class="absolute right-1 md:hidden -top-3 z-50 pt-5" @click="isOpen == true ? isOpen = false : isOpen = true"
+  <div class="fixed right-1 md:hidden -top-3 z-50 pt-5" @click="isOpen == true ? isOpen = false : isOpen = true"
     :class="isOpen && 'on'">
     <div v-for="e in 3" :key="e" class="h-0.5 w-7 bg-black rounded transition-all duration-500 m-1.5 top-5"
       :class="isOpen && ' on'"></div>
@@ -78,7 +78,7 @@
   </div> -->
 
   <!-- 우측 hidden 메뉴 Click 사용!! 삼항X -->
-  <div :class="isOpen && '!right-0'" class="w-80 bg-gray-500 h-full z-30 fixed top-0 transiton-all duration-500 -right-80 md:hidden">
+  <div :class="isOpen && '!right-0'" class="w-80 bg-mayo h-full z-30 fixed top-0 transiton-all duration-500 -right-80 md:hidden">
     <img src="@/assets/img/logo_white.png" alt="" class="w-[120px] mx-auto mt-10">
     <p class="mr-7 text-point text-center font-extrabold mt-5">{{ $store.state.displayName }}<span class="pl-2 text-black">님</span></p>
         <!--  -->
@@ -91,7 +91,7 @@
       </ul>
 
         <ul class=" mt-20">
-            <li v-for="(e,index) in NavList[0]" :key="e" v-on:click="NavSelectIndex=index;SubDown(index)" class="text-center hover:font-extrabold mb-12"  :class="isSubOpen=false ? isSubOpen=true : false"><router-link :to="NavList[1][index]" class="hover:text-green-500 relative after:absolute after:h-0.5 after:bg-gray-800 after:w-[80px] after:-left-0.5 after:bottom-0 text-center">{{ e }}</router-link>
+            <li v-for="(e,index) in NavList[0]" :key="e" v-on:click="NavSelectIndex=index;SubDown(index)" class="text-center hover:font-extrabold mb-12"  :class="isSubOpen=false ? isSubOpen=true : false"><router-link :to="NavList[1][index]" class="hover:text-green-500 relative after:absolute after:h-0.5 after:bg-gray-800 after:w-[80px] after:bottom-0 after:text-center">{{ e }}</router-link>
                  <ul  :style="NavSelectIndex==index && isSubDown" class="submenu text-center h-0 overflow-hidden transition-all duration-500">
                      <li v-for="(el,i) in SubList[index]" :key="el"><router-link :to="SubMenuLink[index][i]" class="hover:text-red-500"> {{ el }}</router-link></li>
                  </ul>
