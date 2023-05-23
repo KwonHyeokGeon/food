@@ -39,13 +39,13 @@
       <div>
         <h3 class="text-[30px] font-medium mb-8 pl-10">금주의 베스트 레시피</h3>
         <!-- contents -->
-        <ul class="flex justify-center relative border flex-wrap">
-          <li v-for="e in 4" :key="e" class="mx-6 md:basis-[48%] relative  lg:basis-[20%] basis-[98%] sm:basis-[98%] sm:mx-auto">
-            <img src="https://via.placeholder.com/250" alt="img" class="mx-auto">
-            <div class="border pt-5">
-              <span class="absolute top-0 left-0 bg-[#bb4849]/90 w-[100px] h-10 text-[#f2e7cf] text-center leading-10 rounded-br-lg ">베스트 레시피</span>
+        <ul class="flex justify-center relative border flex-wrap h-full">
+          <li v-for="e in 4" :key="e" class="mx-6 md:basis-[48%] relative  lg:basis-[20%] basis-[98%] sm:basis-[98%] sm:mx-auto border">
+            <img src="https://via.placeholder.com/250" alt="img" class="mx-auto w-full">
+            <span class="absolute top-0 left-0 bg-[#bb4849]/90 w-[100px] h-10 text-[#f2e7cf] text-center leading-10 rounded-br-lg ">베스트 레시피</span>
+            <div class="pt-5 mx-auto lg:w-full w-full relative bottom-3 border md:w-full">
               <h5 class="mb-5 text-lg font-semibold text-center">베스트 레시피 타이틀</h5>
-              <p class="text-right text-gray-400 pr-3 pb-3">by.작성자</p>
+              <p class="text-right text-gray-400 pr-3 pb-3 right-0 md:w-full">by.작성자</p>
             </div>
           </li>
           <p class="cursor-pointer absolute -top-10 right-7">+ 더보기</p>
@@ -60,9 +60,9 @@
         <h3 class="text-[30px] font-medium mb-8 pl-10">새로운 소식</h3>
         <!-- contents -->
         <ul class="">
-          <li v-for="e in 3" :key="e" class="mx-6 relative flex odd:flex-row even:flex-row-reverse mb-20">
-            <img src="https://via.placeholder.com/500x300" alt="img">
-            <div class="border pl-5 pt-5 w-[500px]">
+          <li v-for="e in 3" :key="e" class="mx-6 relative flex odd:flex-row even:flex-row-reverse mb-20 ">
+            <img src="https://via.placeholder.com/500x300" alt="img" class="basis-full lg:basis-[48%]">
+            <div class="border pl-5 pt-5 w-[500px] hidden lg:block">
               <h5 class="mb-5 text-lg font-semibold">새로운 소식 타이틀</h5>
             </div>
           </li>
