@@ -79,23 +79,25 @@ export default {
         fileRandom: null
       }
   },
+  created() {    
+      const formattedDate = this.GetDate();
+      this.fileRandom = formattedDate;
+  },
   mounted() {
-        const formattedDate = this.GetDate();
-        this.fileRandom = formattedDate
-      if ( this.$store.state.communityId === 0){
-          this.$router.replace("/recipe")
-      }
-      db.collection("community").doc(this.$store.state.communityId).get().then((data)=>{
-              this.BoardContent = data.data(),
-              this.author = this.BoardContent.author;
-              this.title = this.BoardContent.title;
-              this.content = this.BoardContent.content;
-              this.QNT = this.BoardContent.QNT;
-              this.ingre = this.BoardContent.ingre;
-              this.COOKING_TIME = this.BoardContent.COOKING_TIME;
-              this.LEVEL_NM = this.BoardContent.LEVEL_NM;
-              this.COOKING = this.BoardContent.COOKING.sort((a,b)=> a.COOKING_NO - b.COOKING_NO)
-      })
+        if ( this.$store.state.communityId === 0){
+            this.$router.replace("/recipe")
+        }
+        db.collection("community").doc(this.$store.state.communityId).get().then((data)=>{
+            this.BoardContent = data.data(),
+            this.author = this.BoardContent.author;
+            this.title = this.BoardContent.title;
+            this.content = this.BoardContent.content;
+            this.QNT = this.BoardContent.QNT;
+            this.ingre = this.BoardContent.ingre;
+            this.COOKING_TIME = this.BoardContent.COOKING_TIME;
+            this.LEVEL_NM = this.BoardContent.LEVEL_NM;
+            this.COOKING = this.BoardContent.COOKING.sort((a,b)=> a.COOKING_NO - b.COOKING_NO)
+        })
   },
   methods: {
         GetDate() {
@@ -117,24 +119,27 @@ export default {
             cook.appendChild(li)
         },
         async recipeMade(){
-            const cook = document.querySelector(".cook");
-            const idx = cook.childElementCount;            
-            for(let i=0; i < idx; i++){
-                const li = cook.getElementsByTagName("li")[i];
-                const cookingDc = li.getElementsByTagName("textarea")[0].value
-                let cookingFile = li.getElementsByTagName("input")[0].files[0];
-                const storageRef = firebase.storage().ref(); // firebase.storage() 모듈을 가져와 변수 생성
-                storageRef.child("recipes/" + this.fileRandom + i).put(cookingFile).then(() => {
-                    storageRef.child("recipes/" + this.fileRandom + i).getDownloadURL().then((url) => {
-                        const e =  {COOKING_NO:i+1,COOKING_DC:cookingDc,COOKING_FILE: url}
-                        this.COOKING.push(e)
-                    })
-                }).catch((error)=>{console.log(error)})
-            }
-            this.COOKING.sort((a,b)=> a.COOKING_NO - b.COOKING_NO)
+            return new Promise((resolve)=>{
+                const cook = document.querySelector(".cook");
+                const idx = cook.childElementCount;            
+                let arr = [];
+                for(let i=0; i < idx; i++){
+                    const li = cook.getElementsByTagName("li")[i];
+                    const cookingDc = li.getElementsByTagName("textarea")[0].value
+                    let cookingFile = li.getElementsByTagName("input")[0].files[0];
+                    const storageRef = firebase.storage().ref();
+                    storageRef.child("recipes/" + this.fileRandom + i).put(cookingFile).then(() => {
+                        storageRef.child("recipes/" + this.fileRandom + i).getDownloadURL().then((url) => {
+                            const e =  {COOKING_NO:i+1,COOKING_DC:cookingDc,COOKING_FILE: url}
+                            arr.push(e)
+                        })
+                    }).catch((error)=>{console.log(error)})
+                }
+                resolve(arr)
+            })
         },
         async modify(){
-            await this.recipeMade()
+            this.COOKING_re = await this.recipeMade()
             db.collection("community").doc(this.$store.state.communityId).update({
                 "author": this.author,
                 "title": this.title,
