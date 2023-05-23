@@ -1,6 +1,6 @@
 <template>
   <!-- #1 lg 모드 -->
-  <div class="hidden lg:block">
+  <div class="hidden md:block">
     <div class="w-full z-20 bg-white">
       <div class="max-w-7xl mx-auto justify-center md:justify-between items-center flex py-1">
         <div class="flex">
@@ -56,7 +56,7 @@
   </div>
 
   <!-- #2 sm-md -->
-  <div class="lg:hidden relative">
+  <div class="md:hidden relative">
 
     <div class="w-full z-20 bg-white fixed">
       <div class="max-w-7xl mx-auto justify-center items-center flex">
@@ -76,7 +76,7 @@
     </div>
 
 
-  <!-- 우측 hidden 메뉴 Click 사용!! 삼항X -->
+  <!-- 우측 hidden 메뉴 Click 사용!! -->
   <div :class="isOpen && '!right-0'" class="w-80 bg-mayo h-full z-40 top-0 transiton-all duration-500 -right-80 fixed">
     <img src="@/assets/img/logo_white.png" alt="" class="w-[120px] mx-auto mt-10">
     <p class="mr-7 text-point text-center font-extrabold mt-5">{{ $store.state.displayName }}<span v-if="$store.state.displayName !==''" class="pl-2 text-black">님</span></p>
