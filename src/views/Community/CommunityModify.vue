@@ -59,7 +59,8 @@
     </div>
 </template>
 <script>
-import {db,storage} from '../../firebase'
+import firebase from 'firebase/app'
+import { db } from '../../firebase'
 export default {
   name:"communityModify",
   data() {
@@ -74,6 +75,7 @@ export default {
         LEVEL_NM:"",
         date: new Date(),
         COOKING:[],
+        COOKING_re:[],
         fileRandom: null
       }
   },
@@ -92,7 +94,7 @@ export default {
               this.ingre = this.BoardContent.ingre;
               this.COOKING_TIME = this.BoardContent.COOKING_TIME;
               this.LEVEL_NM = this.BoardContent.LEVEL_NM;
-              this.COOKING = this.BoardContent.COOKING;
+              this.COOKING = this.BoardContent.COOKING.sort((a,b)=> a.COOKING_NO - b.COOKING_NO)
       })
   },
   methods: {
@@ -114,43 +116,40 @@ export default {
             li.innerHTML = `<span class="basis-1/12 text-center">`+(idx+1)+`</span><textarea class="border basis-11/12 lg:basis-8/12 mb-1" row="1"></textarea><input type="file" class="basis-60 mx-0 lg:mx-auto">`
             cook.appendChild(li)
         },
-        modify(){
+        async recipeMade(){
             const cook = document.querySelector(".cook");
             const idx = cook.childElementCount;            
             for(let i=0; i < idx; i++){
                 const li = cook.getElementsByTagName("li")[i];
                 const cookingDc = li.getElementsByTagName("textarea")[0].value
                 let cookingFile = li.getElementsByTagName("input")[0].files[0];
-                storage.ref().child("recipes/" + this.fileRandom + i).put(cookingFile).then(() => {
-                    storage.ref().child("recipes/" + this.fileRandom + i).getDownloadURL().then((url) => {
-                            this.COOKING = [];
-                            this.COOKING.push(
-                                        {
-                                    COOKING_NO:i+1,
-                                    COOKING_DC:cookingDc,
-                                    COOKING_FILE: url
-                                }
-                            )
-                        })
+                const storageRef = firebase.storage().ref(); // firebase.storage() 모듈을 가져와 변수 생성
+                storageRef.child("recipes/" + this.fileRandom + i).put(cookingFile).then(() => {
+                    storageRef.child("recipes/" + this.fileRandom + i).getDownloadURL().then((url) => {
+                        const e =  {COOKING_NO:i+1,COOKING_DC:cookingDc,COOKING_FILE: url}
+                        this.COOKING.push(e)
+                    })
                 }).catch((error)=>{console.log(error)})
             }
-            setTimeout(()=>{
-                db.collection("community").doc(this.$store.state.communityId).update({
-                    "author": this.author,
-                    "title": this.title,
-                    "content": this.content,
-                    "date": this.date,
-                    "uid": this.$store.state.uid,
-                    "ingre":this.ingre,
-                    "QNT":this.QNT,
-                    "COOKING_TIME":this.COOKING_TIME,
-                    "LEVEL_NM":this.LEVEL_NM,
-                    "COOKING":this.COOKING
-                }).then(()=>{
-                    alert("수정이 완료되었습니다.");
-                    this.$router.replace("/recipe");
-                })
-            },1000)
+            this.COOKING.sort((a,b)=> a.COOKING_NO - b.COOKING_NO)
+        },
+        async modify(){
+            await this.recipeMade()
+            db.collection("community").doc(this.$store.state.communityId).update({
+                "author": this.author,
+                "title": this.title,
+                "content": this.content,
+                "date": this.date,
+                "uid": this.$store.state.uid,
+                "ingre":this.ingre,
+                "QNT":this.QNT,
+                "COOKING_TIME":this.COOKING_TIME,
+                "LEVEL_NM":this.LEVEL_NM,
+                "COOKING":this.COOKING_re
+            }).then(()=>{
+                alert("수정이 완료되었습니다.");
+                this.$router.replace("/recipe");
+            })
       }
   },
 }

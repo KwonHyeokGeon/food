@@ -27,7 +27,7 @@
               class="w-8 h-8"></button>
         </li>
         <li class="border-2 rounded-full flex justify-center items-center p-1">
-          <button @click="signInWithKakao"><img :src="require(`@/assets/img/kakaoLogin.png`)" alt="카카오로그인"
+          <button @click="signInWithKakao"><img :src="require(`@/assets/img/kakaologin.png`)" alt="카카오로그인"
               class="w-8 h-8"></button>
         </li>
       </ul>
