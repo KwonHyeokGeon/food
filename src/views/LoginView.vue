@@ -1,19 +1,17 @@
 <template>
   <section>
-    <div class="bg-[#cbcbcb] w-full flex flex-col justify-center items-center">
-      <h2 class=" font-bold text-2xl sm:text-4xl relative pt-20 pb-4">Login<span
-          class="w-20 h-[2px] bg-black absolute bottom-0 left-1/2 -translate-x-1/2 inline-block"></span>
+    <div class="bg-vege-600 w-full flex flex-col justify-center items-center">
+      <h2 class=" font-bold text-2xl sm:text-4xl relative pt-20 pb-4 text-white">Login<span
+          class="w-20 h-[2px] bg-white absolute bottom-0 left-1/2 -translate-x-1/2 inline-block"></span>
       </h2>
-      <p class="py-2">로그인</p>
-      <p class="px-20 pb-20">Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus nam earum corporis
-        minima praesentium libero accusantium, odit fugit quo tempora dolor porro dolorem laborum labore omnis
-        maxime, alias ipsum. Impedit, magnam natus eos cupiditate officiis esse! Nostrum eligendi officia assumenda!
+      <p class="py-2 text-white">로그인</p>
+      <p class="px-20 pb-20 text-mayo">로그인 페이지
       </p>
     </div>
     <div class="mt-20 flex flex-col gap-y-5 w-96 mx-auto">
       <input type="email" placeholder="이메일 주소" v-model="email" class="py-3 px-5 border-[#a1a1a1] border">
       <input type="password" placeholder="비밀번호" v-model="password" class="py-3 px-5 border-[#a1a1a1] border">
-      <button class="bg-[#b3b3b3] text-2xl py-4 font-bold border-black border" @click="login">로그인</button>
+      <button class="bg-vege-400 hover:bg-point text-white hover:opacity-80 hover:duration-300 text-2xl py-4 font-bold border-black border" @click="login">로그인</button>
       <div class="flex justify-between">
         <p class="text-[#a6a6a6] text-xs cursor-pointer" @click="modal = true">아이디 / 비밀번호 찾기</p>
         <router-link to="/member">
@@ -29,7 +27,7 @@
               class="w-8 h-8"></button>
         </li>
         <li class="border-2 rounded-full flex justify-center items-center p-1">
-          <button @click="signInWithKakao"><img :src="require(`@/assets/img/kakaologin.png`)" alt="카카오로그인"
+          <button @click="signInWithKakao"><img :src="require(`@/assets/img/kakaoLogin.png`)" alt="카카오로그인"
               class="w-8 h-8"></button>
         </li>
       </ul>

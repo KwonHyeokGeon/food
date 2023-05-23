@@ -2,34 +2,46 @@
   <div class="w-full z-20 bg-white relative">
     <div class="max-w-7xl mx-auto justify-center md:justify-between items-center flex py-1">
       <!-- logo -->
-    <div class="flex">
-      <div>
-        <router-link to="/"><img src="../assets/img/logo.png" alt="logo" class="w-20"></router-link>
+      <div class="flex">
+        <div>
+          <router-link to="/" @click="$store.state.navSelectIndex = 999"><img src="../assets/img/logo.png" alt="logo"
+              class="w-20"></router-link>
+        </div>
+        <!-- Navigation bar -->
+        <ul class="basis-2/4 hidden lg:flex ml-20 gap-x-16 text-center" @mouseenter="SubMenuOpen = true">
+          <li v-for="(e, index) in NavList[0]" :key="e"
+            :class="NavSelectIndex == index && 'after:h-0.5 text-green-500' || index === $store.state.navSelectIndex && 'text-point font-extrabold'"
+            class="shrink-0 hover:text-green-500 basis-32 text-center h-20 leading-[80px] relative after:absolute after:transition-all after:left-0 after:bottom-0 hover:after:h-1 font-extrabold change">
+            <router-link @click="$store.commit('NavSelectClick', index)" :to="NavList[1][index]">{{ e }} </router-link>
+          </li>
+        </ul>
+        <!-- 로그인 로그아웃 회원가입 -->
       </div>
-      <!-- Navigation bar -->
-      <ul class="basis-2/4 hidden lg:flex ml-20 gap-x-16 text-center" @mouseenter="SubMenuOpen = true">
-        <li v-for="(e, index) in NavList[0]" :key="e" :class="NavSelectIndex == index && 'after:h-0.5 text-green-500' || index === $store.state.navSelectIndex && 'text-point font-extrabold'"
-          class="shrink-0 hover:text-green-500 basis-32 text-center h-20 leading-[80px] relative after:absolute after:transition-all after:left-0 after:bottom-0 hover:after:h-1 font-extrabold change">
-          <router-link @click="$store.commit('NavSelectClick', index)" :to="NavList[1][index]">{{ e }} </router-link>
-        </li>
-      </ul>
-      <!-- 로그인 로그아웃 회원가입 -->
-    </div>
-    <div class="basis-1/6 hidden lg:block ">
-      <ul class="flex justify-center gap-x-[2%]">
-        <li class="font-extrabold relative" v-if="!$store.state.loginChk"><router-link to="/login"><img :src="require('@/assets/img/lock-solid.svg')" alt="lock " class="w-3 absolute mt-1 -ml-4"> 로그인</router-link> </li>
-        <li class="font-extrabold relative" v-else @click="logout"><router-link to="/"><img :src="require('@/assets/img/lock-solid.svg')" alt="lock" class="w-3 absolute mt-1 -ml-5">로그아웃</router-link></li>
-        <li class="font-extrabold ml-7 relative" v-if="!$store.state.loginChk"><router-link to="/member"><img :src="require('@/assets/img/user-solid.svg')" alt="user" class="w-3 absolute mt-1 -ml-4">회원가입</router-link></li>
-      </ul>
-    </div>
+      <div class="basis-1/6 hidden lg:block ">
+        <ul class="flex justify-center gap-x-[2%]">
+          <li class="font-extrabold relative" v-if="!$store.state.loginChk"><router-link to="/login"><img
+                :src="require('@/assets/img/lock-solid.svg')" alt="lock " class="w-3 absolute mt-1 -ml-4">
+              로그인</router-link> </li>
+          <li class="font-extrabold relative flex" v-else @click="logout">
+            <p class="mr-7 text-point">{{ $store.state.displayName }}<span class="pl-2 text-black">님</span></p>
+            <router-link to="/"><img :src="require('@/assets/img/lock-solid.svg')" alt="lock"
+                class="w-3 absolute mt-1 -ml-5">로그아웃</router-link>
+          </li>
+          <li class="font-extrabold ml-7 relative" v-if="!$store.state.loginChk"><router-link to="/member"><img
+                :src="require('@/assets/img/user-solid.svg')" alt="user"
+                class="w-3 absolute mt-1 -ml-4">회원가입</router-link></li>
+        </ul>
+      </div>
     </div>
   </div>
 
-  <div :class="SubMenuOpen && 'h-48'" class="transition-all duration-500 bg-point rounded h-0 overflow-hidden z-50 w-full fixed"
+  <div :class="SubMenuOpen && 'h-48'"
+    class="transition-all duration-500 bg-point rounded h-0 overflow-hidden z-50 w-full absolute"
     @mouseleave="SubMenuOpen = false; NavSelectIndex = null;">
     <div class="max-w-7xl mx-auto pl-40 flex gap-x-16">
       <ul @mouseover="NavSelectIndex = index" v-for="(e, index) in SubList" :key="e" class="basis-32 text-center">
-        <li v-for="(el, i) in e" :key="el" class="font-bold transition-all text-gray-300 opacity-40 hover:text-white hover:opacity-100">
+        <li v-for="(el, i) in e" :key="el"
+          class="font-bold transition-all text-gray-300 opacity-80 hover:text-white hover:opacity-100">
           <router-link :to="SubMenuLink[index][i]">{{ el }}</router-link>
         </li>
       </ul>
@@ -48,7 +60,7 @@
 
 
   <!-- 수정중 -->
-  
+
   <!-- 우측 hidden 메뉴 Click 사용!! 삼항O - 수정필요-->
   <!-- <div :class="isOpen && '!right-0'"
     class="w-80 bg-gray-500 h-full z-30 fixed top-0 transiton-all duration-500 -right-80 lg:hidden">
@@ -71,14 +83,14 @@
     <img src="@/assets/img/logo_white.png" alt="" class="w-[120px] mx-auto mt-10">
         <!--  -->
       <ul class="w-[190px] flex justify-center gap-x-[2%] border-b border-gray-400 pb-3 mx-auto mt-10">
-        <li class="font-extrabold mr-4" v-if="!$store.state.loginChk"><router-link to="/login"><img :src="require('@/assets/img/lock-solid.svg')" alt="lock " class="w-3 absolute mt-1 -ml-4">로그인</router-link> </li>
-        <li class="font-extrabold" v-else @click="logout"><router-link to="/"><img :src="require('@/assets/img/lock-solid.svg')" alt="lock " class="w-3 absolute mt-1 -ml-4">로그아웃</router-link></li>
-        <li class="font-extrabold ml-3" v-if="!$store.state.loginChk"><router-link to="/member"><img :src="require('@/assets/img/user-solid.svg')" alt="user" class="w-3 absolute mt-1 -ml-4">회원가입</router-link></li>
+        <li class="font-extrabold" v-if="!$store.state.loginChk"><router-link to="/login relative"><img :src="require('@/assets/img/lock-solid.svg')" alt="lock" class="w-4 absolute -ml-5 mt-0"> 로그인</router-link> </li>
+        <li class="font-extrabold" v-else @click="logout"><router-link to="/">로그아웃</router-link></li>
+        <li class="font-extrabold ml-10" v-if="!$store.state.loginChk"  ><router-link to="/member"><img :src="require('@/assets/img/user-solid.svg')" alt="user" class="w-4 absolute -ml-5"> 회원가입</router-link></li>
       </ul>
         <!--  -->
 
         <ul class=" mt-20">
-            <li v-for="(e,index) in NavList[0]" :key="e" v-on:click="NavSelectIndex=index;SubDown(index)" class="text-center hover:font-extrabold leading-[80px] w-24 mx-auto pb-1 relative after:absolute after:h-0.5 after:bg-gray-800 after:w-[100px] after:-left-1 after:bottom-6"  :class="isSubOpen=false ? isSubOpen=true : false"><router-link :to="NavList[1][index]" class="hover:text-green-500">{{ e }}</router-link>
+            <li v-for="(e,index) in NavList[0]" :key="e" v-on:click="NavSelectIndex=index;SubDown(index)" class="text-center hover:font-extrabold mb-12"  :class="isSubOpen=false ? isSubOpen=true : false"><router-link :to="NavList[1][index]" class="hover:text-green-500 relative after:absolute after:h-0.5 after:bg-gray-800 after:w-[80px] after:-left-0.5 after:bottom-0 text-center">{{ e }}</router-link>
                  <ul  :style="NavSelectIndex==index && isSubDown" class="submenu text-center h-0 overflow-hidden transition-all duration-500">
                      <li v-for="(el,i) in SubList[index]" :key="el"><router-link :to="SubMenuLink[index][i]" class="hover:text-red-500"> {{ el }}</router-link></li>
                  </ul>
@@ -125,9 +137,9 @@ export default {
       isSubDown: '',
       isSubOpen: false
     }
-    
+
   },
- 
+
   methods: {
     logout() {
       auth.signOut();
@@ -138,16 +150,16 @@ export default {
       const length = list.querySelectorAll('li').length
       this.isSubDown = `height:${length * 32}px`
 
-      if(list.style.height ==='0px'){
-            list.style.height= '116px';
-          } else {
-            list.style.height='0px';
-          }
+      if (list.style.height === '0px') {
+        list.style.height = '116px';
+      } else {
+        list.style.height = '0px';
+      }
 
     },
-    ColorChange(){
+    ColorChange() {
       const text = document.querySelectorAll('.change')
-      text.onclick = function(){
+      text.onclick = function () {
         text.style.color = 'green'
       }
     }
@@ -155,8 +167,7 @@ export default {
 }
 </script>
 
-<style>
-.on div:nth-child(1) {
+<style>.on div:nth-child(1) {
   transform: rotate(45deg) translateY(13px)
 }
 
@@ -171,7 +182,7 @@ export default {
 li {
   list-style: none;
 }
-.green{
+
+.green {
   color: green;
-}
-</style>
+}</style>
