@@ -40,12 +40,14 @@
         <h3 class="text-[30px] font-medium mb-8 pl-10">금주의 베스트 레시피</h3>
         <!-- contents -->
         <ul class="flex justify-center relative border flex-wrap h-full">
-          <li v-for="e in 4" :key="e" class="mx-6 md:basis-[48%] relative  lg:basis-[20%] basis-[98%] sm:basis-[98%] sm:mx-auto border">
-            <img src="https://via.placeholder.com/250" alt="img" class="mx-auto w-full">
+          <li v-for="e in WeekRecipeData" :key="e" class="mx-6 md:basis-[48%] relative  lg:basis-[20%] basis-[98%] sm:basis-[98%] sm:mx-auto border">
+            <!-- <router-link :to="{ name:'articleDetail', query:{docId: dataId[index]} }" @click="$store.commit('ArticleDetail', dataId[index])" class="flex flex-wrap "></router-link> -->
+            <!-- <img src="https://via.placeholder.com/250" alt="img" class="mx-auto w-full"> -->
+            <img :src="e.file" :alt="e.title" class="mx-auto w-full">
             <span class="absolute top-0 left-0 bg-[#bb4849]/90 w-[100px] h-10 text-[#f2e7cf] text-center leading-10 rounded-br-lg ">베스트 레시피</span>
             <div class="pt-5 mx-auto lg:w-full w-full relative bottom-3 border md:w-full">
-              <h5 class="mb-5 text-lg font-semibold text-center">베스트 레시피 타이틀</h5>
-              <p class="text-right text-gray-400 pr-3 pb-3 right-0 md:w-full">by.작성자</p>
+              <h5 class="mb-5 text-lg font-semibold text-center">{{ e.title }}</h5>
+              <p class="text-right text-gray-400 pr-3 pb-3 right-0 md:w-full">by.{{ e.author }}</p>
             </div>
           </li>
           <p class="cursor-pointer absolute -top-10 right-7">+ 더보기</p>
@@ -75,6 +77,8 @@
 </template>
 
 <script>
+  import {db} from '../firebase';
+
   import { Swiper, SwiperSlide } from 'swiper/vue';
   import { EffectFade, Pagination, Autoplay, Navigation } from 'swiper';
   import 'swiper/css'
@@ -82,6 +86,7 @@
   import 'swiper/css/pagination';
   import "swiper/css/effect-fade";
   import 'swiper/css/navigation';
+
   
 import { onMounted } from 'vue';
 import AOS from "aos";
@@ -90,11 +95,27 @@ import AOS from "aos";
     data() {
       return {
         Modules: [EffectFade, Pagination, Autoplay, Navigation],
+        WeekRecipeId: null,
+        WeekRecipeData: null
+        
       }
     },
     components: {
         Swiper,
-        SwiperSlide
+        SwiperSlide,
+    },
+    mounted() {
+      db.collection("community").orderBy("liked", "desc").limit(4).get().then((data) => {
+        const items = [];
+        const ids = [];
+        data.forEach((e) => {
+          ids.push(e.id);
+          items.push(e.data());
+        })
+        this.WeekRecipeId = ids;
+        this.WeekRecipeData = items;
+        console.log(this.WeekRecipeData)
+      })
     },
     setup(){
       onMounted(()=>{
