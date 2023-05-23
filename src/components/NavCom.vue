@@ -31,10 +31,10 @@
                 :src="require('@/assets/img/user-solid.svg')" alt="user"
                 class="w-3 absolute mt-1 -ml-4">회원가입</router-link></li>
         </ul>
+        <button><router-link to="/admin">관리자페이지</router-link></button>
       </div>
     </div>
   </div>
-
   <div :class="SubMenuOpen && 'h-48'"
     class="transition-all duration-500 bg-point rounded h-0 overflow-hidden z-50 w-full absolute"
     @mouseleave="SubMenuOpen = false; NavSelectIndex = null;">

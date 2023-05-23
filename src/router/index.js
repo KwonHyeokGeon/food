@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 import LoginPage from '../views/LoginView.vue'
 import MemberPage from '../views/MemberView.vue'
+import AdminView from '../views/AdminView.vue'
 
 const routes = [
   {
@@ -19,6 +20,15 @@ const routes = [
     path: '/member',
     name: 'MemberPage',
     component: MemberPage
+  },
+  // 관리자 
+  {
+    path: '/admin',
+    name: 'AdminView',
+    component: AdminView,
+    meta: {
+      manager: true
+    }
   },
   {
     path: '/borad',
@@ -194,5 +204,17 @@ const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
   routes
 })
+
+import store from "@/store"
+
+router.beforeEach((to, from, next)=>{
+  if(to.meta.manager && !store.state.chkManager){
+    // console.log("접근 권한이 없습니다.")
+    alert('접근 권한이 없습니다.');
+    next('/');
+    return;
+  }
+  next();
+});
 
 export default router
