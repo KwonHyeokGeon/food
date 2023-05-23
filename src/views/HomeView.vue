@@ -1,4 +1,3 @@
-
 <template>
   <div>
     <!--
@@ -40,19 +39,11 @@
       <div>
         <h3 class="text-[30px] font-medium mb-8 pl-10">금주의 베스트 레시피</h3>
         <!-- contents -->
-<<<<<<< HEAD
         <ul class="flex justify-center relative border flex-wrap h-full">
           <li v-for="e in 4" :key="e" class="mx-6 md:basis-[48%] relative  lg:basis-[20%] basis-[98%] sm:basis-[98%] sm:mx-auto border">
             <img src="https://via.placeholder.com/250" alt="img" class="mx-auto w-full">
             <span class="absolute top-0 left-0 bg-[#bb4849]/90 w-[100px] h-10 text-[#f2e7cf] text-center leading-10 rounded-br-lg ">베스트 레시피</span>
             <div class="pt-5 mx-auto lg:w-full w-full relative bottom-3 border md:w-full">
-=======
-        <ul class="flex justify-center relative flex-wrap h-full">
-          <li v-for="e in 4" :key="e" class="mx-6 md:basis-[48%] relative  lg:basis-[20%] basis-[98%] sm:basis-[98%] sm:mx-auto">
-            <img src="https://via.placeholder.com/250" alt="img" class="mx-auto w-full">
-            <span class="absolute top-0 left-0 bg-[#bb4849]/90 w-[100px] h-10 text-[#f2e7cf] text-center leading-10 rounded-br-lg ">베스트 레시피</span>
-            <div class="pt-5 mx-auto lg:w-full w-full relative bottom-3">
->>>>>>> dcc9608a5b4578f071cdfe39d060bb8419afffba
               <h5 class="mb-5 text-lg font-semibold text-center">베스트 레시피 타이틀</h5>
               <p class="text-right text-gray-400 pr-3 pb-3 right-0 md:w-full">by.작성자</p>
             </div>
