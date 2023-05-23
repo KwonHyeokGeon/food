@@ -30,13 +30,16 @@
                 <div class="text-sm flex flex-wrap">
                   <p
                     class="ml-2 basis-full relative after:absolute after:inline-block after:bg-vege-200/50 after:w-1 after:h-1 after:rounded-full after:-left-2 after:top-2">
-                    <span class="font-bold">인원:</span> {{ e.QNT }}</p>
+                    <span class="font-bold">인원:</span> {{ e.QNT }}
+                  </p>
                   <p
                     class="ml-2 basis-full relative after:absolute after:inline-block after:bg-vege-200/50 after:w-1 after:h-1 after:rounded-full after:-left-2 after:top-2">
-                    <span class="font-bold">소요시간:</span> {{ e.COOKING_TIME }}</p>
+                    <span class="font-bold">소요시간:</span> {{ e.COOKING_TIME }}
+                  </p>
                   <p
                     class="ml-2 basis-full relative after:absolute after:inline-block after:bg-vege-200/50 after:w-1 after:h-1 after:rounded-full after:-left-2 after:top-2">
-                    <span class="font-bold">난이도:</span> {{ e.LEVEL_NM }}</p>
+                    <span class="font-bold">난이도:</span> {{ e.LEVEL_NM }}
+                  </p>
                 </div>
                 <span class="basis-full text-right pr-5 text-sm text-gray-500">{{ e.author }}</span>
               </div>
@@ -65,13 +68,16 @@
                 <div class="text-sm flex flex-wrap">
                   <p
                     class="ml-2 basis-full relative after:absolute after:inline-block after:bg-vege-200/50 after:w-1 after:h-1 after:rounded-full after:-left-2 after:top-2">
-                    <span class="font-bold">인원:</span> {{ e.QNT }}</p>
+                    <span class="font-bold">인원:</span> {{ e.QNT }}
+                  </p>
                   <p
                     class="ml-2 basis-full relative after:absolute after:inline-block after:bg-vege-200/50 after:w-1 after:h-1 after:rounded-full after:-left-2 after:top-2">
-                    <span class="font-bold">소요시간:</span> {{ e.COOKING_TIME }}</p>
+                    <span class="font-bold">소요시간:</span> {{ e.COOKING_TIME }}
+                  </p>
                   <p
                     class="ml-2 basis-full relative after:absolute after:inline-block after:bg-vege-200/50 after:w-1 after:h-1 after:rounded-full after:-left-2 after:top-2">
-                    <span class="font-bold">난이도:</span> {{ e.LEVEL_NM }}</p>
+                    <span class="font-bold">난이도:</span> {{ e.LEVEL_NM }}
+                  </p>
                 </div>
                 <span class="basis-full text-right pr-5 text-sm text-gray-500">{{ e.author }}</span>
               </div>
@@ -81,7 +87,8 @@
       </div>
     </div>
     <div class="basis-[42%] flex flex-col relative">
-      <router-link to="/qna" class="absolute text-sm font-bold text-point -top-6 right-3 md:right-0">+ 더보기</router-link>
+      <router-link to="/cs/qna/list" class="absolute text-sm font-bold text-point -top-6 right-3 md:right-0">+
+        더보기</router-link>
       <h3 class="basis-1/12 bg-vege-200 text-center text-xl font-bold py-5">Q&A</h3>
       <div class="basis-11/12 mt-2 px-1 py-3">
         <ul class="flex flex-col gap-y-3 px-2">
@@ -94,14 +101,14 @@
       </div>
     </div>
     <div class="basis-[42%] flex flex-col relative">
-      <router-link to="/notice" class="absolute text-sm font-bold text-point -top-6 right-3 md:right-0">+
+      <router-link to="/cs/notice/list" class="absolute text-sm font-bold text-point -top-6 right-3 md:right-0">+
         더보기</router-link>
       <h3 class="basis-1/12 bg-vege-200 text-center text-xl font-bold py-5">공지사항</h3>
       <div class="basis-11/12 mt-2 px-1 py-3">
         <ul class="flex flex-col gap-y-3 px-2">
           <li v-for="(e, index) in noticeList" :key="e" class="border-b-black border-b py-1">
             <p class="text-[#787676] text-sm">{{ e.author }}</p>
-            <p class="flex justify-between">{{ e.title }}<span class="text-xs">{{ new Date(noticeDate[index]) }}</span></p>
+            <p class="flex justify-between">{{ e.title }}<span class="text-xs">{{ noticeDate[index] }}</span></p>
           </li>
         </ul>
       </div>
@@ -135,7 +142,10 @@ export default {
       db.collection('notice').limit(6).get().then((data) => {
         data.forEach((e) => {
           this.noticeList.push(e.data())
-          this.noticeDate.push(e.data().date.seconds * 1000 + e.data().date.nanoseconds / 1000000);
+          const date = new Date(e.data().date.seconds * 1000 + e.data().date.nanoseconds / 1000000)
+          const dateFormat = date.toLocaleString('ko-KR', { timeZone: 'Asia/Seoul' })
+          .replace(/ GMT\+\d{4} \(\S+\)/, '')
+          this.noticeDate.push(dateFormat);
         })
       }),
       db.collection("community").orderBy("liked", "desc").limit(3).get().then((data) => {
