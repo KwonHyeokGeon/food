@@ -39,7 +39,7 @@
     </div>
   </div>
   <div :class="SubMenuOpen && 'h-48'"
-    class="transition-all duration-500 bg-point rounded h-0 overflow-hidden z-50 w-full absolute"
+    class="transition-all duration-500 bg-point rounded h-0 overflow-hidden z-[9999] w-full absolute"
     @mouseleave="SubMenuOpen = false; NavSelectIndex = null;">
     <div class="max-w-7xl mx-auto pl-40 flex gap-x-16">
       <ul @mouseover="NavSelectIndex = index" v-for="(e, index) in SubList" :key="e" class="basis-32 text-center">
