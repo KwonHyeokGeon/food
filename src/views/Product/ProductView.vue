@@ -1,8 +1,8 @@
 <template>
-  <div class="product-wrap">
+  <div class="product-wrap ">
     <section>
       <div class="container px-6 py-10 mx-auto">
-        <ul class="flex flex-wrap w-full lg:w-1/2 mx-auto justify-around
+        <ul class="flex flex-wrap w-full lg:w-1/2 mx-auto justify-around 
         ">
           <li v-for="el in month" :key="el"
             class="basis-1/6 text-center cursor-pointer text-base flex flex-wrap justify-center items-center"
