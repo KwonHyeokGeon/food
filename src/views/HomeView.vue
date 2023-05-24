@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="pt-20 md:pt-0">
     <!--
       swiper area
     -->
