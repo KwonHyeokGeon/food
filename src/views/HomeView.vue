@@ -35,6 +35,7 @@
     <!--
       금주의 베스트 레시피
     -->
+    <!-- 데이터로 이동하는 코드 추가해야함 !!!!!!!! -->
     <div class="mt-[80px] flex justify-center" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="500">
       <div>
         <h3 class="text-[30px] font-medium mb-8 pl-10">금주의 베스트 레시피</h3>

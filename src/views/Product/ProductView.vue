@@ -1,5 +1,5 @@
 <template>
-  <div class="product-wrap">
+  <div class="product-wrap pt-20 md:pt-0">
     <section>
       <div class="container px-6 py-10 mx-auto">
         <ul class="flex flex-wrap w-full lg:w-1/2 mx-auto justify-around
@@ -9,13 +9,19 @@
             @click="selectMonth = el"><span class="px-2 box-border w-20 py-0.5"
               :class="selectMonth === el && 'bg-vege-400 rounded-full text-white'">{{ el }}</span></li>
         </ul>
-        <div class="max-w-2xl mx-auto m-4 p-2 flex justify-center items-center relative z-50"><input type="text"
+        <div class="max-w-2xl mx-auto m-4 p-2 flex justify-center items-center relative z-20"><input type="text"
             class="rounded-full p-4 text-lg transition-all duration-700" :class="detailModal ? 'w-full border' : 'w-0'"
-            v-model="search" @keyup.enter="searchPdc = search;"><img :src="require(`@/assets/img/magnify.png`)" alt="검색"
-            class="w-8 absolute transition-all translate-x-1/2 duration-700" @click="detailModal = !detailModal"
+            v-model="search" @keyup.enter="searchValid(); productValid = true"><img
+            :src="require(`@/assets/img/magnify.png`)" alt="검색"
+            class="w-8 absolute transition-all translate-x-1/2 duration-700"
+            @click="!detailModal ? detailModal = !detailModal : searchValid()"
             :class="detailModal ? 'right-10' : 'right-1/2'">
+          <img :src="require(`@/assets/img/cancel.png`)" alt="닫기"
+            class="w-6 absolute top-0 -right-5 bg-white rounded-full p-1" :class="detailModal ? 'block' : 'hidden'"
+            @click="detailModal = !detailModal">
         </div>
-        <div v-if="detailModal" class="w-full h-screen fixed top-0 left-0 z-40" :class="detailModal === true ? 'bg-black bg-opacity-50' : 'bg-white'">
+        <div v-if="detailModal" class="w-full h-screen fixed top-0 left-0 z-10"
+          :class="detailModal === true ? 'bg-black bg-opacity-50' : 'bg-white'">
           <template v-for="(e, index) in product" :key="e">
             <div v-if="searchPdc === product[index]"
               class="w-80 border mx-auto p-4 flex flex-col justify-center bg-white absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-lg">
@@ -62,12 +68,29 @@ export default {
       selectMonth: '',
       search: '',
       searchPdc: '',
-      detailModal: false
+      detailModal: false,
+      productValid: false
     }
   },
   components: {
   },
   methods: {
+    searchValid() {
+      this.searchPdc = this.search
+      // let text = false
+      // this.product.forEach(el => {
+      //   if(this.searchPdc !== el){
+      //     text = true
+      //     console.log(text);
+      //   }else if(this.searchPdc === el){
+      //     text = false
+      //     return false
+      //   }
+      // });
+      // if(text){
+      //   alert('!')
+      // }
+    }
   },
   created() {
     for (let i in this.data.Grid_20171128000000000572_1.row) {
