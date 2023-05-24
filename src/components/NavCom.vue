@@ -42,7 +42,7 @@
     </div>
   </div>
   <div :class="SubMenuOpen && 'h-48'"
-    class="transition-all duration-500 bg-point rounded h-0 overflow-hidden z-[9999] w-full absolute"
+    class="transition-all duration-500 bg-point rounded h-0 overflow-hidden z-50 w-full absolute"
     @mouseleave="SubMenuOpen = false; NavSelectIndex = null;">
     <div class="max-w-7xl mx-auto pl-40 flex gap-x-16">
       <ul @mouseover="NavSelectIndex = index" v-for="(e, index) in SubList" :key="e" class="basis-32 text-center">
@@ -76,9 +76,9 @@
 
 
   <!-- 우측 hidden 메뉴 Click 사용!! 삼항X -->
-  <div :class="isOpen && '!right-0'" class="w-80 bg-gray-500 h-full z-30 fixed top-0 transiton-all duration-500 -right-80 md:hidden">
+  <div :class="isOpen && '!right-0'" class="w-80 bg-mayo h-full z-30 fixed top-0 transiton-all duration-500 -right-80 md:hidden">
     <img src="@/assets/img/logo_white.png" alt="" class="w-[120px] mx-auto mt-10">
-    <p class="mr-7 text-point text-center font-extrabold mt-5">{{ $store.state.displayName }}<span class="pl-2 text-black">님</span></p>
+    <p class="mr-7 text-point text-center font-extrabold mt-5">{{ $store.state.displayName }}<span v-if="$store.state.displayName !==''" class="pl-2 text-black">님</span></p>
         <!--  -->
       <ul class="w-[190px] flex justify-center gap-x-[2%] border-b border-gray-400 pb-3 mx-auto mt-5">
         <li class="font-extrabold mx-auto" v-if="!$store.state.loginChk"><router-link to="/login"><img
