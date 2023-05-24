@@ -127,6 +127,7 @@ export default {
               localStorage.setItem("uid", response.id)
               router.replace('/')
               store.state.loginChk = true
+              store.state.displayName = response.kakao_account.profile.nickname
             },
             fail: function (error) {
               alert(error)
