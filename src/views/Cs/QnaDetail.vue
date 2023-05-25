@@ -16,7 +16,7 @@
     <ul>
         <li v-for="e in BoardContent.reply" :key="e" class="flex justify-between border-b px-5 py-1 whitespace-pre-line"><p>{{ e.content }}</p> <span>{{e.author}}</span></li>
     </ul>
-    <div class="flex justify-between bg-vege-200/10 items-stretch pl-5">
+    <div :class="$store.state.adminUid === $store.state.uid ? 'block' : 'hidden'" class="flex justify-between bg-vege-200/10 items-stretch pl-5">
         댓글내용<textarea v-model="reply.content" class="border basis-6/12 px-2 py-0.5" rows="1"></textarea>
         작성자<input type="text" v-model="reply.author" class="basis-2/12 border px-2 py-0.5">
         <button @click="Comment()" class="px-5 text-white bg-vege-200 hover:bg-vege-400">등록하기</button>
