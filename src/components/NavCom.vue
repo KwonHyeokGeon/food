@@ -22,6 +22,7 @@
 
           <!-- 로그인 로그아웃 회원가입 -->
         </div>
+        {{ $store.state.loginChk }}
         <div class="basis-1/6 hidden md:block ">
           <ul class="flex justify-center gap-x-[2%]">
             <li class="font-extrabold relative" v-if="!$store.state.loginChk"><router-link to="/login"><img
@@ -32,9 +33,18 @@
               <router-link to="/"><img :src="require('@/assets/img/lock-solid.svg')" alt="lock"
                   class="w-3 absolute mt-1 -ml-5">로그아웃</router-link>
             </li>
+
             <li class="font-extrabold ml-7 relative" v-if="!$store.state.loginChk"><router-link to="/member"><img
                   :src="require('@/assets/img/user-solid.svg')" alt="user"
-                  class="w-3 absolute mt-1 -ml-4">회원가입</router-link></li>
+                  class="w-3 absolute mt-1 -ml-4">회원가입</router-link>
+            </li>
+            
+            <!-- <li class="font-extrabold ml-7 relative" v-else @click="logout">
+               <p class="mr-7 text-point">{{ $store.state.displayName }}<span class="pl-2 text-black">님</span></p>
+               <router-link to='/'><img :src="require('@/assets/img/lock-solid.svg')" alt="lock"
+                  class="w-3 absolute mt-1 -ml-5">로그아웃</router-link>
+            </li> -->
+
           </ul>
         </div>
 
