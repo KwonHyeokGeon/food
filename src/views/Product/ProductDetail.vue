@@ -69,7 +69,8 @@ export default {
       imgUrl: [],
       category: [],
       product: [],
-      items: ''
+      items: '',
+      Youtube_key: ''
     };
   },
 
@@ -87,8 +88,11 @@ export default {
     }
   },
   mounted() {
-    axios.get(`https://www.googleapis.com/youtube/v3/search?key=AIzaSyCR9mmHFr20k2bLtka2OX-zpj8zHotzHEg&part=snippet&type=video&q=${this.product[this.$route.params.id] + '레시피'}&maxResults=6`)
+    this.Youtube_key = process.env.VUE_YOUTUBE_KEY
+
+    axios.get(`https://www.googleapis.com/youtube/v3/search?key=${this.Youtube_key}&part=snippet&type=video&q=${this.product[this.$route.params.id] + '레시피'}&maxResults=6`)
       .then((res) => {
+        
         this.items = res.data.items
         console.log(res);
       })
@@ -101,6 +105,9 @@ export default {
       window.history.back()
     }
   },
+  props:{
+    youtube: Array
+  }
 };
 </script>
 
