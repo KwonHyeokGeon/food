@@ -146,7 +146,7 @@ export default {
     onMounted(() => {
       AOS.init();
     })
-  }
+  },
 }
 </script>
 
