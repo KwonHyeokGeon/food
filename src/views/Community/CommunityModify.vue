@@ -118,28 +118,26 @@ export default {
             li.innerHTML = `<span class="basis-1/12 text-center">`+(idx+1)+`</span><textarea class="border basis-11/12 lg:basis-8/12 mb-1" row="1"></textarea><input type="file" class="basis-60 mx-0 lg:mx-auto">`
             cook.appendChild(li)
         },
-        async recipeMade(){
-            return new Promise((resolve)=>{
-                const cook = document.querySelector(".cook");
-                const idx = cook.childElementCount;            
-                let arr = [];
-                for(let i=0; i < idx; i++){
-                    const li = cook.getElementsByTagName("li")[i];
-                    const cookingDc = li.getElementsByTagName("textarea")[0].value
-                    let cookingFile = li.getElementsByTagName("input")[0].files[0];
-                    const storageRef = firebase.storage().ref();
-                    storageRef.child("recipes/" + this.fileRandom + i).put(cookingFile).then(() => {
-                        storageRef.child("recipes/" + this.fileRandom + i).getDownloadURL().then((url) => {
-                            const e =  {COOKING_NO:i+1,COOKING_DC:cookingDc,COOKING_FILE: url}
-                            arr.push(e)
-                        })
-                    }).catch((error)=>{console.log(error)})
-                }
-                resolve(arr)
-            })
+        async recipeMade() {
+            const cook = document.querySelector(".cook");
+            const promises = [];
+
+            for (let i = 0; i < cook.childElementCount; i++) {
+                const li = cook.getElementsByTagName("li")[i];
+                const cookingDc = li.getElementsByTagName("textarea")[0].value;
+                const cookingFile = li.getElementsByTagName("input")[0].files[0];
+                const storageRef = firebase.storage().ref();
+                const promise = storageRef.child("recipes/" + this.fileRandom + i).put(cookingFile).then(() =>
+                    storageRef.child("recipes/" + this.fileRandom + i).getDownloadURL()).then(url => (
+                        { COOKING_NO: i + 1, COOKING_DC: cookingDc, COOKING_FILE: url }
+                        )).catch(error => console.log(error));
+                promises.push(promise);
+            }
+
+            return Promise.all(promises);
         },
         async modify(){
-            this.COOKING_re = await this.recipeMade()
+            this.COOKING_re = await this.recipeMade();
             db.collection("community").doc(this.$store.state.communityId).update({
                 "author": this.author,
                 "title": this.title,
