@@ -45,10 +45,9 @@
         <h3 class="text-[30px] font-medium mb-8 pl-10">금주의 베스트 레시피</h3>
         <!-- contents -->
         <ul class="flex justify-center relative  flex-wrap h-full">
-          <li v-for="e in WeekRecipeData" :key="e"
-            class="mx-6 md:basis-[48%] relative  lg:basis-[20%] basis-[98%] sm:basis-[98%] sm:mx-auto ">
-            <!-- <router-link :to="{ name:'articleDetail', query:{docId: dataId[index]} }" @click="$store.commit('ArticleDetail', dataId[index])" class="flex flex-wrap "></router-link> -->
-            <!-- <img src="https://via.placeholder.com/250" alt="img" class="mx-auto w-full"> -->
+          <li v-for="(e, index) in WeekRecipeData" :key="e"
+          class="mx-6 md:basis-[48%] relative  lg:basis-[20%] basis-[98%] sm:basis-[98%] sm:mx-auto ">
+          <router-link :to="`/recipe/detail?docId=${WeekRecipeId[index]}`">
             <img :src="e.file" :alt="e.title" class="mx-auto w-[420px] h-60">
             <span
               class="absolute top-0 left-0 bg-[#bb4849]/90 w-[100px] h-10 text-[#f2e7cf] text-sm text-center leading-10 rounded-br-lg ">베스트
@@ -57,6 +56,7 @@
               <h5 class="mb-5 text-lg font-semibold text-center">{{ e.title }}</h5>
               <p class="text-right text-gray-400 pr-3 pb-3 right-0 md:w-full">by.{{ e.author }}</p>
             </div>
+          </router-link>
           </li>
           <p class="cursor-pointer absolute -top-10 right-7"><router-link to="/recipe"> + 더보기</router-link></p>
         </ul>
@@ -70,11 +70,13 @@
         <h3 class="text-[30px] font-medium mb-8 pl-10">새로운 소식</h3>
         <!-- contents -->
         <ul class="">
-          <li v-for="e in dataList" :key="e" class="mx-6 relative flex odd:flex-row even:flex-row-reverse mb-20 ">
-            <img :src="e.file" :alt="e.title"  class="basis-full lg:basis-[48%] w-[500px] h-[500px]">
-            <div class="border pl-5 pt-5 w-[500px] hidden lg:block">
-              <h5 class="mb-5 text-lg font-semibold">새로운 소식 타이틀</h5>
-            </div>
+          <li v-for="(e, index) in dataList" :key="e" >
+            <router-link :to="`/event/detail?docId=${dataId[index]}`" class="mx-6 relative flex odd:flex-row even:flex-row-reverse mb-20 ">
+              <img :src="e.file" :alt="e.title"  class="basis-full lg:basis-[48%] w-[500px] h-[500px]">
+              <div class="border pl-5 pt-5 w-[500px] hidden lg:block">
+                <h5 class="mb-5 text-lg font-semibold">{{ e.title }}</h5>
+              </div>
+            </router-link>
           </li>
         </ul>
         <p class="cursor-pointer absolute top-10 right-7">+ 더보기</p>
