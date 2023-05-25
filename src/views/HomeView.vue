@@ -70,8 +70,8 @@
         <h3 class="text-[30px] font-medium mb-8 pl-10">새로운 소식</h3>
         <!-- contents -->
         <ul class="">
-          <li v-for="e in 3" :key="e" class="mx-6 relative flex odd:flex-row even:flex-row-reverse mb-20 ">
-            <img src="https://via.placeholder.com/500x300" alt="img" class="basis-full lg:basis-[48%]">
+          <li v-for="e in dataList" :key="e" class="mx-6 relative flex odd:flex-row even:flex-row-reverse mb-20 ">
+            <img :src="e.file" :alt="e.title"  class="basis-full lg:basis-[48%] w-[500px] h-[500px]">
             <div class="border pl-5 pt-5 w-[500px] hidden lg:block">
               <h5 class="mb-5 text-lg font-semibold">새로운 소식 타이틀</h5>
             </div>
@@ -103,7 +103,9 @@ export default {
     return {
       Modules: [EffectFade, Pagination, Autoplay, Navigation],
       WeekRecipeId: null,
-      WeekRecipeData: null
+      WeekRecipeData: null,
+      dataList:[],
+      dataId:[],
 
     }
   },
@@ -122,6 +124,21 @@ export default {
       this.WeekRecipeId = ids;
       this.WeekRecipeData = items;
     })
+
+
+    let query = db.collection("event").orderBy("date","desc").limit(3)
+      query.get().then((data)=>{
+          const items = [];
+          const ids = [];
+          data.forEach((e)=>{
+            console.log(e.id)
+              ids.push(e.id);
+              items.push(e.data());
+              console.log(items)
+          })
+          this.dataId = ids;
+          this.dataList = items;
+      })
   },
   setup() {
     onMounted(() => {

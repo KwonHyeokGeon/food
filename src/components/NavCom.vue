@@ -46,7 +46,7 @@
       class="transition-all duration-500 bg-point rounded h-0 overflow-hidden z-[9999] w-full absolute"
       @mouseleave="SubMenuOpen = false; NavSelectIndex = null;">
       <div class="max-w-7xl mx-auto pl-40 flex gap-x-16">
-        <ul @mouseover="NavSelectIndex = index" v-for="(e, index) in SubList" :key="e" class="basis-32 text-center">
+        <ul @mouseover="NavSelectIndex = index" v-for="(e, index) in SubList" :key="e" class="text-center">
           <li v-for="(el, i) in e" :key="el"
             class="font-bold transition-all text-gray-300 opacity-80 hover:text-white hover:opacity-100 my-4">
             <router-link :to="SubMenuLink[index][i]">{{ el }}</router-link>

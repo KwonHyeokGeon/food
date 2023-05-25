@@ -35,7 +35,7 @@
         return {
             dataList:[],
             dataId:[],
-            posts:[],
+            // posts:[],
             page:1,
             perPage: 5,
             lastVisible: null,
