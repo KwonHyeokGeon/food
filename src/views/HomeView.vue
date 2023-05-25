@@ -69,13 +69,13 @@
       <div class="relative">
         <h3 class="text-[30px] font-medium mb-8 pl-10">새로운 소식</h3>
         <!-- contents -->
-        <ul class="">
-          <li v-for="(e, index) in dataList" :key="e" >
-            <router-link :to="`/event/detail?docId=${dataId[index]}`" class="mx-6 relative flex odd:flex-row even:flex-row-reverse mb-20 ">
-              <img :src="e.file" :alt="e.title"  class="basis-full lg:basis-[48%] w-[500px] h-[500px]">
-              <div class="border pl-5 pt-5 w-[500px] hidden lg:block">
+        <ul>
+          <li v-for="(e, index) in dataList" :key="e">
+            <router-link  :to="`/event/detail?docId=${dataList[index]}`" class="mx-6 relative mb-20 flex">
+              <img :src="e.file" :alt="e.title"  class="basis-full lg:basis-[48%] w-[500px] h-[500px]" :class="index%2 === 0? 'order-1': 'order-2'">
+              <div class="border pl-5 pt-5 w-[500px] hidden lg:block" :class="index%2 === 0? 'order-2': 'order-1'">
                 <h5 class="mb-5 text-lg font-semibold">{{ e.title }}</h5>
-              </div>
+              </div> 
             </router-link>
           </li>
         </ul>
