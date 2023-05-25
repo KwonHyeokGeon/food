@@ -101,29 +101,27 @@ export default {
             const formattedDate = ('' + new_date.getFullYear()) + ('0' + (new_date.getMonth() + 1)).slice(-2) + ('0' + new_date.getDate()).slice(-2) + '_' + ('0' + new_date.getHours()).slice(-2) + ('0' + new_date.getMinutes()).slice(-2) + ('0' + new_date.getSeconds()).slice(-2) + '' + RandomNum;
             return formattedDate
         },
-        async recipeMade(){
-            return new Promise((resolve)=>{
+        async recipeMade() {
             const cook = document.querySelector(".cook");
-            const idx = cook.childElementCount; 
-            let arr = []           
-            for(let i=0; i < idx; i++){
+            const promises = [];
+
+            for (let i = 0; i < cook.childElementCount; i++) {
                 const li = cook.getElementsByTagName("li")[i];
-                const cookingDc = li.getElementsByTagName("textarea")[0].value
-                let cookingFile = li.getElementsByTagName("input")[0].files[0];
-                const storageRef = firebase.storage().ref(); // firebase.storage() 모듈을 가져와 변수 생성
-                storageRef.child("recipes/" + this.fileRandom + i).put(cookingFile).then(() => {
-                    storageRef.child("recipes/" + this.fileRandom + i).getDownloadURL().then((url) => {
-                        const e =  {COOKING_NO:i+1,COOKING_DC:cookingDc,COOKING_FILE: url}
-                        arr.push(e)
-                    })
-                }).catch((error)=>{console.log(error)})
+                const cookingDc = li.getElementsByTagName("textarea")[0].value;
+                const cookingFile = li.getElementsByTagName("input")[0].files[0];
+                const storageRef = firebase.storage().ref();
+                const promise = storageRef.child("recipes/" + this.fileRandom + i).put(cookingFile).then(() =>
+                    storageRef.child("recipes/" + this.fileRandom + i).getDownloadURL()).then(url => (
+                        { COOKING_NO: i + 1, COOKING_DC: cookingDc, COOKING_FILE: url }
+                        )).catch(error => console.log(error));
+                promises.push(promise);
             }
-            resolve(arr)
-            })
+
+            return Promise.all(promises);
         },
         async write() {
             this.file = document.querySelector("#image").files[0];
-            const storageRef = firebase.storage().ref(); // firebase.storage()
+            const storageRef = firebase.storage().ref();
             this.COOKING = await this.recipeMade();
             storageRef.child("files/" + this.fileRandom).put(this.file).then(() => {
                 storageRef.child("files/" + this.fileRandom).getDownloadURL().then((url) => {
