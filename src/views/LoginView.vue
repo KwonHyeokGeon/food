@@ -12,6 +12,8 @@
       <input type="email" placeholder="이메일 주소" v-model="email" class="py-3 px-5 border-[#a1a1a1] border">
       <input type="password" placeholder="비밀번호" v-model="password" class="py-3 px-5 border-[#a1a1a1] border" @keyup.enter="login">
       <button class="bg-vege-400 hover:bg-point text-white hover:opacity-80 hover:duration-300 text-2xl py-4 font-bold border-black border" @click="login">로그인</button>
+
+
       <div class="flex justify-between">
         <p class="text-[#a6a6a6] text-xs cursor-pointer" @click="modal = true">아이디 / 비밀번호 찾기</p>
         <router-link to="/member">

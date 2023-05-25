@@ -23,12 +23,12 @@ export default {
     }
   },
   mounted() {
-    if (localStorage.getItem("refreshToken")) {
+    if (localStorage.getItem("refreshToken") && this.displayName != '') {
       this.$store.commit('loginState', { displayName: this.displayName, uid: this.uid })
     }
     auth.onAuthStateChanged((user) => {
-      if (user) {
-        this.$store.commit('loginState', { displayName: user.displayName, uid: user.uid })
+      if (user&& this.displayName != '') {
+        this.$store.commit('loginState', { displayName: this.displayName, uid: user.uid })
       }
     })
   },

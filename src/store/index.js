@@ -46,6 +46,10 @@ export default createStore({
       state.uid = payload.uid
       state.loginChk = true
     },
+    UpdateDisplayName(state, payload){
+      state.displayName = payload;
+      state.loginChk = true
+    },
     NoticeDetail(state, payload) {
       state.noticeId = payload
     },
