@@ -14,7 +14,7 @@ export default createStore({
     articleId:0,
     adminUid: 'DNn4sgDk9dN8ia8hND8NMdOuSA83',
     chkManager: false,
-    app_key: process.env.VUE_APP_HIDDEN_KEY
+    apiKey: process.env.VUE_APP_HIDDEN_KEY
   },
   mutations: {
     NavSelectClick(state, payload){

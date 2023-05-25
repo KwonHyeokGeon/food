@@ -7,7 +7,6 @@
 </template>
 
 <script>
-// import axios from 'axios'
 import NavCom from './components/NavCom.vue';
 import FooterCom from './components/FooterCom.vue';
 import { auth } from './firebase';

@@ -9,9 +9,9 @@
                 class="w-20 sm:mx-auto md:mx-auto ml-10"></router-link>
           </div>
           <!-- Navigation bar -->
-          <ul class="basis-2/4 hidden md:flex ml-20 gap-x-16 text-center" @mouseenter="SubMenuOpen = true">
+          <ul class="hidden md:flex items-center ml-20 gap-x-16 text-center" @mouseenter="SubMenuOpen = true">
             <li v-for="(e, index) in NavList[0]" :key="e"
-            :class="NavSelectIndex == index && 'after:h-0.5 text-green-500' || index === $store.state.navSelectIndex && 'text-point font-extrabold'"
+              :class="NavSelectIndex == index && 'after:h-0.5 text-green-500' || index === $store.state.navSelectIndex && 'text-point font-extrabold'"
               class="shrink-0 hover:text-green-500 text-center h-20 leading-[80px] relative after:absolute after:transition-all after:left-0 after:bottom-0 hover:after:h-1 font-extrabold change">
               <router-link @click="$store.commit('NavSelectClick', index)" :to="NavList[1][index]">{{ e }} </router-link>
             </li>
@@ -78,7 +78,7 @@
 
 
   <!-- 우측 hidden 메뉴 Click 사용!! 삼항X -->
-  <div :class="isOpen && '!right-0'" class="w-80 bg-mayo h-full z-30 top-0 transiton-all duration-500 -right-80 fixed">
+  <div :class="isOpen && '!right-0'" class="w-80 md:hidden bg-mayo h-full z-30 top-0 transiton-all duration-500 -right-80 fixed">
     <img src="@/assets/img/logo.png" alt="" class="w-[120px] mx-auto mt-10">
     <p class="mr-7 text-point text-center font-extrabold mt-5">{{ $store.state.displayName }}<span
         v-if="$store.state.displayName !== ''" class="pl-2 text-black">님</span></p>
@@ -134,9 +134,10 @@ export default {
       isSubDown: '',
       isSubOpen: false,
     }
-
   },
-
+  mounted() {
+    console.log(this.NavList[0][3])
+  },
   methods: {
     logout() {
       auth.signOut();
