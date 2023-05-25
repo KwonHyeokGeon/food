@@ -11,10 +11,11 @@
           <!-- Navigation bar -->
           <ul class="basis-2/4 hidden md:flex ml-20 gap-x-16 text-center" @mouseenter="SubMenuOpen = true">
             <li v-for="(e, index) in NavList[0]" :key="e"
-              :class="NavSelectIndex == index && 'after:h-0.5 text-green-500' || index === $store.state.navSelectIndex && 'text-point font-extrabold' || index == 3 && ($store.state.uid == $store.state.adminUid ? 'block' : 'hidden')"
-              class="shrink-0 hover:text-green-500 basis-32 text-center h-20 leading-[80px] relative after:absolute after:transition-all after:left-0 after:bottom-0 hover:after:h-1 font-extrabold change">
+            :class="NavSelectIndex == index && 'after:h-0.5 text-green-500' || index === $store.state.navSelectIndex && 'text-point font-extrabold'"
+              class="shrink-0 hover:text-green-500 text-center h-20 leading-[80px] relative after:absolute after:transition-all after:left-0 after:bottom-0 hover:after:h-1 font-extrabold change">
               <router-link @click="$store.commit('NavSelectClick', index)" :to="NavList[1][index]">{{ e }} </router-link>
             </li>
+            <li class="shrink-0 hover:text-green-500 text-center h-20 leading-[80px] relative after:absolute after:transition-all after:left-0 after:bottom-0 hover:after:h-1 font-extrabold change" :class="$store.state.adminUid === $store.state.uid ? 'block' : 'hidden'"><router-link to="/admin">관리자</router-link></li>
           </ul>
           <!-- <p v-if="$store.state.uid == $store.state.adminUid" class="absolute right-[500px] top-8"><router-link to="/admin">관리자페이지</router-link></p> -->
 
