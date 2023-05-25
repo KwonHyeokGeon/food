@@ -7,6 +7,7 @@
 </template>
 
 <script>
+// import axios from 'axios'
 import NavCom from './components/NavCom.vue';
 import FooterCom from './components/FooterCom.vue';
 import { auth } from './firebase';
@@ -18,7 +19,7 @@ export default {
   data() {
     return {
       displayName: localStorage.getItem("displayName"),
-      uid: localStorage.getItem("uid")
+      uid: localStorage.getItem("uid"),
     }
   },
   mounted() {

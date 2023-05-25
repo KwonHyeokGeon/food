@@ -48,6 +48,7 @@
         </a>
       </div>
     </div>
+    3333 {{ YoutubeKey }} / {{ tesst }}
   </div>
 </template>
 
@@ -69,7 +70,8 @@ export default {
       imgUrl: [],
       category: [],
       product: [],
-      items: ''
+      items: '',
+      YoutubeKey: process.env.VUE_APP_YOUTUBE_KEY,
     };
   },
 
@@ -87,7 +89,7 @@ export default {
     }
   },
   mounted() {
-    axios.get(`https://www.googleapis.com/youtube/v3/search?key=AIzaSyCR9mmHFr20k2bLtka2OX-zpj8zHotzHEg&part=snippet&type=video&q=${this.product[this.$route.params.id] + '레시피'}&maxResults=6`)
+    axios.get(`https://www.googleapis.com/youtube/v3/search?key=${this.YoutubeKey}&part=snippet&type=video&q=${this.product[this.$route.params.id] + '레시피'}&maxResults=6`)
       .then((res) => {
         this.items = res.data.items
         console.log(res);
