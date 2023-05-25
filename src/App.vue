@@ -1,7 +1,7 @@
 <template>
   <div>
     <NavCom></NavCom>
-    <router-view youtube="youtube" />
+    <router-view />
     <FooterCom></FooterCom>
   </div>
 </template>
@@ -20,7 +20,6 @@ export default {
     return {
       displayName: localStorage.getItem("displayName"),
       uid: localStorage.getItem("uid"),
-      // youtube: []
     }
   },
   mounted() {
@@ -33,17 +32,6 @@ export default {
       }
     })
   },
-  // created(){
-  //   axios.get(`https://www.googleapis.com/youtube/v3/search?key=${this.Youtube_key}&part=snippet&type=video&q=${this.product[this.$route.params.id] + '레시피'}&maxResults=6`)
-  //     .then((res) => {
-        
-  //       this.items = res.data.items
-  //       console.log(res);
-  //     })
-  //     .catch((err) => {
-  //       console.log(err);
-  //     })
-  // }
 }
 </script>
 
