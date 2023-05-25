@@ -72,7 +72,7 @@
         <ul>
           <li v-for="(e, index) in dataList" :key="e">
             <router-link  :to="`/event/detail?docId=${dataList[index]}`" class="mx-6 relative mb-20 flex">
-              <img :src="e.file" :alt="e.title"  class="basis-full lg:basis-[48%] w-[500px] h-[500px]" :class="index%2 === 0? 'order-1': 'order-2'">
+              <img :src="e.file" :alt="e.title"  class="basis-full lg:basis-[48%] w-[300px] h-[300px]" :class="index%2 === 0? 'order-1': 'order-2'">
               <div class="border pl-5 pt-5 w-[500px] hidden lg:block" :class="index%2 === 0? 'order-2': 'order-1'">
                 <h5 class="mb-5 text-lg font-semibold">{{ e.title }}</h5>
               </div> 
