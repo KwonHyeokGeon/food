@@ -48,7 +48,6 @@
         </a>
       </div>
     </div>
-    3333 {{ YoutubeKey }} / {{ tesst }}
   </div>
 </template>
 

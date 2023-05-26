@@ -23,7 +23,6 @@
 
           <!-- 로그인 로그아웃 회원가입 -->
         </div>
-        <!-- {{ $store.state.loginChk }} -->
         <div class="basis-1/6 hidden md:block ">
           <ul class="flex justify-center gap-x-[2%]">
             <li class="font-extrabold relative" v-if="!$store.state.loginChk"><router-link to="/login"><img
@@ -94,12 +93,12 @@
         v-if="$store.state.displayName !== ''" class="pl-2 text-black">님</span></p>
     <!--  -->
     <ul class="w-[190px] flex justify-center gap-x-[2%] border-b border-gray-400 pb-3 mx-auto mt-5">
-      <li class="font-extrabold mx-auto" v-if="!$store.state.loginChk"><router-link to="/login"><img
+      <li class="font-extrabold mx-auto" v-if="!$store.state.loginChk"><router-link to="/login" class="flex"><img
             :src="require('@/assets/img/lock-solid.svg')" alt="lock " class="w-3 absolute mt-1 -ml-4">
-          로그인</router-link> </li>
+          <span>로그인</span></router-link> </li>
       <li class="font-extrabold" v-else @click="logout"><router-link to="/">로그아웃</router-link></li>
-      <li class="font-extrabold ml-10" v-if="!$store.state.loginChk"><router-link to="/member"><img
-            :src="require('@/assets/img/user-solid.svg')" alt="user" class="w-4 absolute -ml-5"> 회원가입</router-link></li>
+      <li class="font-extrabold ml-10" v-if="!$store.state.loginChk"><router-link to="/member" class="flex"><img
+            :src="require('@/assets/img/user-solid.svg')" alt="user" class="w-4 absolute -ml-5"><span>회원가입</span></router-link></li>
     </ul>
 
     <ul class=" mt-20">
