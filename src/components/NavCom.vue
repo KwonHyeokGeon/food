@@ -23,7 +23,7 @@
 
           <!-- 로그인 로그아웃 회원가입 -->
         </div>
-        {{ $store.state.loginChk }}
+        <!-- {{ $store.state.loginChk }} -->
         <div class="basis-1/6 hidden md:block ">
           <ul class="flex justify-center gap-x-[2%]">
             <li class="font-extrabold relative" v-if="!$store.state.loginChk"><router-link to="/login"><img

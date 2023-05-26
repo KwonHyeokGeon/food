@@ -1,7 +1,7 @@
 <template>
     <div class="border-y border-vege-600 p-5">
         <h2 class="text-2xl font-bold">
-            <span v-html="BoardContent.eventOn? '[진행중]':'[종료]'" :class="BoardContent.eventOn? 'text-vege-400':'text-point'"></span> {{BoardContent.title}}
+            <span v-html="BoardContent.eventOn === true? '[진행중]':'[종료]'" :class="BoardContent.eventOn === true? 'text-vege-400':'text-point'"></span> {{BoardContent.title}}
         </h2>
         <div class="basis-full flex text-center text-sm gap-x-3 pb-3 border-b mt-1">
             <p class="relative after:absolute after:inline-block after:bg-vege-200/50 after:w-0.5 after:h-4 after:rounded-full after:-right-2 after:top-0.5"><span class="mr-1">작성자</span>{{BoardContent.author}}</p>
