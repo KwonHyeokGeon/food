@@ -1,6 +1,6 @@
 <template>
     <div class="w-full">
-        <ul class="flex justify-between bg-vege-200/20 py-2 border-t border-vege-400">
+        <ul class="flex justify-between bg-vege-200/20 py-2 border-y border-vege-400">
             <li class="basis-12 text-center">번호</li>
             <li class="basis-7/12">제목</li>
             <li class="basis-16 text-center">작성자</li>
@@ -16,7 +16,7 @@
                 <li class="basis-24 text-center">{{BoardDate(index)}}</li>
             </ul>
         </template>
-        <div :class="$store.state.adminUid === $store.state.uid ? 'block' : 'hidden'" class="flex justify-end border-t border-vege-400 pt-10">
+        <div :class="$store.state.adminUid === $store.state.uid ? 'block' : 'hidden'" class="flex justify-end pt-10">
             <router-link to="/cs/notice/write" class="px-4 py-2 rounded text-white bg-vege-200 hover:bg-vege-400">글쓰기</router-link>
         </div>
         <div class="flex justify-center basis-full gap-x-2 items-center mt-10 ">
