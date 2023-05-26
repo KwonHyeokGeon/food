@@ -1,7 +1,7 @@
 <template>
-  <div class="product-wrap pt-20 md:pt-0">
+  <div class="pt-20 md:pt-0">
     <section>
-      <div class="container px-6 py-10 mx-auto">
+      <div class="py-10 mx-auto max-w-7xl">
         <ul class="flex flex-wrap w-full lg:w-1/2 mx-auto justify-around 
         ">
           <li v-for="el in month" :key="el"
