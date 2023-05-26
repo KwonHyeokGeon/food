@@ -35,7 +35,7 @@ export default {
           dataId:[],
           posts:[],
           page:1,
-          perPage: 5,
+          perPage: 12,
           lastVisible: null,
           totalLength:0,
           block:5,

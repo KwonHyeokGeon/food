@@ -9,12 +9,13 @@
                 class="w-20 sm:mx-auto md:mx-auto ml-10"></router-link>
           </div>
           <!-- Navigation bar -->
-          <ul class="basis-2/4 hidden md:flex ml-20 gap-x-16 text-center" @mouseenter="SubMenuOpen = true">
+          <ul class="hidden md:flex items-center ml-20 gap-x-16 text-center" @mouseenter="SubMenuOpen = true">
             <li v-for="(e, index) in NavList[0]" :key="e"
-              :class="NavSelectIndex == index && 'after:h-0.5 text-green-500' || index === $store.state.navSelectIndex && 'text-point font-extrabold' || index == 3 && ($store.state.uid == $store.state.adminUid ? 'block' : 'hidden')"
-              class="shrink-0 hover:text-green-500 basis-32 text-center h-20 leading-[80px] relative after:absolute after:transition-all after:left-0 after:bottom-0 hover:after:h-1 font-extrabold change">
+              :class="NavSelectIndex == index && 'after:h-0.5 text-green-500' || index === $store.state.navSelectIndex && 'text-point font-extrabold'"
+              class="shrink-0 hover:text-green-500 text-center h-20 leading-[80px] relative after:absolute after:transition-all after:left-0 after:bottom-0 hover:after:h-1 font-extrabold change">
               <router-link @click="$store.commit('NavSelectClick', index)" :to="NavList[1][index]">{{ e }} </router-link>
             </li>
+            <li class="shrink-0 hover:text-green-500 text-center h-20 leading-[80px] relative after:absolute after:transition-all after:left-0 after:bottom-0 hover:after:h-1 font-extrabold change" :class="$store.state.adminUid === $store.state.uid ? 'block' : 'hidden'"><router-link to="/admin">관리자</router-link></li>
           </ul>
           <!-- <p v-if="$store.state.uid == $store.state.adminUid" class="absolute right-[500px] top-8"><router-link to="/admin">관리자페이지</router-link></p> -->
 
@@ -22,7 +23,6 @@
 
           <!-- 로그인 로그아웃 회원가입 -->
         </div>
-        {{ $store.state.loginChk }}
         <div class="basis-1/6 hidden md:block ">
           <ul class="flex justify-center gap-x-[2%]">
             <li class="font-extrabold relative" v-if="!$store.state.loginChk"><router-link to="/login"><img
@@ -55,7 +55,7 @@
       class="transition-all duration-500 bg-point rounded h-0 overflow-hidden z-[9999] w-full absolute"
       @mouseleave="SubMenuOpen = false; NavSelectIndex = null;">
       <div class="max-w-7xl mx-auto pl-40 flex gap-x-16">
-        <ul @mouseover="NavSelectIndex = index" v-for="(e, index) in SubList" :key="e" class="basis-32 text-center">
+        <ul @mouseover="NavSelectIndex = index" v-for="(e, index) in SubList" :key="e" class="text-center">
           <li v-for="(el, i) in e" :key="el"
             class="font-bold transition-all text-gray-300 opacity-80 hover:text-white hover:opacity-100 my-4">
             <router-link :to="SubMenuLink[index][i]">{{ el }}</router-link>
@@ -87,7 +87,7 @@
 
 
   <!-- 우측 hidden 메뉴 Click 사용!! 삼항X -->
-  <div :class="isOpen && '!right-0'" class="w-80 bg-mayo h-full z-30 top-0 transiton-all duration-500 -right-80 fixed">
+  <div :class="isOpen && '!right-0'" class="w-80 md:hidden bg-mayo h-full z-30 top-0 transiton-all duration-500 -right-80 fixed">
     <img src="@/assets/img/logo.png" alt="" class="w-[120px] mx-auto mt-10">
     <p class="mr-7 text-point text-center font-extrabold mt-5">{{ $store.state.displayName }}<span
         v-if="$store.state.displayName !== ''" class="pl-2 text-black">님</span></p>
@@ -143,9 +143,10 @@ export default {
       isSubDown: '',
       isSubOpen: false,
     }
-
   },
-
+  mounted() {
+    console.log(this.NavList[0][3])
+  },
   methods: {
     logout() {
       auth.signOut();

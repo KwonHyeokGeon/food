@@ -82,7 +82,7 @@ export default {
           if (user.user.refreshToken) {
             this.$store.commit("loginToken", { refreshToken: user.user.refreshToken, uid: user.user.uid })
           }
-          this.$router.replace('/')
+          this.$router.go(-1)
           window.scrollTo({ top: 0, behavior: 'auto' })
         }),
           ((error) => {
@@ -95,7 +95,6 @@ export default {
       const provider = new firebase.auth.GoogleAuthProvider()
       try {
         firebase.auth().signInWithPopup(provider).then((Res) => {
-          console.log(Res);
           localStorage.setItem("refreshToken", Res.user.refreshToken)
           localStorage.setItem("displayName", Res.user.displayName)
           if (Res.user.refreshToken) {

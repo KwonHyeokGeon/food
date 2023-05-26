@@ -1,5 +1,5 @@
 <template>
-    <div class="bg-vege-600 w-full">
+    <div class="bg-vege-600 w-full pt-20 md:pt-0">
       <div class="max-w-7xl mx-auto flex flex-col justify-center items-center">
         <h2 class="font-bold text-3xl sm:text-4xl relative pt-20 pb-4 text-white">User Recipe
           <span class="w-20 h-[2px] bg-white absolute bottom-0 left-1/2 -translate-x-1/2 inline-block"></span>

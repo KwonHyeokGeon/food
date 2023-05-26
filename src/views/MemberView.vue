@@ -56,6 +56,9 @@ export default {
                     //this.$router.replace('/')   
                     this.$router.replace('/')
                     this.$router.go
+                    alert("▶ 농달 회원이되신것을 축하드립니다 ◀")
+                    // alert(this.nickname+"회원 가입을 축하 드립니다.");
+                    this.$router.go(-1)   
                     
                 } else if (this.password !== this.passwordChk) {
                     alert('비밀번호가 일치하지 않습니다.')

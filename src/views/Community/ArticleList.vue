@@ -1,7 +1,7 @@
 <template>
-    <div class="w-full py-24">
+    <div class="w-full flex flex-wrap gap-x-12 gap-y-2">
         <template v-for="(e,index) in dataList" :key="index">
-            <ul v-if="calculateNumber(totalLength, perPage, page, index) >0" class="w-full lg:w-[48%] border rounded-md p-3 box-border">
+            <ul v-if="calculateNumber(totalLength, perPage, page, index) >0" class="basis-full lg:basis-[48%] border rounded-md p-3 box-border group">
                 <router-link :to="{ name:'articleDetail', query:{docId: dataId[index]} }" @click="$store.commit('ArticleDetail', dataId[index])" class="flex flex-wrap ">
                 <li class="basis-full sm:basis-3/5 border text-center">
                     <img :src="e.file" :alt="e.title" class="w-full h-[200px] object-cover"/>
@@ -17,7 +17,7 @@
                 </router-link>
             </ul>
         </template>
-        <div class="flex justify-end">
+        <div class="basis-full flex justify-end mt-10">
             <router-link to="/article/write" class="px-4 py-2 rounded text-white bg-vege-400 hover:bg-vege-200">글쓰기</router-link>
         </div>
         <div class="flex justify-center basis-full gap-x-2 items-center">
@@ -37,7 +37,7 @@
             dataId:[],
             posts:[],
             page:1,
-            perPage: 5,
+            perPage: 8,
             lastVisible: null,
             totalLength:0,
             block:5,
