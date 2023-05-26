@@ -101,6 +101,7 @@ export default {
           if (Res.user.refreshToken) {
             this.$store.commit("loginToken", { refreshToken: Res.user.refreshToken, uid: Res.user.uid })
           }
+          this.$router.go
           this.$router.replace('/')
         })
       } catch (error) {

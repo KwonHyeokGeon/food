@@ -50,9 +50,12 @@ export default {
                     })
                     this.$store.commit('UpdateDisplayName',  this.nickname)
                     localStorage.setItem("displayName", this.nickname)
+                    
                     //alert("▶ 농달 회원이되신것을 축하드립니다 ◀")
                     alert(this.nickname+"회원 가입을 축하 드립니다.");
                     //this.$router.replace('/')   
+                    this.$router.replace('/')
+                    this.$router.go
                     
                 } else if (this.password !== this.passwordChk) {
                     alert('비밀번호가 일치하지 않습니다.')
