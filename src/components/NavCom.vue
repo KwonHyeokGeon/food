@@ -145,7 +145,6 @@ export default {
     }
   },
   mounted() {
-    console.log(this.NavList[0][3])
   },
   methods: {
     logout() {

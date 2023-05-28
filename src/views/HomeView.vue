@@ -133,10 +133,8 @@ export default {
           const items = [];
           const ids = [];
           data.forEach((e)=>{
-            console.log(e.id)
               ids.push(e.id);
               items.push(e.data());
-              console.log(items)
           })
           this.dataId = ids;
           this.dataList = items;

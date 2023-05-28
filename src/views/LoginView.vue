@@ -82,7 +82,7 @@ export default {
           if (user.user.refreshToken) {
             this.$store.commit("loginToken", { refreshToken: user.user.refreshToken, uid: user.user.uid })
           }
-          this.$router.go(-1)
+          this.$router.replace('/')
           window.scrollTo({ top: 0, behavior: 'auto' })
         }),
           ((error) => {
