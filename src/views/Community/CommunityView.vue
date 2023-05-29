@@ -11,7 +11,7 @@
   </div>
   <div class="max-w-7xl mx-auto grid md:grid-cols-2 grid-cols-1 justify-between py-24 gap-x-10 gap-y-16 px-[2%] lg:px-0">
     <div class="basis-[42%] flex flex-wrap relative">
-      <router-link to="/recipe" class="absolute text-sm font-bold text-point -top-6 right-3 md:right-0">+
+      <router-link to="/recipes" class="absolute text-sm font-bold text-point -top-6 right-3 md:right-0">+
         더보기</router-link>
       <h3 class="basis-full bg-vege-200 text-center text-xl font-bold py-5">금주의 베스트 레시피</h3>
       <div class="basis-full border p-3">
@@ -49,7 +49,7 @@
       </div>
     </div>
     <div class="basis-[42%] flex flex-wrap relative">
-      <router-link to="/recipe" class="absolute text-sm font-bold text-point -top-6 right-3 md:right-0">+
+      <router-link to="/recipes" class="absolute text-sm font-bold text-point -top-6 right-3 md:right-0">+
         더보기</router-link>
       <h3 class="basis-full bg-vege-200 text-center text-xl font-bold py-5">신작 유저 레시피</h3>
       <div class="basis-full border p-3">
@@ -87,7 +87,7 @@
       </div>
     </div>
     <div class="basis-[42%] flex flex-col relative">
-      <router-link to="/cs/qna/list" class="absolute text-sm font-bold text-point -top-6 right-3 md:right-0">+
+      <router-link to="/qna" class="absolute text-sm font-bold text-point -top-6 right-3 md:right-0">+
         더보기</router-link>
       <h3 class="basis-1/12 bg-vege-200 text-center text-xl font-bold py-5">Q&A</h3>
       <div class="basis-11/12 mt-2 px-1 py-3">
@@ -105,7 +105,7 @@
       </div>
     </div>
     <div class="basis-[42%] flex flex-col relative">
-      <router-link to="/cs/notice/list" class="absolute text-sm font-bold text-point -top-6 right-3 md:right-0">+
+      <router-link to="/notices" class="absolute text-sm font-bold text-point -top-6 right-3 md:right-0">+
         더보기</router-link>
       <h3 class="basis-1/12 bg-vege-200 text-center text-xl font-bold py-5">공지사항</h3>
       <div class="basis-11/12 mt-2 px-1 py-3">
