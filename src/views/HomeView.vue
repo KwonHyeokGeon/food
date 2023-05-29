@@ -65,16 +65,19 @@
     <!--
       새로운 소식
     -->
-    <div class="mt-[100px] flex justify-center" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="900">
+    <div class="max-w-7xl mx-auto mt-[100px] flex justify-center" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="900">
       <div class="relative">
         <h3 class="text-[30px] font-medium mb-8 pl-10">새로운 소식</h3>
         <!-- contents -->
         <ul>
           <li v-for="(e, index) in dataList" :key="e">
-            <router-link  :to="`/event/detail?docId=${dataList[index]}`" class="mx-6 relative mb-20 flex">
-              <img :src="e.file" :alt="e.title"  class="basis-full lg:basis-[48%] w-[300px] h-[300px]" :class="index%2 === 0? 'order-1': 'order-2'">
-              <div class="border pl-5 pt-5 w-[500px] hidden lg:block" :class="index%2 === 0? 'order-2': 'order-1'">
+            <router-link :to="{ name:'articleDetail', query:{docId: dataId[index]} }" @click="$store.commit('ArticleDetail', dataId[index])" class="mx-6 relative mb-20 flex">
+              <div class="basis-full lg:basis-[48%]" :class="index%2 === 0? 'order-1': 'order-2'">
+                <img :src="e.file" :alt="e.title"  class="w-full">
+              </div>
+              <div class="basis-full lg:basis-[52%] border p-5 w-[500px] hidden lg:block" :class="index%2 === 0? 'order-2': 'order-1'">
                 <h5 class="mb-5 text-lg font-semibold">{{ e.title }}</h5>
+                <p class="mt-10 line-clamp-3">{{ e.content }}</p>
               </div> 
             </router-link>
           </li>
@@ -128,7 +131,7 @@ export default {
     })
 
 
-    let query = db.collection("event").orderBy("date","desc").limit(3)
+    let query = db.collection("article").orderBy("date","desc").limit(3)
       query.get().then((data)=>{
           const items = [];
           const ids = [];
