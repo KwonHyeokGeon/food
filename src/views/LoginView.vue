@@ -101,6 +101,7 @@ export default {
             this.$store.commit("loginToken", { refreshToken: Res.user.refreshToken, uid: Res.user.uid })
           }
           this.$router.replace('/')
+          window.scrollTo({ top: 0, behavior: 'auto' })
         })
       } catch (error) {
         this.errorMsg = error.message
@@ -127,6 +128,7 @@ export default {
               localStorage.setItem("displayName", response.kakao_account.profile.nickname)
               localStorage.setItem("uid", response.id)
               router.replace('/')
+              window.scrollTo({ top: 0, behavior: 'auto' })
               store.state.loginChk = true
               store.state.displayName = response.kakao_account.profile.nickname
             },

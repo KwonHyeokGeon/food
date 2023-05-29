@@ -15,10 +15,10 @@
     </div>
     <div class="flex justify-between mt-10 mb-24 items-center">
         <div>
-            <router-link to="/article/list" class="px-4 py-2 rounded text-white bg-vege-200 hover:bg-vege-400">목록으로</router-link>
+            <router-link to="/articles" class="px-4 py-2 rounded text-white bg-vege-200 hover:bg-vege-400">목록으로</router-link>
         </div>
         <div class="flex gap-x-5">
-            <router-link to="/article/modify" class="px-4 py-2 rounded text-white bg-vege-200 hover:bg-vege-400">수정</router-link>
+            <router-link to="/articles/modify" class="px-4 py-2 rounded text-white bg-vege-200 hover:bg-vege-400">수정</router-link>
             <button @click="Delete()" class="px-4 py-2 rounded text-white bg-point/70 hover:bg-point">삭제</button>
         </div>
     </div>
@@ -35,7 +35,7 @@
     },
     mounted() {
         if ( this.$route.query.docId === null){
-            this.$router.replace("/article")
+            this.$router.replace("/articles")
         }
         db.collection("article").doc(this.$route.query.docId).get().then((data)=>{
             this.BoardContent = data.data()
@@ -56,7 +56,7 @@
             if (msg){
                 db.collection("article").doc(this.$route.query.docId).delete().then(() => {
                     alert("게시물이 삭제되었습니다.");
-                    this.$router.replace("/article")
+                    this.$router.replace("/articles")
                 }).catch((error) => {
                     console.error("Error removing document: ", error);
                 });

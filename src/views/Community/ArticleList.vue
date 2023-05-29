@@ -18,7 +18,7 @@
             </ul>
         </template>
         <div class="basis-full flex justify-end mt-10">
-            <router-link to="/article/write" class="px-4 py-2 rounded text-white bg-vege-400 hover:bg-vege-200">글쓰기</router-link>
+            <router-link to="/articles/write" class="px-4 py-2 rounded text-white bg-vege-400 hover:bg-vege-200">글쓰기</router-link>
         </div>
         <div class="flex justify-center basis-full gap-x-2 items-center">
             <button @click="prevPage" :disabled="currentPage <= 1" class="font-bold">이전</button>

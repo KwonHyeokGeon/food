@@ -4,7 +4,7 @@
             <label for="title">제목</label><input v-model="title" type="text" id="title" class="border basis-8/12 px-2 py-1">
             <label for="author">작성자</label><input v-model="author" type="text" id="author" class="border basis-2/12 px-2 py-1">
         </div>
-        <textarea v-model="content" class="border basis-full mt-2 mb-5 p-3"></textarea>
+        <textarea v-model="content" class="border basis-full mt-2 mb-5 p-3" rows="15"></textarea>
         <input type="file" id="image" required>
     </div>
     <div class="w-full flex justify-end pt-10">
@@ -50,7 +50,7 @@ export default {
                             "uid": this.$store.state.uid,
                             "file": url,
                         })
-                        this.$router.replace("/article")
+                        this.$router.replace("/articles")
                     })
                 })
             } else {
@@ -61,7 +61,7 @@ export default {
                     "date": this.date,
                     "uid": this.$store.state.uid,
                 })
-                this.$router.replace("/article")
+                this.$router.replace("/articles")
             }
         }
     },

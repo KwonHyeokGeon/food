@@ -36,94 +36,94 @@ const routes = [
     component: () => import('../views/Community/BoardView.vue'),
   },
   {
-    path: '/recipe',
+    path: '/recipes',
     name: 'UserrecipePage',
     component: () => import('../views/Product/UserRecipeView.vue'),
-    redirect: '/recipe/list',
+    redirect: '/recipes',
     children: [
       {
-        path: "/recipe/list",
+        path: "/recipes",
         name: "communityList",
         component: () => import('../views/Community/CommunityList.vue')
       },
       {
-        path: "/recipe/write",
+        path: "/recipes/write",
         name: "communityWrite",
         component: () => import('../views/Community/CommunityWrite.vue')
       },
       {
-        path: "/recipe/detail",
+        path: "/recipes/detail",
         name: "communityDetail",
         component: () => import('../views/Community/CommunityDetail.vue')
       },
       {
-        path: "/recipe/modify",
+        path: "/recipes/modify",
         name: "communityModify",
         component: () => import('../views/Community/CommunityModify.vue')
       }
     ]
   },
   {
-    path: '/product',
+    path: '/products',
     name: 'product',
     component: () => import('../views/Product/ProductView.vue'),
   },
   {
-    path: '/product/detail/:id',
+    path: '/products/:id',
     name: 'productDetail',
     component: () => import('../views/Product/ProductDetail.vue')
   },
   {
-    path: '/article',
+    path: '/articles',
     name: 'article',
     component: () => import('../views/Community/ArticleView.vue'),
-    redirect: '/article/list',
+    redirect: '/articles',
     children: [
       {
-        path: "/article/list",
+        path: "/articles",
         name: "articleList",
         component: () => import('../views/Community/ArticleList.vue')
       },
       {
-        path: "/article/write",
+        path: "/articles/write",
         name: "articleWrite",
         component: () => import('../views/Community/ArticleWrite.vue')
       },
       {
-        path: "/article/detail",
+        path: "/articles/detail",
         name: "articleDetail",
         component: () => import('../views/Community/ArticleDetail.vue')
       },
       {
-        path: "/article/modify",
+        path: "/articles/modify",
         name: "articleModify",
         component: () => import('../views/Community/ArticleModify.vue')
       }
     ]
   },
   {
-    path: '/event',
+    path: '/events',
     name: 'event',
     component: () => import('../views/Community/EventView.vue'),
-    redirect: '/event/list',
+    redirect: '/events',
     children: [
       {
-        path: "/event/list",
+        path: "/events",
         name: "eventList",
         component: () => import('../views/Community/EventList.vue')
       },
       {
-        path: "/event/write",
+        path: "/events/write",
         name: "eventWrite",
         component: () => import('../views/Community/EventWrite.vue')
       },
       {
-        path: "/event/detail",
+        path: "/events/detail",
         name: "eventDetail",
         component: () => import('../views/Community/EventDetail.vue')
       },
       {
-        path: "/event/modify",
+        path: "/events/modify",
         name: "eventModify",
         component: () => import('../views/Community/EventModify.vue')
       }
@@ -138,59 +138,59 @@ const routes = [
     path: "/cs",
     name: "cs",
     component: () => import('../views/Cs/CsView.vue'),
-    redirect: '/cs/notice',
+    redirect: '/notices',
     children: [
       {
-        path: "/cs/notice",
+        path: "/notices",
         name: "notice",
         component: () => import('../views/Cs/NoticeView.vue'),
-        redirect: '/cs/notice/list',
+        redirect: '/notices',
         children: [
           {
-            path: "/cs/notice/list",
+            path: "/notices",
             name: "noticeList",
             component: () => import('../views/Cs/NoticeList.vue')
           },
           {
-            path: "/cs/notice/write",
+            path: "/notices/write",
             name: "noticeWrite",
             component: () => import('../views/Cs/NoticeWrite.vue')
           },
           {
-            path: "/cs/notice/detail",
+            path: "/notices/detail",
             name: "noticeDetail",
             component: () => import('../views/Cs/NoticeDetail.vue')
           },
           {
-            path: "/cs/notice/modify",
+            path: "/notices/modify",
             name: "noticeModify",
             component: () => import('../views/Cs/NoticeModify.vue')
           }
         ]
       },
       {
-        path: "/cs/qna",
+        path: "/qna",
         name: "qna",
         component: () => import('../views/Cs/QnaView.vue'),
-        redirect: '/cs/qna/list',
+        redirect: '/qna',
         children: [
           {
-            path: "/cs/qna/list",
+            path: "/qna",
             name: "qnaList",
             component: () => import('../views/Cs/QnaList.vue')
           },
           {
-            path: "/cs/qna/write",
+            path: "/qna/write",
             name: "qnaWrite",
             component: () => import('../views/Cs/QnaWrite.vue')
           },
           {
-            path: "/cs/qna/detail",
+            path: "/qna/detail",
             name: "qnaDetail",
             component: () => import('../views/Cs/QnaDetail.vue')
           },
           {
-            path: "/cs/qna/modify",
+            path: "/qna/modify",
             name: "qnaModify",
             component: () => import('../views/Cs/QnaModify.vue')
           }

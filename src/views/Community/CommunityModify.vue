@@ -85,7 +85,7 @@ export default {
   },
   mounted() {
         if ( this.$store.state.communityId === 0){
-            this.$router.replace("/recipe")
+            this.$router.replace("/recipes")
         }
         db.collection("community").doc(this.$store.state.communityId).get().then((data)=>{
             this.BoardContent = data.data(),
@@ -151,7 +151,7 @@ export default {
                 "COOKING":this.COOKING_re
             }).then(()=>{
                 alert("수정이 완료되었습니다.");
-                this.$router.replace("/recipe");
+                this.$router.replace("/recipes");
             })
       }
   },

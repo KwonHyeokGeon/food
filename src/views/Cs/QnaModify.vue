@@ -26,7 +26,7 @@ export default {
     },
     mounted() {
         if ( this.$store.state.qnaId === 0){
-            this.$router.replace("/service/qna")
+            this.$router.replace("/qna")
         }
         db.collection("qna").doc(this.$store.state.qnaId).get().then((data)=>{
                 this.BoardContent = data.data(),
@@ -40,7 +40,7 @@ export default {
         modify(){
             db.collection("qna").doc(this.$store.state.qnaId).update({"author":this.author,"title": this.title, "content":this.content,"date":this.date, "reply": this.reply}).then(()=>{
                 alert("수정이 완료되었습니다.");
-                this.$router.replace("/service/qna");
+                this.$router.replace("/qna");
             })
         }
     },

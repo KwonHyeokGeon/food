@@ -19,7 +19,7 @@
             </ul>
         </template>
         <div v-if="this.$store.state.uid" class="flex justify-end pt-10">
-            <router-link v-if="this.$store.state.uid" to="/cs/qna/write" class="px-4 py-2 rounded text-white bg-vege-200 hover:bg-vege-400">문의 작성하기</router-link>
+            <router-link v-if="this.$store.state.uid" to="/qna/write" class="px-4 py-2 rounded text-white bg-vege-200 hover:bg-vege-400">문의 작성하기</router-link>
         </div>
         <div class="flex justify-center basis-full gap-x-2 items-center mt-10">
             <button @click="prevPage" :disabled="currentPage <= 1" class="font-bold">이전</button>

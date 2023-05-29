@@ -143,7 +143,7 @@ export default {
                         "likedlist":[],
                         "liked":0
                     })
-                    this.$router.replace("/recipe")
+                    this.$router.replace("/recipes")
                 })
             })
         }

@@ -1,5 +1,5 @@
 <template>
-    <div class="w-full flex flex-wrap gap-x-4 gap-y-2 mb-10">
+    <div class="w-full flex flex-wrap gap-4 mb-10">
         <template v-for="(e,index) in dataList" :key="index">
         <ul v-if="calculateNumber(totalLength, perPage, page, index) >0" class="flex flex-wrap w-full lg:w-[48%] xl:w-[24%] border">
             <router-link :to="{ name:'communityDetail', query:{docId: dataId[index]} }" @click="$store.commit('CommunityDetail', dataId[index])" class="basis-full">
@@ -16,7 +16,7 @@
     </div>
     <div>
         <div class="flex justify-end">
-            <router-link to="/recipe/write" class="px-4 py-2 rounded text-white bg-vege-200 hover:bg-vege-400">글쓰기</router-link>
+            <router-link to="/recipes/write" class="px-4 py-2 rounded text-white bg-vege-200 hover:bg-vege-400">글쓰기</router-link>
         </div>
         <div class="flex justify-center basis-full gap-x-2 items-center">
             <button @click="prevPage" :disabled="currentPage <= 1" class="font-bold">이전</button>

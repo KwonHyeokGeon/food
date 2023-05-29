@@ -6,7 +6,7 @@
       "고객센터"
     ],
     [
-      "/product",
+      "/products",
       "/community",
       "/cs"
     ]
@@ -17,8 +17,8 @@
     ["공지사항","QnA"]
   ],
   "SubLink" : [
-    ["/product"],
-    ["/event","/recipe","/article"],
-    ["/cs/notice","/cs/qna"]
+    ["/products"],
+    ["/events","/recipes","/articles"],
+    ["/notices","/qna"]
   ]
 }
