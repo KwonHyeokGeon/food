@@ -47,7 +47,7 @@
         <ul class="flex justify-center relative  flex-wrap h-full">
           <li v-for="(e, index) in WeekRecipeData" :key="e"
           class="mx-6 md:basis-[48%] relative  lg:basis-[20%] basis-[98%] sm:basis-[98%] sm:mx-auto ">
-          <router-link :to="`/recipe/detail?docId=${WeekRecipeId[index]}`">
+          <router-link :to="`/recipes/detail?docId=${WeekRecipeId[index]}`">
             <img :src="e.file" :alt="e.title" class="mx-auto w-[420px] h-60">
             <span
               class="absolute top-0 left-0 bg-[#bb4849]/90 w-[100px] h-10 text-[#f2e7cf] text-sm text-center leading-10 rounded-br-lg ">베스트
