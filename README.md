@@ -1,6 +1,6 @@
 
-  ![Nongdal Thumbnail](./public/favicon.png)  
-# 프로젝트 이름
+
+# 프로젝트 이름   ![Nongdal Thumbnail](./public/favicon.png)  
 
 <p>
   <br>
