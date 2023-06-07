@@ -6,9 +6,10 @@
   <br>
   팀프로젝트 농달
     
-  ![Nongdal Thumbnail](./public/mobile.png) 
+  ![Nongdal Thumbnail](./public/nongdal.png)    
   
-  ![Nongdal Thumbnail](./public/nongdal.png)  
+  ![Nongdal Thumbnail](./public/mobile.png) 
+
   <br>
   
 </p>
