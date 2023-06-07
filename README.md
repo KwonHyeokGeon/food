@@ -5,7 +5,7 @@
 <p align="center">
   <br>
   팀프로젝트 농달
-![Nongdal Thumbnail](./src/assets/img/logo.png)  
+![Nongdal Thumbnail](./public/favicon.png)  
   <br>
 </p>
 
