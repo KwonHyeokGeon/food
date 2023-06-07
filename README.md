@@ -6,7 +6,7 @@
   <br>
   팀프로젝트 농달
   
-  ![Nongdal Thumbnail](./public/favicon.png)  
+  ![Nongdal Thumbnail](./src/assets/img/logo.png)  
   <br>
   
 </p>
