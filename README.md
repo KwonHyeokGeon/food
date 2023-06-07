@@ -1,12 +1,12 @@
 
-
+  ![Nongdal Thumbnail](./public/favicon.png)  
 # 프로젝트 이름
 
 <p>
   <br>
   팀프로젝트 농달
   
-  ![Nongdal Thumbnail](./src/assets/img/logo.png)  
+
   <br>
   
 </p>
