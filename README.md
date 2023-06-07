@@ -5,13 +5,11 @@
 <p>
   <br>
   팀프로젝트 농달
-  <div style="display:flex;">
     
   ![Nongdal Thumbnail](./public/mobile.png) 
   모바일화면
   ![Nongdal Thumbnail](./public/nongdal.png)  
   PC화면  
-  </div>
   <br>
   
 </p>
