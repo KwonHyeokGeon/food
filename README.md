@@ -6,8 +6,11 @@
   <br>
   팀프로젝트 농달
   <div style="display:flex;">
-  ![Nongdal Thumbnail](./public/mobile.png)  
+    
+  ![Nongdal Thumbnail](./public/mobile.png) 
+    
   ![Nongdal Thumbnail](./public/nongdal.png)  
+    
   </div>
   <br>
   
