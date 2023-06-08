@@ -46,7 +46,7 @@
 - **영민👨‍💻** <a href="https://github.com/bundasse"><img alt="GitHub" src ="https://img.shields.io/badge/GitHub-181717.svg?&style=flat-square&logo=GitHub&logoColor=white"/></a> <a href="http://bundasse.dothome.co.kr/portfolio/"><img alt="Portfolio" src ="https://img.shields.io/badge/Portfolio-brightgreen.svg?&style=flat-square"/></a>  
   컨텐츠 기획, 사이트 구조 구상,DB 관리(FireBase), 게시판(이벤트, 레시피, 컬럼페이지, 공지사항, QnA) 페이지 구조&(css)제작
 
-- **유상😱** <a href="https://github.com/YS-SOHN"><img alt="GitHub" src ="https://img.shields.io/badge/GitHub-181717.svg?&style=flat-square&logo=GitHub&logoColor=white"/></a> <a href=""><img alt="Portfolio" src ="https://img.shields.io/badge/Portfolio-brightgreen.svg?&style=flat-square"/></a>  
+- **유상😱** <a href="https://github.com/YS-SOHN"><img alt="GitHub" src ="https://img.shields.io/badge/GitHub-181717.svg?&style=flat-square&logo=GitHub&logoColor=white"/></a> <a href="http://sdg0627.dothome.co.kr/port2/"><img alt="Portfolio" src ="https://img.shields.io/badge/Portfolio-brightgreen.svg?&style=flat-square"/></a>  
   로그인&회원가입 페이지(css)제작, 네비게이션 구조 제작, 반응형 제작, 데이터 출력, 파이어베이스 관리 
 
 - **민아🎨** <a href="https://github.com/JeonMin-A"><img alt="GitHub" src ="https://img.shields.io/badge/GitHub-181717.svg?&style=flat-square&logo=GitHub&logoColor=white"/></a> <a href="https://portfolio-jeonmin-a.vercel.app/"><img alt="Portfolio" src ="https://img.shields.io/badge/Portfolio-brightgreen.svg?&style=flat-square"/></a>  
