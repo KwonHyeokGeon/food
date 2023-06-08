@@ -4,9 +4,9 @@
 
 ## 스크린샷    
   데스크탑 화면  
-  ![Nongdal Thumbnail](./public/nongdal.png){: width="500"}    
+  ![Nongdal Thumbnail](./public/nongdal.png)    
   모바일 화면  
-  ![Nongdal Thumbnail](./public/mobile.png){: width="300"}  
+  ![Nongdal Thumbnail](./public/mobile.png)  
 
 ## 링크
 [https://nongdal.vercel.app/](https://nongdal.vercel.app/)
