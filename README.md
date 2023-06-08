@@ -49,6 +49,6 @@
 - **유상😱** <a href="https://github.com/YS-SOHN"><img alt="GitHub" src ="https://img.shields.io/badge/GitHub-181717.svg?&style=flat-square&logo=GitHub&logoColor=white"/></a> <a href=""><img alt="Portfolio" src ="https://img.shields.io/badge/Portfolio-brightgreen.svg?&style=flat-square"/></a>  
   로그인&회원가입 페이지(css)제작, 네비게이션 구조 제작, 반응형 제작, 데이터 출력, 파이어베이스 관리 
 
-- **민아🎨** <a href="https://github.com/JeonMin-A"><img alt="GitHub" src ="https://img.shields.io/badge/GitHub-181717.svg?&style=flat-square&logo=GitHub&logoColor=white"/></a> <a href=""><img alt="Portfolio" src ="https://img.shields.io/badge/Portfolio-brightgreen.svg?&style=flat-square"/></a>  
+- **민아🎨** <a href="https://github.com/JeonMin-A"><img alt="GitHub" src ="https://img.shields.io/badge/GitHub-181717.svg?&style=flat-square&logo=GitHub&logoColor=white"/></a> <a href="https://portfolio-jeonmin-a.vercel.app/"><img alt="Portfolio" src ="https://img.shields.io/badge/Portfolio-brightgreen.svg?&style=flat-square"/></a>  
   회의록 작성(Notion), 로고디자인&사이트 디자인&와이어프레임&프로토타입 제작(Figma), css 작업, 메인 홈 데이터 출력, 메인 홈-비주얼 영역 애니메이션, 관리자 접근 권한 설정(router-meta)
   
