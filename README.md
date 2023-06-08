@@ -4,7 +4,7 @@
 
 ## 스크린샷    
   데스크탑 화면  
-  ![Nongdal Thumbnail](./public/nongdal.png)    
+  ![Nongdal Thumbnail](./public/desktop.png)    
   모바일 화면  
   ![Nongdal Thumbnail](./public/mobile.png)  
 
