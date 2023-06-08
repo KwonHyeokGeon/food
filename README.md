@@ -39,15 +39,16 @@
 ***
 
 ## 담당파트
-**혁건👑** [GitHub](https://github.com/KwonHyeokGeon) [Portfolio]()  
+**혁건👑** <a href="https://github.com/KwonHyeokGeon"><img alt="GitHub" src ="https://img.shields.io/badge/GitHub-181717.svg?&style=for-the-badge&logo=GitHub&logoColor=white"/></a>
+<a href=""><img alt="Portfolio" src ="https://img.shields.io/badge/Portfolio-red.svg?&style=for-the-badge"/></a>  
   팀장, 프로젝트 생성, API통신, GitHub&Vercel 관리, 이달의 농산물 및 상세페이지, sns 로그인 및 비밀번호 재설정 구현
 
-**영민👨‍💻** [GitHub](https://github.com/bundasse) [Portfolio](http://bundasse.dothome.co.kr/portfolio/)  
+**영민👨‍💻** <a href="https://github.com/bundasse"><img alt="GitHub" src ="https://img.shields.io/badge/GitHub-181717.svg?&style=for-the-badge&logo=GitHub&logoColor=white"/></a> <a href="http://bundasse.dothome.co.kr/portfolio/"><img alt="Portfolio" src ="https://img.shields.io/badge/Portfolio-red.svg?&style=for-the-badge"/></a>  
   컨텐츠 기획, 사이트 구조 구상,DB 관리(FireBase), 게시판(이벤트, 레시피, 컬럼페이지, 공지사항, QnA) 페이지 구조&(css)제작
 
-**유상😱** [GitHub](https://github.com/YS-SOHN) [Portfolio]()  
+**유상😱** <a href="https://github.com/YS-SOHN"><img alt="GitHub" src ="https://img.shields.io/badge/GitHub-181717.svg?&style=for-the-badge&logo=GitHub&logoColor=white"/></a> <a href=""><img alt="Portfolio" src ="https://img.shields.io/badge/Portfolio-red.svg?&style=for-the-badge"/></a>  
   로그인&회원가입 페이지(css)제작, 네비게이션 구조 제작, 반응형 제작, 데이터 출력, 파이어베이스 관리 
 
-**민아🎨** [GitHub](https://github.com/JeonMin-A) [Portfolio]()  
+**민아🎨** <a href="https://github.com/JeonMin-A"><img alt="GitHub" src ="https://img.shields.io/badge/GitHub-181717.svg?&style=for-the-badge&logo=GitHub&logoColor=white"/></a> <a href=""><img alt="Portfolio" src ="https://img.shields.io/badge/Portfolio-red.svg?&style=for-the-badge"/></a>  
   회의록 작성(Notion), 로고디자인&사이트 디자인&와이어프레임&프로토타입 제작(Figma), css 작업, 메인 홈 데이터 출력, 메인 홈-비주얼 영역 애니메이션, 관리자 접근 권한 설정(router-meta)
   
