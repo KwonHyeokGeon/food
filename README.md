@@ -23,8 +23,8 @@
 2023.05.15 ~ 2023.05.29
 
 ***
-
-## STACK
+## 기술스택 및 데이터
+### STACK
 - Vue.js
 - Tailwind CSS
 - Vue-router
@@ -33,7 +33,7 @@
 - Axios
 - Firebase
 
-## 사용 데이터
+### 사용 데이터
 - [농림수산식품교육문화정보원 제공 제철 농산물 상세정보](https://data.mafra.go.kr/opendata/data/indexOpenDataDetail.do?data_id=20171128000000000925)
 
 ***
