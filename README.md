@@ -40,7 +40,7 @@
 
 ## 담당파트
 - **혁건👑** <a href="https://github.com/KwonHyeokGeon"><img alt="GitHub" src ="https://img.shields.io/badge/GitHub-181717.svg?&style=flat-square&logo=GitHub&logoColor=white"/></a>
-<a href="https://www.notion.so/08946f98ac5143e098ec9ce14675f525?pvs=4"><img alt="Portfolio" src ="https://img.shields.io/badge/Notion-brightgreen.svg?&style=flat-square"/></a>  
+<a href="https://faithful-carp-d1b.notion.site/08946f98ac5143e098ec9ce14675f525?pvs=4"><img alt="Portfolio" src ="https://img.shields.io/badge/Notion-brightgreen.svg?&style=flat-square"/></a>  
   팀장, 프로젝트 생성, API통신, GitHub&Vercel 관리, 이달의 농산물 및 상세페이지, sns 로그인 및 비밀번호 재설정 구현
 
 - **영민👨‍💻** <a href="https://github.com/bundasse"><img alt="GitHub" src ="https://img.shields.io/badge/GitHub-181717.svg?&style=flat-square&logo=GitHub&logoColor=white"/></a> <a href="http://bundasse.dothome.co.kr/portfolio/"><img alt="Portfolio" src ="https://img.shields.io/badge/Portfolio-brightgreen.svg?&style=flat-square"/></a>  
