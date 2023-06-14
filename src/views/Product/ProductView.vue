@@ -1,5 +1,6 @@
 <template>
   <div class="pt-20 md:pt-0">
+    {{ searchFilter }}
     <section>
       <div class="py-10 mx-auto max-w-7xl">
         <ul class="flex flex-wrap w-full lg:w-1/2 mx-auto justify-around 
@@ -22,19 +23,7 @@
         </div>
         <div v-if="detailModal" class="w-full h-screen fixed top-0 left-0 z-10"
           :class="detailModal === true ? 'bg-black bg-opacity-50' : 'bg-white'">
-          <template v-for="(e, index) in product" :key="e">
-            <div v-if="searchPdc === product[index]"
-              class="w-80 border mx-auto p-4 flex flex-col justify-center bg-white absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-lg">
-              <div class="w-full h-64 rounded-lg relative">
-                <router-link :to="{ name: 'productDetail', params: { id: index } }">
-                  <img v-lazy="imgUrl[index]" :alt="product[index]"
-                    class="w-80 h-60 rounded-md absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2" />
-                </router-link>
-              </div>
-              <h1 class="my-1 font-bold text-lg">{{ e }}</h1>
-              <p>{{ seasonItem[index] }}</p>
-            </div>
-          </template>
+
         </div>
         <div class="grid grid-cols-1 gap-8 mt-8 xl:mt-12 xl:gap-12 sm:grid-cols-2 xl:grid-cols-4 lg:grid-cols-3">
           <template v-for="(e, idx) in product" :key="e">
@@ -68,6 +57,7 @@ export default {
       selectMonth: '',
       search: '',
       searchPdc: '',
+      searchArray: [],
       detailModal: false,
       productValid: false
     }
@@ -77,20 +67,18 @@ export default {
   methods: {
     searchValid() {
       this.searchPdc = this.search
-      // let text = false
-      // this.product.forEach(el => {
-      //   if(this.searchPdc !== el){
-      //     text = true
-      //     console.log(text);
-      //   }else if(this.searchPdc === el){
-      //     text = false
-      //     return false
-      //   }
-      // });
-      // if(text){
-      //   alert('!')
-      // }
-    }
+    },
+  },
+  computed: {
+    searchFilter() {
+      if (this.search !== '') {
+        return this.product.filter((list) => {
+          return list.includes(this.search)
+        });
+      } else {
+        return this.search === '';
+      }
+    },
   },
   created() {
     for (let i in this.data.Grid_20171128000000000572_1.row) {
