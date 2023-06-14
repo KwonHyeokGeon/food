@@ -16,10 +16,10 @@
 
     <div class="flex justify-between mt-10 items-center">
             <div>
-                <router-link to="/cs/notice/list" class="px-4 py-2 rounded text-white bg-vege-200 hover:bg-vege-400">목록으로</router-link>
+                <router-link to="/notices" class="px-4 py-2 rounded text-white bg-vege-200 hover:bg-vege-400">목록으로</router-link>
             </div>
             <div class="flex gap-x-5">
-                <router-link to="/cs/notice/modify" class="px-4 py-2 rounded text-white bg-vege-200 hover:bg-vege-400">수정</router-link>
+                <router-link to="/notices/modify" class="px-4 py-2 rounded text-white bg-vege-200 hover:bg-vege-400">수정</router-link>
                 <button @click="Delete()" class="px-4 py-2 rounded text-white bg-point/70 hover:bg-point">삭제</button>
             </div>
         </div>
@@ -36,7 +36,7 @@ export default {
     },
     mounted() {
         if ( this.$route.query.docId === null){
-            this.$router.replace("/cs/notice")
+            this.$router.replace("/notices")
         }
         db.collection("notice").doc(this.$route.query.docId).get().then((data)=>{
             this.BoardContent = data.data()
@@ -57,7 +57,7 @@ export default {
             if (msg){
                 db.collection("notice").doc(this.$route.query.docId).delete().then(() => {
                     alert("게시물이 삭제되었습니다.");
-                    this.$router.replace("/cs/notice")
+                    this.$router.replace("/notices")
                 }).catch((error) => {
                     console.error("Error removing document: ", error);
                 });

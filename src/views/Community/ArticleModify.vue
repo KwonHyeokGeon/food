@@ -26,7 +26,7 @@
     },
     mounted() {
         if ( this.$store.state.articleId === 0){
-            this.$router.replace("/article")
+            this.$router.replace("/articles")
         }
         db.collection("article").doc(this.$store.state.articleId).get().then((data)=>{
                 this.BoardContent = data.data(),
@@ -44,7 +44,7 @@
                 "date":this.date,
             }).then(()=>{
                 alert("수정이 완료되었습니다.");
-                this.$router.replace("/article");
+                this.$router.replace("/articles");
             })
         }
     },

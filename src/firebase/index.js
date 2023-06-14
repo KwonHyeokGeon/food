@@ -6,7 +6,7 @@ import "firebase/storage"
 
 
 const firebaseConfig = {
-  apiKey: "AIzaSyBAAFbluR9xeCcy3vpc_5MZ9uke-0Zqwzs",
+  apiKey: process.env.VUE_APP_HIDDEN_KEY,
   authDomain: "project-b1ef0.firebaseapp.com",
   projectId: "project-b1ef0",
   storageBucket: "project-b1ef0.appspot.com",

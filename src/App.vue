@@ -18,7 +18,7 @@ export default {
   data() {
     return {
       displayName: localStorage.getItem("displayName"),
-      uid: localStorage.getItem("uid")
+      uid: localStorage.getItem("uid"),
     }
   },
   mounted() {

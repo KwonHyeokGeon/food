@@ -30,7 +30,7 @@
     },
     mounted() {
         if ( this.$store.state.eventId === 0){
-            this.$router.replace("/event")
+            this.$router.replace("/events")
         }
         db.collection("event").doc(this.$store.state.eventId).get().then((data)=>{
                 this.BoardContent = data.data(),
@@ -50,7 +50,7 @@
                 "eventOn": this.eventOn
             }).then(()=>{
                 alert("수정이 완료되었습니다.");
-                this.$router.replace("/event");
+                this.$router.replace("/events");
             })
         }
     },

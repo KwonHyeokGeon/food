@@ -1,19 +1,19 @@
 <template>
   <section>
-    <div class="bg-[#cbcbcb] w-full flex flex-col justify-center items-center">
-      <h2 class=" font-bold text-2xl sm:text-4xl relative pt-20 pb-4">Login<span
-          class="w-20 h-[2px] bg-black absolute bottom-0 left-1/2 -translate-x-1/2 inline-block"></span>
+    <div class="bg-vege-600 w-full flex flex-col justify-center items-center">
+      <h2 class=" font-bold text-2xl sm:text-4xl relative pt-20 pb-4 text-white">Login<span
+          class="w-20 h-[2px] bg-white absolute bottom-0 left-1/2 -translate-x-1/2 inline-block"></span>
       </h2>
-      <p class="py-2">로그인</p>
-      <p class="px-20 pb-20">Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus nam earum corporis
-        minima praesentium libero accusantium, odit fugit quo tempora dolor porro dolorem laborum labore omnis
-        maxime, alias ipsum. Impedit, magnam natus eos cupiditate officiis esse! Nostrum eligendi officia assumenda!
+      <p class="py-2 text-white">로그인</p>
+      <p class="px-20 pb-20 text-mayo">로그인 페이지
       </p>
     </div>
     <div class="mt-20 flex flex-col gap-y-5 w-96 mx-auto">
       <input type="email" placeholder="이메일 주소" v-model="email" class="py-3 px-5 border-[#a1a1a1] border">
-      <input type="password" placeholder="비밀번호" v-model="password" class="py-3 px-5 border-[#a1a1a1] border">
-      <button class="bg-[#b3b3b3] text-2xl py-4 font-bold border-black border" @click="login">로그인</button>
+      <input type="password" placeholder="비밀번호" v-model="password" class="py-3 px-5 border-[#a1a1a1] border" @keyup.enter="login">
+      <button class="bg-vege-400 hover:bg-point text-white hover:opacity-80 hover:duration-300 text-2xl py-4 font-bold border-black border" @click="login">로그인</button>
+
+
       <div class="flex justify-between">
         <p class="text-[#a6a6a6] text-xs cursor-pointer" @click="modal = true">아이디 / 비밀번호 찾기</p>
         <router-link to="/member">
@@ -43,7 +43,8 @@
         <div class="flex w-full gap-2 justify-center">
           <button class="border rounded-md bg-vege-200 text-white p-1 basis-4/12 hover:bg-vege-400 transition-all"
             @click="findPassword(this.userEmail); modal = false">제출</button>
-          <button class="border rounded-md bg-vege-200 text-white p-1 basis-4/12 hover:bg-vege-400 transition-all" @click="modal = false">취소</button>
+          <button class="border rounded-md bg-vege-200 text-white p-1 basis-4/12 hover:bg-vege-400 transition-all"
+            @click="modal = false">취소</button>
         </div>
       </div>
     </div>
@@ -85,7 +86,7 @@ export default {
           window.scrollTo({ top: 0, behavior: 'auto' })
         }),
           ((error) => {
-            this.errorMsg = error.message
+            alert(error.message)
           })
         )
       }
@@ -94,19 +95,22 @@ export default {
       const provider = new firebase.auth.GoogleAuthProvider()
       try {
         firebase.auth().signInWithPopup(provider).then((Res) => {
-          console.log(Res);
           localStorage.setItem("refreshToken", Res.user.refreshToken)
           localStorage.setItem("displayName", Res.user.displayName)
           if (Res.user.refreshToken) {
             this.$store.commit("loginToken", { refreshToken: Res.user.refreshToken, uid: Res.user.uid })
           }
           this.$router.replace('/')
+          window.scrollTo({ top: 0, behavior: 'auto' })
         })
       } catch (error) {
         this.errorMsg = error.message
       }
     },
     signInWithKakao() {
+      const router = this.$router
+      const store = this.$store
+
       window.Kakao.cleanup();
       window.Kakao.init('40efe3e8889c51f75afb99fa7d699b0a')
       window.Kakao.Auth.login({
@@ -123,6 +127,10 @@ export default {
             success: async function (response) {
               localStorage.setItem("displayName", response.kakao_account.profile.nickname)
               localStorage.setItem("uid", response.id)
+              router.replace('/')
+              window.scrollTo({ top: 0, behavior: 'auto' })
+              store.state.loginChk = true
+              store.state.displayName = response.kakao_account.profile.nickname
             },
             fail: function (error) {
               alert(error)
@@ -133,13 +141,12 @@ export default {
           alert(error)
         },
       })
-      this.$router.replace('/')
-      this.$store.state.loginChk = true
     },
     findPassword(email) {
       firebase.auth().sendPasswordResetEmail(email)
         .then((Res) => {
-          console.log(Res);
+          Res
+          alert('메일이 전송되었습니다.')
         })
         .catch((error) => {
           error

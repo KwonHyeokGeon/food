@@ -12,6 +12,9 @@ export default createStore({
     navSelectIndex : '',
     eventId:0,
     articleId:0,
+    adminUid: 'DNn4sgDk9dN8ia8hND8NMdOuSA83',
+    chkManager: false,
+    apiKey: process.env.VUE_APP_HIDDEN_KEY
   },
   mutations: {
     NavSelectClick(state, payload){
@@ -21,6 +24,12 @@ export default createStore({
       state.loginToken = payload.refreshToken
       state.loginChk = true
       state.uid = payload.uid
+      if(state.uid === state.adminUid){
+        console.log(state.uid)
+        state.chkManager = true
+      }else{
+        state.chkManager = false
+      }
     },
     logOutToken(state) {
       state.loginChk = false,

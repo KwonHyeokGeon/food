@@ -16,17 +16,17 @@
     <ul>
         <li v-for="e in BoardContent.reply" :key="e" class="flex justify-between border-b px-5 py-1 whitespace-pre-line"><p>{{ e.content }}</p> <span>{{e.author}}</span></li>
     </ul>
-    <div class="flex justify-between bg-vege-200/10 items-stretch pl-5">
+    <div :class="$store.state.adminUid === $store.state.uid ? 'block' : 'hidden'" class="flex justify-between bg-vege-200/10 items-stretch pl-5">
         댓글내용<textarea v-model="reply.content" class="border basis-6/12 px-2 py-0.5" rows="1"></textarea>
         작성자<input type="text" v-model="reply.author" class="basis-2/12 border px-2 py-0.5">
         <button @click="Comment()" class="px-5 text-white bg-vege-200 hover:bg-vege-400">등록하기</button>
     </div>
     <div class="flex justify-between mt-10 items-center">
         <div>
-            <router-link to="/cs/qna/list" class="px-4 py-2 rounded text-white bg-vege-200 hover:bg-vege-400">목록으로</router-link>
+            <router-link to="/qna" class="px-4 py-2 rounded text-white bg-vege-200 hover:bg-vege-400">목록으로</router-link>
         </div>
         <div class="flex gap-x-5">
-            <router-link to="/cs/qna/modify" class="px-4 py-2 rounded text-white bg-vege-200 hover:bg-vege-400">수정</router-link>
+            <router-link to="/qna/modify" class="px-4 py-2 rounded text-white bg-vege-200 hover:bg-vege-400">수정</router-link>
             <button @click="Delete()" class="px-4 py-2 rounded text-white bg-point/70 hover:bg-point">삭제</button>
         </div>
     </div>
@@ -47,7 +47,7 @@ export default {
     },
     mounted() {
         if ( this.$route.query.docId === null){
-            this.$router.replace("/cs/qna")
+            this.$router.replace("/qna")
         }
         db.collection("qna").doc(this.$route.query.docId).get().then((data)=>{
             this.BoardContent = data.data()
@@ -68,7 +68,7 @@ export default {
             if (msg){
                 db.collection("qna").doc(this.$route.query.docId).delete().then(() => {
                     alert("게시물이 삭제되었습니다.");
-                    this.$router.replace("/cs/qna")
+                    this.$router.replace("/qna")
                 }).catch((error) => {
                     console.error("Error removing document: ", error);
                 });

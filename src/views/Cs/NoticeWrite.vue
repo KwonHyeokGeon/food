@@ -1,14 +1,14 @@
 <template>
-    <div class="w-full">
-        <div class="flex flex-wrap">
-            <label for="title">제목</label><input v-model="title" type="text" id="title" class="border basis-5/12">
-            <label for="author">작성자</label><input v-model="author" type="text" id="author" class="border basis-5/12">
+    <div class="w-full border-y py-10 border-vege-600">
+        <div class="flex flex-wrap justify-between items-center">
+            <label for="title" class="basis-1/12">제목</label><input v-model="title" type="text" id="title" class="border basis-7/12 px-2 py-1">
+            <label for="author" class="basis-1/12">작성자</label><input v-model="author" type="text" id="author" class="border basis-2/12 px-2 py-1">
         </div>
-        <textarea v-model="content"  class="border w-full"></textarea>
+        <textarea v-model="content"  class="border w-full mt-2 mb-5 p-3"  rows="15"></textarea>
         <input type="file" id="image">
-        <div>
-            <button @click="write" class="px-4 py-2 rounded text-white bg-vege-200 hover:bg-vege-400">등록하기</button>
-        </div>
+    </div>
+    <div class="w-full flex justify-end pt-10">
+        <button @click="write" class="px-4 py-2 rounded text-white bg-vege-200 hover:bg-vege-400">등록하기</button>
     </div>
 </template>
 <script>
@@ -50,7 +50,7 @@ export default {
                         "uid" : this.$store.state.uid,
                         "file": url
                     })
-                    this.$router.replace("/cs/notice")
+                    this.$router.replace("/notices")
                     })
                 })
             }else{
@@ -61,7 +61,7 @@ export default {
                     "date":this.date,
                     "uid" : this.$store.state.uid
                 })
-                this.$router.replace("/cs/notice")
+                this.$router.replace("/notices")
             }
         }
     },

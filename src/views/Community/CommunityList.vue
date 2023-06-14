@@ -1,22 +1,22 @@
 <template>
-    <div class="w-full flex flex-wrap gap-x-10">
+    <div class="w-full flex flex-wrap gap-4 mb-10">
         <template v-for="(e,index) in dataList" :key="index">
-        <ul v-if="calculateNumber(totalLength, perPage, page, index) >0" class="flex flex-wrap w-full lg:w-[49%] xl:w-[24%] border">
+        <ul v-if="calculateNumber(totalLength, perPage, page, index) >0" class="flex flex-wrap w-full lg:w-[48%] xl:w-[24%] border">
             <router-link :to="{ name:'communityDetail', query:{docId: dataId[index]} }" @click="$store.commit('CommunityDetail', dataId[index])" class="basis-full">
             <li class="w-full text-center"><img :src="e.file" :alt="e.title" class="w-full h-[200px] object-cover"/></li>
             <li class="w-full border-t font-bold text-xl p-2">{{ e.title }}</li>
             </router-link>
-            <li class="basis-full text-sm p-2">
+            <li class="basis-full text-sm p-2 flex flex-wrap">
                 <span class="mr-2">게시물번호 {{ calculateNumber(totalLength, perPage, page, index) }} </span>
                 <span class="mr-2">작성자 {{e.author}}</span>
-                <span>작성일자 {{BoardDate(index)}}</span>
+                <span class="basis-full">작성일자 {{BoardDate(index)}}</span>
             </li>
             </ul>
         </template>
     </div>
     <div>
         <div class="flex justify-end">
-            <router-link to="/recipe/write" class="px-4 py-2 rounded text-white bg-vege-200 hover:bg-vege-400">글쓰기</router-link>
+            <router-link to="/recipes/write" class="px-4 py-2 rounded text-white bg-vege-200 hover:bg-vege-400">글쓰기</router-link>
         </div>
         <div class="flex justify-center basis-full gap-x-2 items-center">
             <button @click="prevPage" :disabled="currentPage <= 1" class="font-bold">이전</button>
@@ -35,7 +35,7 @@ export default {
           dataId:[],
           posts:[],
           page:1,
-          perPage: 5,
+          perPage: 12,
           lastVisible: null,
           totalLength:0,
           block:5,
